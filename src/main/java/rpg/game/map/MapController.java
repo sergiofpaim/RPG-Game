@@ -5,24 +5,6 @@ import rpg.models.Map;
 import rpg.services.MapService;
 
 public class MapController {
-    private static int playerX = 2;
-    private static int playerY = 2;
-
-    public static int getPlayerX() {
-        return playerX;
-    }
-
-    public static int getPlayerY() {
-        return playerY;
-    }
-
-    private static void setPlayerX(int x) {
-        playerX = x;
-    }
-
-    private static void setPlayerY(int y) {
-        playerY = y;
-    }
 
     public static void buildMap() {
         Map mapModel = MapService.loadMap();
@@ -38,41 +20,49 @@ public class MapController {
             }
         }
 
-        mapArray[playerX][playerY] = '@';
+        mapArray[RPGGame.currentCharacter.getPositionX()][RPGGame.currentCharacter.getPositionY()] = '@';
 
         RPGGame.currentMap = mapArray;
     }
 
     public static void movePlayer(String movement) {
-        RPGGame.currentMap[playerX][playerY] = '.';
+        RPGGame.currentMap[RPGGame.currentCharacter.getPositionX()][RPGGame.currentCharacter.getPositionY()] = '.';
+
+        int currentX = RPGGame.currentCharacter.getPositionX();
+        int currentY = RPGGame.currentCharacter.getPositionY();
+        int newX = currentX;
+        int newY = currentY;
 
         switch (movement) {
             case "up":
-                if (playerX > 1 && RPGGame.currentMap[playerX - 1][playerY] != '#') {
-                    setPlayerX(playerX - 1);
+                newX = currentX - 1;
+                if (newX >= 0 && RPGGame.currentMap[newX][currentY] != '#') {
+                    RPGGame.currentCharacter.setPositionX(newX);
                 }
                 break;
             case "down":
-                if (playerX < RPGGame.currentMap.length - 2 && RPGGame.currentMap[playerX + 1][playerY] != '#') {
-                    setPlayerX(playerX + 1);
+                newX = currentX + 1;
+                if (newX < RPGGame.currentMap.length && RPGGame.currentMap[newX][currentY] != '#') {
+                    RPGGame.currentCharacter.setPositionX(newX);
                 }
                 break;
             case "left":
-                if (playerY > 1 && RPGGame.currentMap[playerX][playerY - 1] != '#') {
-                    setPlayerY(playerY - 1);
+                newY = currentY - 1;
+                if (newY >= 0 && RPGGame.currentMap[currentX][newY] != '#') {
+                    RPGGame.currentCharacter.setPositionY(newY);
                 }
                 break;
             case "right":
-                if (playerY < RPGGame.currentMap[0].length - 2 && RPGGame.currentMap[playerX][playerY + 1] != '#') {
-                    setPlayerY(playerY + 1);
+                newY = currentY + 1;
+                if (newY < RPGGame.currentMap[0].length && RPGGame.currentMap[currentX][newY] != '#') {
+                    RPGGame.currentCharacter.setPositionY(newY);
                 }
                 break;
-
             default:
                 System.out.println("Invalid move!");
                 return;
         }
 
-        RPGGame.currentMap[playerX][playerY] = '@';
+        RPGGame.currentMap[RPGGame.currentCharacter.getPositionX()][RPGGame.currentCharacter.getPositionY()] = '@';
     }
 }

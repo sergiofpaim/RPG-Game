@@ -28,7 +28,7 @@ public class PlayerController {
                 }
                 break;
             case "i":
-                if (MapController.getPlayerX() == 2 && MapController.getPlayerY() == 3) {
+                if (RPGGame.currentCharacter.getPositionX() == 2 && RPGGame.currentCharacter.getPositionY() == 3) {
                     System.out.println("You found a treasure chest!");
                 } else {
                     System.out.println("Nothing to interact with here.");
@@ -36,20 +36,16 @@ public class PlayerController {
                 break;
 
             case "b":
-                if (MapController.getPlayerX() == 2 && MapController.getPlayerY() == 3) {
-                    System.out.println("You found a treasure chest!");
-                } else {
-                    System.out.println("Nothing to interact with here.");
-                }
+                System.out.println("Let's battle!");
                 break;
 
             case "k":
                 CharacterService.saveCharacter(RPGGame.currentCharacter);
-                System.out.println("Game saved!");
+                System.out.println("\nGame saved!");
                 break;
 
             default:
-                System.out.println("Invalid action!");
+                System.out.println("\nInvalid action!");
                 return;
         }
     }

@@ -1,6 +1,7 @@
 package rpg.services;
 
 import java.util.List;
+import java.util.Random;
 
 import com.mongodb.client.model.Filters;
 
@@ -17,7 +18,8 @@ public class MapService {
                 clazz -> "Map", false, null);
 
         if (maps.isEmpty()) {
-            Map map = new Map(10, 10, RPGGame.currentCharacter.getId());
+            Map map = new Map(new Random().nextInt(50) + 1,
+                    new Random().nextInt(50) + 1, RPGGame.currentCharacter.getId());
             return insertMap(map);
         } else {
             return maps.get(0);

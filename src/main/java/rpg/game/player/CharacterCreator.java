@@ -12,7 +12,7 @@ public class CharacterCreator {
     public static Character createCharacter() {
         int points = 30;
 
-        System.out.println("Enter your character's name: ");
+        System.out.println("\nEnter your character's name: ");
         String name = RPGGame.scan.nextLine();
 
         int health = setAttributes("Health", points);
@@ -32,7 +32,7 @@ public class CharacterCreator {
 
         List<Item> inventory = getInitialItems();
 
-        return new Character(name, health, health, attack, defense, magic, speed, inventory);
+        return new Character(name, health, health, attack, defense, magic, speed, inventory, 0, 0);
     }
 
     private static List<Item> getInitialItems() {

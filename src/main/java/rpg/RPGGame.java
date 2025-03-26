@@ -18,7 +18,13 @@ public class RPGGame {
     private static final List<Character> characters = CharacterService.loadCharacters();
 
     public static void main(String[] args) {
-        System.out.println("Welcome to the Wonders and Dragons RPG!\n");
+
+        System.out.println("\n" +
+                "***************************************\n" +
+                "   WELCOME TO THE WONDERS AND DRAGONS  \n" +
+                "        RPG ADVENTURE AWAITS!         \n" +
+                "***************************************\n");
+
         characterPicker();
         GameRunner.runGame();
     }
