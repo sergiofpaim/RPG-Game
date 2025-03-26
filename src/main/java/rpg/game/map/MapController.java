@@ -1,7 +1,7 @@
 package rpg.game.map;
 
 import rpg.RPGGame;
-import rpg.models.DungeonMap;
+import rpg.models.Map;
 import rpg.services.MapService;
 
 public class MapController {
@@ -25,7 +25,7 @@ public class MapController {
     }
 
     public static void buildMap() {
-        DungeonMap mapModel = MapService.loadMap();
+        Map mapModel = MapService.loadMap();
 
         int width = mapModel.getWidth();
         int height = mapModel.getHeight();
@@ -34,12 +34,7 @@ public class MapController {
 
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                String cell = mapModel.getCoordinate(col, row);
-                if (cell.equals("empty")) {
-                    mapArray[row][col] = '.';
-                } else {
-                    mapArray[row][col] = cell.charAt(0);
-                }
+                mapArray[row][col] = '.';
             }
         }
 

@@ -12,14 +12,14 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
 import java.util.*;
-import rpg.models.DungeonMap;
+import rpg.models.Map;
 import java.util.function.Function;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class MongoDBRepo implements IGameRepo {
     private static final String DATABASE_NAME = "RPG";
 
-    private static final Map<Class<?>, MongoCollection<? extends GameModel>> collections = new HashMap<>();
+    private static final java.util.Map<Class<?>, MongoCollection<? extends GameModel>> collections = new HashMap<>();
 
     private static final CodecRegistry pojoCodecRegistry = CodecRegistries.fromRegistries(
             MongoClientSettings.getDefaultCodecRegistry(),
@@ -42,7 +42,7 @@ public class MongoDBRepo implements IGameRepo {
         objectMapper.findAndRegisterModules();
 
         collections.put(Character.class, database.getCollection("Character", Character.class));
-        collections.put(DungeonMap.class, database.getCollection("Game", DungeonMap.class));
+        collections.put(rpg.models.Map.class, database.getCollection("Map", Map.class));
     }
 
     private static <T extends GameModel> MongoCollection<T> getCollection(Class<T> clazz) {

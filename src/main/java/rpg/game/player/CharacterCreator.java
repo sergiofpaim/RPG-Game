@@ -46,19 +46,19 @@ public class CharacterCreator {
         int choice = RPGGame.scan.nextInt();
 
         if (choice == 1) {
-            System.out.println("You got a sword");
+            System.out.print("You got a sword");
             inventory.add(new Item("Sword", "A sharp sword,", 2, 0, ItemType.WEAPON));
         } else if (choice == 2) {
-            System.out.println("You got a shield");
+            System.out.print("You got a shield");
             inventory.add(new Item("Shield", "A sturdy shield,", 0, 0, ItemType.ARMOR));
         } else if (choice == 3) {
-            System.out.println("You got a staff");
+            System.out.print("You got a staff");
             inventory.add(new Item("Staff", "A magical staff,", 0, 0, ItemType.WEAPON));
         } else {
-            System.out.println("Invalid answer! You got a sword by default,");
+            System.out.print("Invalid answer! You got a sword by default,");
             inventory.add(new Item("Sword", "A sharp sword", 2, 0, ItemType.WEAPON));
         }
-        System.out.println(" clothes, and a health potion.\n");
+        System.out.print(" clothes, and a health potion.\n");
 
         inventory.add(new Item("Boots", "A pair of sturdy boots", 0, 0, ItemType.ACCESSORY));
         inventory.add(new Item("Clothes", "A set of comfortable clothes", 0, 0, ItemType.ACCESSORY));
