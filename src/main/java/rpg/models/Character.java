@@ -6,7 +6,7 @@ import java.util.Random;
 import rpg.infrastructure.GameModel;
 import rpg.infrastructure.ValidationResult;
 
-public class Character extends GameModel {
+public abstract class Character extends GameModel {
     private String name;
     private int healthPoints;
     private int currentHealthPoints;

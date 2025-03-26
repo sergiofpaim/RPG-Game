@@ -6,6 +6,7 @@ import java.util.List;
 import rpg.RPGGame;
 import rpg.game.items.ItemType;
 import rpg.models.Item;
+import rpg.models.Player;
 import rpg.models.Character;
 
 public class CharacterCreator {
@@ -18,6 +19,12 @@ public class CharacterCreator {
         int health = setAttributes("Health", points);
         points -= health;
 
+        while (health == 0) {
+            System.out.println("Health cannot be 0. Please allocate at least 1 point to Health.");
+            health = setAttributes("Health", points);
+            points -= health;
+        }
+
         int attack = setAttributes("Attack", points);
         points -= attack;
 
@@ -28,11 +35,14 @@ public class CharacterCreator {
         points -= magic;
 
         int speed = points;
-        System.out.println("Speed is automatically set to: \n" + speed);
+        if (speed > 10) {
+            speed = 10;
+        }
+        System.out.println("Speed is automatically set to: " + speed);
 
         List<Item> inventory = getInitialItems();
 
-        return new Character(name, health, health, attack, defense, magic, speed, inventory, 0, 0);
+        return new Player(name, health, health, attack, defense, magic, speed, inventory, 0, 0, 0, 1);
     }
 
     private static List<Item> getInitialItems() {
@@ -56,7 +66,7 @@ public class CharacterCreator {
             inventory.add(new Item("Staff", "A magical staff,", 0, 0, ItemType.WEAPON));
         } else {
             System.out.print("Invalid answer! You got a sword by default,");
-            inventory.add(new Item("Sword", "A sharp sword", 2, 0, ItemType.WEAPON));
+            inventory.add(new Item("Sword", "A sharp sword,", 2, 0, ItemType.WEAPON));
         }
         System.out.print(" clothes, and a health potion.\n");
 
