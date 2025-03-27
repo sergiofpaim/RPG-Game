@@ -1,9 +1,8 @@
 package rpg;
 
-import rpg.player.PlayerController;
 import rpg.things.Player;
 
-public class GameRunner {
+public class Runner {
     public static Player player = null;
     public static Game game = null;
 
@@ -17,12 +16,12 @@ public class GameRunner {
         System.out.println(
                 "\nYou are the '@', Enter a direction (w/a/s/d), 'm' to see you inventory, 'i' to interact, 'b' to atack and 'k' to save:\n");
 
-        System.out.println(player.getStats());
+        System.out.println(player.showStats());
 
         if (key == "k")
             Sessions.save(game);
         else
-            PlayerController.playerAction(key);
+            player.processInput(key);
     }
 
     private static void displayMap() {

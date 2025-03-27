@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import rpg.player.PlayerCreator;
-import rpg.things.Character;
 import rpg.things.Player;
 
 public class RPGGame {
@@ -22,14 +21,14 @@ public class RPGGame {
                 "***************************************\n");
 
         Game game = gamePicker();
-        GameRunner.start(game);
+        Runner.start(game);
         ReadInput();
     }
 
     private static void ReadInput() {
         while (true) {
             String key = RPGGame.scan.next().trim().toLowerCase();
-            GameRunner.processInput(key);
+            Runner.processInput(key);
         }
     }
 

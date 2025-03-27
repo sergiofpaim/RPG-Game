@@ -1,9 +1,11 @@
 package rpg;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
-
+import rpg.interfaces.IThing;
 import rpg.templateData.*;
 import rpg.things.*;
 import rpg.things.Character;
@@ -74,6 +76,8 @@ public class Game extends Thing {
         this.characters = generateNPCs();
         this.characters.add(0, player);
         this.items = generateItems();
+
+        player.setGame(this);
     }
 
     private List<Item> generateItems() {
@@ -155,20 +159,20 @@ public class Game extends Thing {
         return ".";
     }
 
-    public boolean positionAllowed(int newX, int newY) {
+    public Map.Entry<Boolean, List<IThing>> checkMovement(int newX, int newY) {
         if (newX < 0 || newX >= mapHeight || newY < 0 || newY >= mapWidth) {
-            return false;
+            return new AbstractMap.SimpleEntry<>(false, null);
         }
         for (Character character : characters) {
             if (character.getPositionX() == newX && character.getPositionY() == newY) {
-                return false;
+                return new AbstractMap.SimpleEntry<>(false, null);
             }
         }
         for (Item item : items) {
             if (!item.isCarried() && item.getPositionX() == newX && item.getPositionY() == newY) {
-                return false;
+                return new AbstractMap.SimpleEntry<>(false, null);
             }
         }
-        return true;
+        return new AbstractMap.SimpleEntry<>(true, null);
     }
 }

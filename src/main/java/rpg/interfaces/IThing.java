@@ -5,7 +5,7 @@ public interface IThing {
 
     public String draw();
 
-    public String getStats();
+    public String showStats();
 
     public void destroy();
 

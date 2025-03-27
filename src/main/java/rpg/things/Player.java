@@ -3,8 +3,7 @@ package rpg.things;
 import java.util.List;
 
 import rpg.Game;
-import rpg.GameRunner;
-import rpg.RPGGame;
+import rpg.Runner;
 import rpg.types.PlayerMovement;
 
 public class Player extends Character {
@@ -42,9 +41,39 @@ public class Player extends Character {
         this.game = game;
     }
 
+    public String processInput(String key) {
+
+        String message = null;
+
+        switch (key) {
+            case "w":
+                move(PlayerMovement.UP);
+                break;
+            case "s":
+                move(PlayerMovement.DOWN);
+                break;
+            case "a":
+                move(PlayerMovement.LEFT);
+                break;
+            case "d":
+                move(PlayerMovement.RIGHT);
+                break;
+            case "m":
+                return showInventory();
+            case "i":
+                break;
+            case "b":
+                break;
+
+            default:
+                System.out.println("\nInvalid action!");
+        }
+        return message;
+    }
+
     public void move(PlayerMovement movement) {
-        int currentX = GameRunner.player.getPositionX();
-        int currentY = GameRunner.player.getPositionY();
+        int currentX = Runner.player.getPositionX();
+        int currentY = Runner.player.getPositionY();
         int newX = currentX;
         int newY = currentY;
 
@@ -62,7 +91,7 @@ public class Player extends Character {
                 newY = currentY + 1;
                 break;
         }
-        if (this.game.positionAllowed(newX, newY)) {
+        if (this.game.checkMovement(newX, newY).getKey()) {
             this.setPositionX(newX);
             this.setPositionY(newY);
         }
@@ -92,7 +121,7 @@ public class Player extends Character {
     }
 
     @Override
-    public String getStats() {
+    public String showStats() {
         return "Total Health: " +
                 this.getHealthPoints() + " - Current Health: "
                 + this.getCurrentHealthPoints() + " - Attack: "
@@ -100,5 +129,16 @@ public class Player extends Character {
                 + " - Defense: " + this.getDefense() + " - Magic: "
                 + this.getMagic()
                 + " - Speed: " + this.getSpeed() + "\n";
+    }
+
+    private String showInventory() {
+        StringBuilder inventory = new StringBuilder();
+        inventory.append("\n--- Inventory ---\n");
+        inventory.append("You have " + this.getInventory().size() + " items:\n");
+        for (Item item : this.getInventory()) {
+            inventory.append(item.getName() + " - " + item.getDescription() + "\n");
+        }
+        inventory.append("------------------\n");
+        return inventory.toString();
     }
 }

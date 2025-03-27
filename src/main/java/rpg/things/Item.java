@@ -142,7 +142,7 @@ public class Item implements IThing {
     }
 
     @Override
-    public String getStats() {
+    public String showStats() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'displayProfile'");
     }
