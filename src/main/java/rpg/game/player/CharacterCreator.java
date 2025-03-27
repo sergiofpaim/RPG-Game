@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rpg.RPGGame;
-import rpg.game.items.ItemType;
-import rpg.models.Item;
-import rpg.models.Player;
-import rpg.models.Character;
+import rpg.things.Item;
+import rpg.things.Player;
+import rpg.types.ItemType;
 
 public class CharacterCreator {
-    public static Character createCharacter() {
+    public static Player createPlayer() {
         int points = 30;
 
         System.out.println("\nEnter your character's name: ");
@@ -57,22 +56,22 @@ public class CharacterCreator {
 
         if (choice == 1) {
             System.out.print("You got a sword");
-            inventory.add(new Item("Sword", "A sharp sword,", 2, 0, ItemType.WEAPON));
+            inventory.add(new Item("Sword", "A sharp sword,", 2, 0, 0, ItemType.WEAPON));
         } else if (choice == 2) {
             System.out.print("You got a shield");
-            inventory.add(new Item("Shield", "A sturdy shield,", 0, 0, ItemType.ARMOR));
+            inventory.add(new Item("Shield", "A sturdy shield,", 0, 0, 2, ItemType.ARMOR));
         } else if (choice == 3) {
             System.out.print("You got a staff");
-            inventory.add(new Item("Staff", "A magical staff,", 0, 0, ItemType.WEAPON));
+            inventory.add(new Item("Staff", "A magical staff,", 0, 0, 0, ItemType.WEAPON));
         } else {
             System.out.print("Invalid answer! You got a sword by default,");
-            inventory.add(new Item("Sword", "A sharp sword,", 2, 0, ItemType.WEAPON));
+            inventory.add(new Item("Sword", "A sharp sword,", 2, 0, 0, ItemType.WEAPON));
         }
         System.out.print(" clothes, and a health potion.\n");
 
-        inventory.add(new Item("Boots", "A pair of sturdy boots", 0, 0, ItemType.ACCESSORY));
-        inventory.add(new Item("Clothes", "A set of comfortable clothes", 0, 0, ItemType.ACCESSORY));
-        inventory.add(new Item("Health Potion", "A potion that restores health", 0, 10, ItemType.POTION));
+        inventory.add(new Item("Boots", "A pair of sturdy boots", 0, 0, 0, ItemType.ACCESSORY));
+        inventory.add(new Item("Clothes", "A set of comfortable clothes", 0, 0, 0, ItemType.ACCESSORY));
+        inventory.add(new Item("Health Potion", "A potion that restores health", 0, 10, 0, ItemType.POTION));
 
         return inventory;
     }

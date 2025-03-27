@@ -3,19 +3,15 @@ package rpg;
 import java.util.List;
 import java.util.Scanner;
 
-import rpg.game.GameRunner;
 import rpg.game.player.CharacterCreator;
-import rpg.models.Character;
-import rpg.services.CharacterService;
+import rpg.things.Character;
+import rpg.things.Player;
 
 public class RPGGame {
 
     public static final Scanner scan = new Scanner(System.in);
 
-    public static char[][] currentMap = null;
-    public static Character currentCharacter = null;
-
-    private static final List<Character> characters = CharacterService.loadCharacters();
+    private static final List<String> sessions = Sessions.listSessionsNames();
 
     public static void main(String[] args) {
 
@@ -25,44 +21,59 @@ public class RPGGame {
                 "        RPG ADVENTURE AWAITS!         \n" +
                 "***************************************\n");
 
-        characterPicker();
-        GameRunner.runGame();
+        Game game = gamePicker();
+        GameRunner.start(game);
+        ReadInput();
     }
 
-    private static void characterPicker() {
-        while (currentCharacter == null) {
+    private static void ReadInput() {
+        while (true) {
+            String key = RPGGame.scan.next().trim().toLowerCase();
+            GameRunner.processInput(key);
+        }
+    }
+
+    private static Game gamePicker() {
+        Player player = null;
+        Game game = null;
+
+        while (player == null) {
             System.out.println("\nWould you like to create a new character? (y/n)\n");
             String choice = scan.nextLine().trim().toLowerCase();
 
-            if (choice.equals("y"))
-                currentCharacter = CharacterService.insertCharacter(CharacterCreator.createCharacter());
+            if (choice.equals("y")) {
+                player = CharacterCreator.createPlayer();
+                game = new Game(player);
+            }
 
             else if (choice.equals("n")) {
-                if (characters.isEmpty())
+                if (sessions.isEmpty())
                     System.out.println("\nNo characters available. You must create one first.\n");
                 else
-                    currentCharacter = selectCharacter();
+                    game = selectSavedGame();
             }
 
             else {
                 System.out.println("\nInvalid input. Please enter 'y' or 'n'.\n");
             }
         }
-        System.out.println("\n" + currentCharacter.getName() + " selected!\n");
+        System.out.println("\n" + player.getName() + " selected!\n");
+
+        return game;
     }
 
-    private static Character selectCharacter() {
+    private static Game selectSavedGame() {
         System.out.println("\nSelect a character to play with:\n");
 
-        for (Character character : characters) {
-            System.out.println(character.getName() + "\n");
+        for (String character : sessions) {
+            System.out.println(character + "\n");
         }
 
         String choice = scan.nextLine().trim();
 
-        for (Character character : characters) {
-            if (character.getName().equalsIgnoreCase(choice)) {
-                return character;
+        for (String session : sessions) {
+            if (session.equalsIgnoreCase(choice)) {
+                return Sessions.load(choice);
             }
         }
         System.out.println("\nCharacter not found.\n");
