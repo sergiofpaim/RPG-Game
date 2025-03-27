@@ -154,4 +154,21 @@ public class Game extends Thing {
         }
         return ".";
     }
+
+    public boolean positionAllowed(int newX, int newY) {
+        if (newX < 0 || newX >= mapHeight || newY < 0 || newY >= mapWidth) {
+            return false;
+        }
+        for (Character character : characters) {
+            if (character.getPositionX() == newX && character.getPositionY() == newY) {
+                return false;
+            }
+        }
+        for (Item item : items) {
+            if (!item.isCarried() && item.getPositionX() == newX && item.getPositionY() == newY) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

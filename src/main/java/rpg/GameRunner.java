@@ -1,6 +1,6 @@
 package rpg;
 
-import rpg.game.player.PlayerController;
+import rpg.player.PlayerController;
 import rpg.things.Player;
 
 public class GameRunner {

@@ -1,4 +1,4 @@
-package rpg.game.player;
+package rpg.player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import rpg.things.Item;
 import rpg.things.Player;
 import rpg.types.ItemType;
 
-public class CharacterCreator {
+public class PlayerCreator {
     public static Player createPlayer() {
         int points = 30;
 

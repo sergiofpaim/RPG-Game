@@ -3,7 +3,7 @@ package rpg;
 import java.util.List;
 import java.util.Scanner;
 
-import rpg.game.player.CharacterCreator;
+import rpg.player.PlayerCreator;
 import rpg.things.Character;
 import rpg.things.Player;
 
@@ -42,7 +42,7 @@ public class RPGGame {
             String choice = scan.nextLine().trim().toLowerCase();
 
             if (choice.equals("y")) {
-                player = CharacterCreator.createPlayer();
+                player = PlayerCreator.createPlayer();
                 game = new Game(player);
             }
 
