@@ -50,8 +50,10 @@ public class RPGGame {
             else if (choice.equals("n")) {
                 if (sessions.isEmpty())
                     System.out.println("\nNo characters available. You must create one first.\n");
-                else
+                else {
                     game = selectSavedGame();
+                    player = (Player) game.getCharacters().get(0);
+                }
             }
 
             else {

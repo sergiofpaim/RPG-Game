@@ -14,13 +14,13 @@ public class Runner {
     }
 
     public static void processInput(String key) {
-        displayMap();
-        showCommands();
-
         if (key.equals("k"))
             Sessions.save(game);
         else
             player.processInput(key);
+
+        displayMap();
+        showCommands();
     }
 
     private static void showCommands() {

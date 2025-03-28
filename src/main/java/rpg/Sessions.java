@@ -41,7 +41,8 @@ public class Sessions {
                 objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
                 try {
-                        objectMapper.writeValue(new File(directory + "/" + game.getPlayerId() + fileExtension), game);
+                        objectMapper.writeValue(new File(
+                                        directory + "/" + game.getCharacters().get(0).getName() + fileExtension), game);
                         System.out.println("Game saved successfully!");
                 } catch (IOException e) {
                         e.printStackTrace();

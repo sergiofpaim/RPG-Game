@@ -86,6 +86,10 @@ public class Game extends Thing {
 
         for (int j = 0; j < new Random().nextInt(2) + 1; j++) {
             Item item = ItemData.defaultItems[random.nextInt(ItemData.defaultItems.length)];
+            item.setPositionX(random.nextInt(this.mapHeight));
+            item.setPositionY(random.nextInt(this.mapWidth));
+            item.setId(String.valueOf(new Random().nextInt(1000) + 1));
+            item.setCarried(false);
             items.add(item);
         }
 
