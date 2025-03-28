@@ -14,6 +14,8 @@ public class RPGGame {
 
     public static void main(String[] args) {
 
+        System.out.println("Emoji: \uD83D\uDE80"); // 🚀
+
         System.out.println("\n" +
                 "***************************************\n" +
                 "   WELCOME TO THE WONDERS AND DRAGONS  \n" +

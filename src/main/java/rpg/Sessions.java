@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class Sessions {
         private static final String saveDir = "saves/";
@@ -37,10 +38,11 @@ public class Sessions {
         public static void save(Game game) {
                 File directory = getDirectory();
                 ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
                 try {
                         objectMapper.writeValue(new File(directory + "/" + game.getPlayerId() + fileExtension), game);
-                        System.out.println("Person object has been serialized to person.json");
+                        System.out.println("Game saved successfully!");
                 } catch (IOException e) {
                         e.printStackTrace();
                 }
