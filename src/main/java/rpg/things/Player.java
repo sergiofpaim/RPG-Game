@@ -59,14 +59,14 @@ public class Player extends Character {
                 move(PlayerMovement.RIGHT);
                 break;
             case "m":
-                return showInventory();
+                message = showInventory();
             case "i":
                 break;
             case "b":
                 break;
 
             default:
-                System.out.println("\nInvalid action!");
+                message = "\nInvalid action!";
         }
         return message;
     }

@@ -1,0 +1,93 @@
+{
+  "id" : "406",
+  "mapWidth" : 21,
+  "mapHeight" : 19,
+  "playerId" : "788",
+  "characters" : [ {
+    "type" : "player",
+    "id" : "788",
+    "name" : "Sérgio",
+    "healthPoints" : 5,
+    "currentHealthPoints" : 5,
+    "attack" : 5,
+    "defense" : 5,
+    "magic" : 5,
+    "speed" : 10,
+    "inventory" : [ {
+      "id" : "823",
+      "name" : "Sword",
+      "description" : "A sharp sword,",
+      "damage" : 2,
+      "cure" : 0,
+      "defense" : 0,
+      "type" : "WEAPON",
+      "positionX" : 0,
+      "positionY" : 0,
+      "carried" : false
+    }, {
+      "id" : "8",
+      "name" : "Boots",
+      "description" : "A pair of sturdy boots",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 0,
+      "type" : "ACCESSORY",
+      "positionX" : 0,
+      "positionY" : 0,
+      "carried" : false
+    }, {
+      "id" : "308",
+      "name" : "Clothes",
+      "description" : "A set of comfortable clothes",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 0,
+      "type" : "ACCESSORY",
+      "positionX" : 0,
+      "positionY" : 0,
+      "carried" : false
+    }, {
+      "id" : "778",
+      "name" : "Health Potion",
+      "description" : "A potion that restores health",
+      "damage" : 0,
+      "cure" : 10,
+      "defense" : 0,
+      "type" : "POTION",
+      "positionX" : 0,
+      "positionY" : 0,
+      "carried" : false
+    } ],
+    "positionX" : 0,
+    "positionY" : 0,
+    "experience" : 0,
+    "level" : 1
+  }, {
+    "type" : "npc",
+    "id" : "836",
+    "name" : "Dahlia",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 8,
+    "defense" : 3,
+    "magic" : 4,
+    "speed" : 2,
+    "inventory" : [ ],
+    "positionX" : 1,
+    "positionY" : 12,
+    "type" : "NPC",
+    "description" : "a wise elder"
+  } ],
+  "items" : [ {
+    "id" : "971",
+    "name" : "Shield",
+    "description" : "A sturdy shield",
+    "damage" : 0,
+    "cure" : 0,
+    "defense" : 10,
+    "type" : "ARMOR",
+    "positionX" : 15,
+    "positionY" : 11,
+    "carried" : false
+  } ]
+}

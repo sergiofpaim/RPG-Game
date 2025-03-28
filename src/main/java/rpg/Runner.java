@@ -17,7 +17,7 @@ public class Runner {
         if (key.equals("k"))
             Sessions.save(game);
         else
-            player.processInput(key);
+            System.out.println(player.processInput(key));
 
         displayMap();
         showCommands();

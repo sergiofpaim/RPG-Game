@@ -13,9 +13,6 @@ public class RPGGame {
     private static final List<String> sessions = Sessions.listSessionsNames();
 
     public static void main(String[] args) {
-
-        System.out.println("Emoji: \uD83D\uDE80"); // 🚀
-
         System.out.println("\n" +
                 "***************************************\n" +
                 "   WELCOME TO THE WONDERS AND DRAGONS  \n" +
