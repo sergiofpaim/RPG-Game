@@ -86,8 +86,7 @@ public class Game extends Thing {
 
         for (int j = 0; j < new Random().nextInt(2) + 1; j++) {
             Item item = ItemData.defaultItems[random.nextInt(ItemData.defaultItems.length)];
-            item.setPositionX(random.nextInt(this.mapHeight));
-            item.setPositionY(random.nextInt(this.mapWidth));
+            item.setPosition(new Position(random.nextInt(this.mapHeight), random.nextInt(this.mapWidth)));
             item.setId(String.valueOf(new Random().nextInt(1000) + 1));
             item.setCarried(false);
             items.add(item);
@@ -116,8 +115,7 @@ public class Game extends Thing {
                     random.nextInt(5) + 2,
                     random.nextInt(5) + 1,
                     new ArrayList<>(),
-                    random.nextInt(this.mapHeight),
-                    random.nextInt(this.mapWidth),
+                    new Position(random.nextInt(this.mapHeight), random.nextInt(this.mapWidth)),
                     type.name(),
                     description,
                     dialog);
@@ -153,12 +151,13 @@ public class Game extends Thing {
 
     public String drawCell() {
         for (Character character : characters) {
-            if (character.getPositionX() == currentRow && character.getPositionY() == currentCol) {
+            if (character.getPosition().getX() == currentRow && character.getPosition().getY() == currentCol) {
                 return character.draw();
             }
         }
         for (Item item : items) {
-            if (!item.isCarried() && item.getPositionX() == currentRow && item.getPositionY() == currentCol) {
+            if (!item.isCarried() && item.getPosition().getX() == currentRow
+                    && item.getPosition().getY() == currentCol) {
                 return item.draw();
             }
         }
@@ -170,15 +169,16 @@ public class Game extends Thing {
             return new AbstractMap.SimpleEntry<>(false, null);
         }
         for (Character character : characters) {
-            if (character.getPositionX() == newX && character.getPositionY() == newY) {
+            if (character.getPosition().getX() == newX && character.getPosition().getY() == newY) {
                 return new AbstractMap.SimpleEntry<>(false, null);
             }
         }
         for (Item item : items) {
-            if (!item.isCarried() && item.getPositionX() == newX && item.getPositionY() == newY) {
+            if (!item.isCarried() && item.getPosition().getX() == newX && item.getPosition().getY() == newY) {
                 return new AbstractMap.SimpleEntry<>(false, null);
             }
         }
+
         return new AbstractMap.SimpleEntry<>(true, null);
     }
 }

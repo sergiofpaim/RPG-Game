@@ -11,8 +11,8 @@ public class Player extends Character {
     private Game game;
 
     public Player(String name, int health, int currentHealth, int attack, int defense, int magic, int speed,
-            List<Item> inventory, int positionX, int positionY, int experience, int level) {
-        super(name, health, currentHealth, attack, defense, magic, speed, inventory, positionX, positionY);
+            List<Item> inventory, Position position, int experience, int level) {
+        super(name, health, currentHealth, attack, defense, magic, speed, inventory, position);
         this.experience = experience;
         this.level = level;
     }
@@ -71,8 +71,8 @@ public class Player extends Character {
     }
 
     public void move(PlayerMovement movement) {
-        int currentX = this.getPositionX();
-        int currentY = this.getPositionY();
+        int currentX = this.position.x;
+        int currentY = this.position.y;
         int newX = currentX;
         int newY = currentY;
 
@@ -91,8 +91,8 @@ public class Player extends Character {
                 break;
         }
         if (this.game.checkMovement(newX, newY).getKey()) {
-            this.setPositionX(newX);
-            this.setPositionY(newY);
+            this.position.setX(newX);
+            this.position.setY(newY);
         }
     }
 

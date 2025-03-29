@@ -51,7 +51,6 @@ public class RPGGame {
                     System.out.println("\nNo characters available. You must create one first.\n");
                 else {
                     game = selectSavedGame();
-                    ((Player) game.getCharacters().get(0)).setGame(game);
                     return game;
                 }
             }

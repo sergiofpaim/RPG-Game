@@ -8,8 +8,8 @@ public class NPC extends Character {
     private String dialog;
 
     public NPC(String name, int health, int currentHealth, int attack, int defense, int magic, int speed,
-            List<Item> inventory, int positionX, int positionY, String type, String description, String dialog) {
-        super(name, health, currentHealth, attack, defense, magic, speed, inventory, positionX, positionY);
+            List<Item> inventory, Position position, String type, String description, String dialog) {
+        super(name, health, currentHealth, attack, defense, magic, speed, inventory, position);
         this.type = type;
         this.description = description;
         this.dialog = dialog;
@@ -65,7 +65,7 @@ public class NPC extends Character {
         if (this.type.equals("Enemy")) {
             return "\uD83D\uDC79";
         } else {
-            return "\uD83E\uDDD9\u200D\u2642";
+            return "\uD83E\uDDD9";
         }
     }
 

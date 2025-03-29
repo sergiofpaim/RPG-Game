@@ -3,7 +3,6 @@ package rpg;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import rpg.interfaces.IThing;
 import rpg.things.Character;
 import rpg.things.Item;
@@ -17,6 +16,8 @@ public class Runner {
     public static void start(Game newGame) {
         game = newGame;
         player = (Player) game.getCharacters().get(0);
+        player.setGame(game);
+
         displayMap();
         showCommands();
     }
@@ -28,12 +29,9 @@ public class Runner {
             System.out.println(player.processInput(key));
         else {
             System.out.println(player.processInput(key));
-            if (checkInteraction())
-                showCommands();
-            else {
-                displayMap();
-                showCommands();
-            }
+            displayMap();
+            showCommands();
+            checkInteraction();
         }
     }
 
@@ -54,8 +52,8 @@ public class Runner {
 
         for (rpg.things.Item item : game.getItems()) {
             for (int[] offset : offsets) {
-                if (item.getPositionX() == player.getPositionX() + offset[0]
-                        && item.getPositionY() == player.getPositionY() + offset[1]) {
+                if (item.getPosition().getX() == player.getPosition().getX() + offset[0]
+                        && item.getPosition().getY() == player.getPosition().getY() + offset[1]) {
                     interactiveThings.add(item);
                     interaction = true;
                 }
@@ -64,8 +62,8 @@ public class Runner {
 
         for (Character npc : game.getCharacters().subList(1, game.getCharacters().size())) {
             for (int[] offset : offsets) {
-                if (npc.getPositionX() == player.getPositionX() + offset[0]
-                        && npc.getPositionY() == player.getPositionY() + offset[1]) {
+                if (npc.getPosition().getX() == player.getPosition().getX() + offset[0]
+                        && npc.getPosition().getY() == player.getPosition().getY() + offset[1]) {
                     interactiveThings.add(npc);
                     interaction = true;
                 }

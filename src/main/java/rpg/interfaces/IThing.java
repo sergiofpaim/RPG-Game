@@ -1,5 +1,7 @@
 package rpg.interfaces;
 
+import rpg.things.Position;
+
 public interface IThing {
     public void init();
 
@@ -10,4 +12,6 @@ public interface IThing {
     public void destroy();
 
     public void startInteraction();
+
+    public Position position = new Position();
 }

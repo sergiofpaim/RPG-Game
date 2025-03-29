@@ -12,22 +12,21 @@ import rpg.interfaces.IThing;
         @JsonSubTypes.Type(value = NPC.class, name = "npc")
 })
 public abstract class Character extends Thing implements IThing {
-    private String name;
-    private int healthPoints;
-    private int currentHealthPoints;
-    private int attack;
-    private int defense;
-    private int magic;
-    private int speed;
-    private List<Item> inventory;
-    private int positionX;
-    private int positionY;
+    protected String name;
+    protected int healthPoints;
+    protected int currentHealthPoints;
+    protected int attack;
+    protected int defense;
+    protected int magic;
+    protected int speed;
+    protected List<Item> inventory;
+    protected Position position;
 
     public Character() {
     }
 
     public Character(String name, int health, int currentHealth, int attack, int defense, int magic, int speed,
-            List<Item> inventory, int positionX, int positionY) {
+            List<Item> inventory, Position position) {
         this.setId(String.valueOf(new Random().nextInt(1000) + 1));
         this.name = name;
         this.healthPoints = health;
@@ -37,8 +36,7 @@ public abstract class Character extends Thing implements IThing {
         this.magic = magic;
         this.speed = speed;
         this.inventory = inventory;
-        this.positionX = positionX;
-        this.positionY = positionY;
+        this.position = position;
     }
 
     public String getName() {
@@ -73,12 +71,8 @@ public abstract class Character extends Thing implements IThing {
         return inventory;
     }
 
-    public int getPositionX() {
-        return positionX;
-    }
-
-    public int getPositionY() {
-        return positionY;
+    public Position getPosition() {
+        return position;
     }
 
     public void setName(String name) {
@@ -113,11 +107,7 @@ public abstract class Character extends Thing implements IThing {
         this.inventory = inventory;
     }
 
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

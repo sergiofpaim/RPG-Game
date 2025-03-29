@@ -2,7 +2,6 @@ package rpg;
 
 import java.util.Map;
 import java.util.Random;
-
 import rpg.interfaces.IThing;
 import rpg.things.Item;
 import rpg.things.NPC;
@@ -131,5 +130,4 @@ public class Interaction {
 
         return player;
     }
-
 }

@@ -11,8 +11,7 @@ public class Item implements IThing {
     private int cure;
     private int defense;
     private ItemType type;
-    private int positionX;
-    private int positionY;
+    private Position position = new Position();
     private boolean isCarried;
 
     public Item() {
@@ -56,12 +55,8 @@ public class Item implements IThing {
         return type;
     }
 
-    public int getPositionX() {
-        return positionX;
-    }
-
-    public int getPositionY() {
-        return positionY;
+    public Position getPosition() {
+        return position;
     }
 
     public boolean isCarried() {
@@ -96,12 +91,8 @@ public class Item implements IThing {
         this.type = type;
     }
 
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public void setCarried(boolean isCarried) {
