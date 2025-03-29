@@ -3,7 +3,6 @@ package rpg.things;
 import java.util.List;
 
 import rpg.Game;
-import rpg.Runner;
 import rpg.types.PlayerMovement;
 
 public class Player extends Character {
@@ -43,7 +42,7 @@ public class Player extends Character {
 
     public String processInput(String key) {
 
-        String message = null;
+        String message = "\n";
 
         switch (key) {
             case "w":
@@ -72,8 +71,8 @@ public class Player extends Character {
     }
 
     public void move(PlayerMovement movement) {
-        int currentX = Runner.player.getPositionX();
-        int currentY = Runner.player.getPositionY();
+        int currentX = this.getPositionX();
+        int currentY = this.getPositionY();
         int newX = currentX;
         int newY = currentY;
 

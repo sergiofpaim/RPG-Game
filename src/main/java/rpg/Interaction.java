@@ -1,15 +1,12 @@
 package rpg;
 
-import java.util.List;
-
 import rpg.interfaces.IThing;
 import rpg.things.Item;
 import rpg.things.Player;
 
 public class Interaction {
     private IThing target;
-    private String action;
-    private String result;
+
     private String message;
 
     public Interaction(IThing target) {
