@@ -74,32 +74,29 @@ public class Runner {
                 System.out.println("\nType the number of the thing you want to interact with: ");
 
                 for (IThing thing : interactiveThings) {
-                    if (thing instanceof NPC) {
-                        System.out.println(
-                                "\n" + counter + "- " + ((NPC) thing).getName() + ": "
-                                        + ((NPC) thing).getDescription());
-                    } else if (thing instanceof Item) {
-                        System.out.println("\n" + counter + "- " + ((Item) thing).getName() + ": "
-                                + ((Item) thing).getDescription());
-                    }
-                    counter++;
+                    System.out.println(
+                            "\n" + counter + "- " + ((NPC) thing).getName() + ": "
+                                    + ((NPC) thing).getDescription());
                 }
-
-                Interaction newInteraction = new Interaction(interactiveThings.get(RPGGame.scan.nextInt() - 1));
-
-                Map.Entry<Game, String> resultInteraction = newInteraction.manageInteraction(game);
-
-                game = resultInteraction.getKey();
-                System.out.println(resultInteraction.getValue());
-
-                if (!game.getCharacters().contains(player))
-                    RPGGame.isRunning = false;
-                else
-                    player = (Player) game.getCharacters().get(0);
+                counter++;
             }
-        }
 
-        return interaction;
+            Interaction newInteraction = new Interaction(interactiveThings.get(RPGGame.scan.nextInt() - 1));
+
+            Map.Entry<Game, String> resultInteraction = newInteraction.manageInteraction(game);
+
+            game = resultInteraction.getKey();
+            System.out.println(resultInteraction.getValue());
+
+            if (!game.getCharacters().contains(player))
+                RPGGame.isRunning = false;
+            else
+                player = (Player) game.getCharacters().get(0);
+        }
+    }
+
+    return interaction;
+
     }
 
     private static void showCommands() {
