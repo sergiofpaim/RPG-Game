@@ -2,6 +2,7 @@ package rpg;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import rpg.interfaces.IThing;
 import rpg.things.Character;
@@ -27,8 +28,8 @@ public class Runner {
             System.out.println(player.processInput(key));
         else {
             System.out.println(player.processInput(key));
-            checkInteraction();
             displayMap();
+            checkInteraction();
             showCommands();
         }
     }
@@ -84,9 +85,10 @@ public class Runner {
                 for (IThing thing : interactiveThings) {
                     if (thing instanceof NPC) {
                         System.out.println(
-                                "\n" + counter + " " + ((NPC) thing).getName() + ": " + ((NPC) thing).getDescription());
+                                "\n" + counter + "- " + ((NPC) thing).getName() + ": "
+                                        + ((NPC) thing).getDescription());
                     } else if (thing instanceof Item) {
-                        System.out.println("\n" + counter + ": " + ((Item) thing).getName() + " "
+                        System.out.println("\n" + counter + "- " + ((Item) thing).getName() + ": "
                                 + ((Item) thing).getDescription());
                     }
                     counter++;
@@ -94,7 +96,12 @@ public class Runner {
 
                 Interaction interaction = new Interaction(interactiveThings.get(RPGGame.scan.nextInt() - 1));
 
-                System.out.println(interaction.startInteraction(player));
+                Map.Entry<Game, String> resultInteraction = interaction.manageInteraction(game);
+
+                game = resultInteraction.getKey();
+                player = (Player) game.getCharacters().get(0);
+
+                System.out.println(resultInteraction.getValue());
             }
         }
     }

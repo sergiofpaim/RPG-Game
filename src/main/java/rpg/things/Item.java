@@ -131,7 +131,7 @@ public class Item implements IThing {
         if (this.type == ItemType.WEAPON) {
             return "\u2694";
         } else if (this.type == ItemType.ARMOR) {
-            return "\u1F6E1";
+            return "\u26E8";
         } else if (this.type == ItemType.POTION) {
             return "\uD83E\uDDEA";
         } else if (this.type == ItemType.ACCESSORY) {
