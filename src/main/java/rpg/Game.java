@@ -103,6 +103,7 @@ public class Game extends Thing {
 
         String name = NPCData.NAMES[random.nextInt(NPCData.NAMES.length)];
         String description = NPCData.DESCRIPTIONS[random.nextInt(NPCData.DESCRIPTIONS.length)];
+        String dialog = NPCData.DIALOGS[random.nextInt(NPCData.DIALOGS.length)];
         NPCType type = NPCType.values()[random.nextInt(NPCType.values().length)];
 
         for (int j = 0; j < new Random().nextInt(4) + 1; j++) {
@@ -118,7 +119,8 @@ public class Game extends Thing {
                     random.nextInt(this.mapHeight),
                     random.nextInt(this.mapWidth),
                     type.name(),
-                    description);
+                    description,
+                    dialog);
             npcs.add(npc);
         }
         return npcs;

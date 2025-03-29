@@ -1,12 +1,12 @@
 {
-  "id" : "406",
-  "mapWidth" : 21,
-  "mapHeight" : 19,
-  "playerId" : "788",
+  "id" : "855",
+  "mapWidth" : 14,
+  "mapHeight" : 7,
+  "playerId" : "439",
   "characters" : [ {
     "type" : "player",
-    "id" : "788",
-    "name" : "Sérgio",
+    "id" : "439",
+    "name" : "Legolas",
     "healthPoints" : 5,
     "currentHealthPoints" : 5,
     "attack" : 5,
@@ -14,7 +14,7 @@
     "magic" : 5,
     "speed" : 10,
     "inventory" : [ {
-      "id" : "823",
+      "id" : "694",
       "name" : "Sword",
       "description" : "A sharp sword,",
       "damage" : 2,
@@ -25,7 +25,7 @@
       "positionY" : 0,
       "carried" : false
     }, {
-      "id" : "8",
+      "id" : "873",
       "name" : "Boots",
       "description" : "A pair of sturdy boots",
       "damage" : 0,
@@ -36,7 +36,7 @@
       "positionY" : 0,
       "carried" : false
     }, {
-      "id" : "308",
+      "id" : "702",
       "name" : "Clothes",
       "description" : "A set of comfortable clothes",
       "damage" : 0,
@@ -47,7 +47,7 @@
       "positionY" : 0,
       "carried" : false
     }, {
-      "id" : "778",
+      "id" : "941",
       "name" : "Health Potion",
       "description" : "A potion that restores health",
       "damage" : 0,
@@ -58,36 +58,48 @@
       "positionY" : 0,
       "carried" : false
     } ],
-    "positionX" : 15,
-    "positionY" : 0,
+    "positionX" : 1,
+    "positionY" : 5,
     "experience" : 0,
     "level" : 1
   }, {
     "type" : "npc",
-    "id" : "836",
-    "name" : "Dahlia",
+    "id" : "839",
+    "name" : "Uma",
     "healthPoints" : 100,
     "currentHealthPoints" : 100,
-    "attack" : 8,
+    "attack" : 7,
     "defense" : 3,
-    "magic" : 4,
-    "speed" : 2,
+    "magic" : 2,
+    "speed" : 5,
     "inventory" : [ ],
     "positionX" : 1,
-    "positionY" : 12,
+    "positionY" : 9,
     "type" : "NPC",
-    "description" : "a wise elder"
+    "description" : "a cunning strategist",
+    "dialog" : "Paths cross for reasons unknown, cherish the journey."
   } ],
   "items" : [ {
-    "id" : "971",
-    "name" : "Shield",
-    "description" : "A sturdy shield",
+    "id" : "620",
+    "name" : "Bomb",
+    "description" : "Deals damage to all enemies",
+    "damage" : 20,
+    "cure" : 0,
+    "defense" : 0,
+    "type" : "WEAPON",
+    "positionX" : 4,
+    "positionY" : 9,
+    "carried" : false
+  }, {
+    "id" : "856",
+    "name" : "Ring",
+    "description" : "Increases magic",
     "damage" : 0,
     "cure" : 0,
-    "defense" : 10,
-    "type" : "ARMOR",
-    "positionX" : 15,
-    "positionY" : 11,
+    "defense" : 3,
+    "type" : "ACCESSORY",
+    "positionX" : 5,
+    "positionY" : 12,
     "carried" : false
   } ]
 }

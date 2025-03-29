@@ -28,14 +28,17 @@ public class Runner {
             System.out.println(player.processInput(key));
         else {
             System.out.println(player.processInput(key));
-            displayMap();
-            checkInteraction();
-            showCommands();
+            if (checkInteraction())
+                showCommands();
+            else {
+                displayMap();
+                showCommands();
+            }
         }
     }
 
-    private static void checkInteraction() {
-        boolean beginInteraction = false;
+    private static boolean checkInteraction() {
+        boolean interaction = false;
         List<IThing> interactiveThings = new ArrayList<>();
 
         int[][] offsets = {
@@ -54,7 +57,7 @@ public class Runner {
                 if (item.getPositionX() == player.getPositionX() + offset[0]
                         && item.getPositionY() == player.getPositionY() + offset[1]) {
                     interactiveThings.add(item);
-                    beginInteraction = true;
+                    interaction = true;
                 }
             }
         }
@@ -64,12 +67,12 @@ public class Runner {
                 if (npc.getPositionX() == player.getPositionX() + offset[0]
                         && npc.getPositionY() == player.getPositionY() + offset[1]) {
                     interactiveThings.add(npc);
-                    beginInteraction = true;
+                    interaction = true;
                 }
             }
         }
 
-        if (beginInteraction) {
+        if (interaction) {
             System.out.println("Do you want to start an interaction? (y/n)");
             if (RPGGame.scan.hasNextLine()) {
                 RPGGame.scan.nextLine();
@@ -94,16 +97,21 @@ public class Runner {
                     counter++;
                 }
 
-                Interaction interaction = new Interaction(interactiveThings.get(RPGGame.scan.nextInt() - 1));
+                Interaction newInteraction = new Interaction(interactiveThings.get(RPGGame.scan.nextInt() - 1));
 
-                Map.Entry<Game, String> resultInteraction = interaction.manageInteraction(game);
+                Map.Entry<Game, String> resultInteraction = newInteraction.manageInteraction(game);
 
                 game = resultInteraction.getKey();
-                player = (Player) game.getCharacters().get(0);
-
                 System.out.println(resultInteraction.getValue());
+
+                if (!game.getCharacters().contains(player))
+                    RPGGame.isRunning = false;
+                else
+                    player = (Player) game.getCharacters().get(0);
             }
         }
+
+        return interaction;
     }
 
     private static void showCommands() {
