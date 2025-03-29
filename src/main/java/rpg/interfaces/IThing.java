@@ -13,5 +13,5 @@ public interface IThing {
 
     public void startInteraction();
 
-    public Position position = new Position();
+    public Position getPosition();
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
+
 import rpg.interfaces.IThing;
 import rpg.templateData.*;
 import rpg.things.*;
@@ -15,8 +17,7 @@ public class Game extends Thing {
     private int mapWidth;
     private int mapHeight;
     private String playerId;
-    private List<Character> characters;
-    private List<Item> items;
+    private List<IThing> things = new ArrayList<IThing>();
 
     private int currentRow = -1;
     private int currentCol = -1;
@@ -38,12 +39,22 @@ public class Game extends Thing {
         return playerId;
     }
 
+    public List<IThing> getThings() {
+        return things;
+    }
+
     public List<Character> getCharacters() {
-        return characters;
+        return things.stream()
+                .filter(t -> t instanceof Character)
+                .map(t -> (Character) t)
+                .collect(Collectors.toList());
     }
 
     public List<Item> getItems() {
-        return items;
+        return things.stream()
+                .filter(t -> t instanceof Item)
+                .map(t -> (Item) t)
+                .collect(Collectors.toList());
     }
 
     public void setMapWidth(int width) {
@@ -58,12 +69,8 @@ public class Game extends Thing {
         this.playerId = playerId;
     }
 
-    public void setCharacters(List<Character> characters) {
-        this.characters = characters;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setThings(List<IThing> things) {
+        this.things = things;
     }
 
     // #endregion
@@ -73,9 +80,9 @@ public class Game extends Thing {
         this.mapWidth = new Random().nextInt(25) + 1;
         this.mapHeight = new Random().nextInt(25) + 1;
         this.playerId = player.getId();
-        this.characters = generateNPCs();
-        this.characters.add(0, player);
-        this.items = generateItems();
+        this.things.addAll(generateNPCs());
+        this.things.add(0, player);
+        this.things.addAll(generateItems());
 
         player.setGame(this);
     }
@@ -121,6 +128,7 @@ public class Game extends Thing {
                     dialog);
             npcs.add(npc);
         }
+
         return npcs;
     }
 
@@ -150,15 +158,9 @@ public class Game extends Thing {
     }
 
     public String drawCell() {
-        for (Character character : characters) {
-            if (character.getPosition().getX() == currentRow && character.getPosition().getY() == currentCol) {
-                return character.draw();
-            }
-        }
-        for (Item item : items) {
-            if (!item.isCarried() && item.getPosition().getX() == currentRow
-                    && item.getPosition().getY() == currentCol) {
-                return item.draw();
+        for (IThing thing : things) {
+            if (thing.getPosition().getX() == currentRow && thing.getPosition().getY() == currentCol) {
+                return thing.draw();
             }
         }
         return ".";
@@ -168,13 +170,8 @@ public class Game extends Thing {
         if (newX < 0 || newX >= mapHeight || newY < 0 || newY >= mapWidth) {
             return new AbstractMap.SimpleEntry<>(false, null);
         }
-        for (Character character : characters) {
-            if (character.getPosition().getX() == newX && character.getPosition().getY() == newY) {
-                return new AbstractMap.SimpleEntry<>(false, null);
-            }
-        }
-        for (Item item : items) {
-            if (!item.isCarried() && item.getPosition().getX() == newX && item.getPosition().getY() == newY) {
+        for (IThing thing : things) {
+            if (thing.getPosition().getX() == newX && thing.getPosition().getY() == newY) {
                 return new AbstractMap.SimpleEntry<>(false, null);
             }
         }

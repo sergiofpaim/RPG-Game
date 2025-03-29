@@ -50,21 +50,11 @@ public class Runner {
                 { 1, 1 }
         };
 
-        for (rpg.things.Item item : game.getItems()) {
+        for (IThing thing : game.getThings()) {
             for (int[] offset : offsets) {
-                if (item.getPosition().getX() == player.getPosition().getX() + offset[0]
-                        && item.getPosition().getY() == player.getPosition().getY() + offset[1]) {
-                    interactiveThings.add(item);
-                    interaction = true;
-                }
-            }
-        }
-
-        for (Character npc : game.getCharacters().subList(1, game.getCharacters().size())) {
-            for (int[] offset : offsets) {
-                if (npc.getPosition().getX() == player.getPosition().getX() + offset[0]
-                        && npc.getPosition().getY() == player.getPosition().getY() + offset[1]) {
-                    interactiveThings.add(npc);
+                if (thing.getPosition().getX() == player.getPosition().getX() + offset[0]
+                        && thing.getPosition().getY() == player.getPosition().getY() + offset[1]) {
+                    interactiveThings.add(thing);
                     interaction = true;
                 }
             }
