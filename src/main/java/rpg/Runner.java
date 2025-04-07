@@ -55,7 +55,7 @@ public class Runner implements IInteractable {
     }
 
     @Override
-    public List<Entry<Command, String>> getMenu() {
+    public List<Entry<Command, String>> retrieveMenu() {
         return Arrays.asList(
                 new AbstractMap.SimpleEntry<>(Command.HELP, "Help"),
                 new AbstractMap.SimpleEntry<>(Command.EXIT, "Exit"),

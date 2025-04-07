@@ -17,8 +17,8 @@ public class NPCInteraction extends Interaction {
     }
 
     @Override
-    public List<Entry<Command, String>> getMenu() {
-        List<Entry<Command, String>> menu = super.getMenu();
+    public List<Entry<Command, String>> retrieveMenu() {
+        List<Entry<Command, String>> menu = super.retrieveMenu();
         menu.addAll(Arrays.asList(
                 new AbstractMap.SimpleEntry<>(Command.ATTACK, "Attack"),
                 new AbstractMap.SimpleEntry<>(Command.DEFEND, "Defend"),

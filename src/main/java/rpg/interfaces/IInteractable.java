@@ -7,7 +7,7 @@ import rpg.types.Command;
 
 public interface IInteractable {
 
-    public List<Map.Entry<Command, String>> getMenu();
+    public List<Map.Entry<Command, String>> retrieveMenu();
 
     public List<String> processCommand(Command command);
 }

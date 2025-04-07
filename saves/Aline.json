@@ -1,12 +1,12 @@
 {
-  "id" : "647",
-  "mapWidth" : 1,
-  "mapHeight" : 18,
-  "playerId" : "299",
+  "id" : "725",
+  "mapWidth" : 6,
+  "mapHeight" : 16,
+  "playerId" : "988",
   "things" : [ {
     "thing" : "player",
-    "id" : "299",
-    "name" : "Sergio",
+    "id" : "988",
+    "name" : "Aline",
     "healthPoints" : 5,
     "currentHealthPoints" : 5,
     "attack" : 5,
@@ -15,7 +15,7 @@
     "speed" : 10,
     "inventory" : [ {
       "thing" : "item",
-      "id" : "201",
+      "id" : "382",
       "name" : "Shield",
       "description" : "A sturdy shield,",
       "damage" : 0,
@@ -29,7 +29,7 @@
       "carried" : false
     }, {
       "thing" : "item",
-      "id" : "285",
+      "id" : "123",
       "name" : "Boots",
       "description" : "A pair of sturdy boots",
       "damage" : 0,
@@ -43,7 +43,7 @@
       "carried" : false
     }, {
       "thing" : "item",
-      "id" : "462",
+      "id" : "889",
       "name" : "Clothes",
       "description" : "A set of comfortable clothes",
       "damage" : 0,
@@ -57,7 +57,7 @@
       "carried" : false
     }, {
       "thing" : "item",
-      "id" : "164",
+      "id" : "395",
       "name" : "Health Potion",
       "description" : "A potion that restores health",
       "damage" : 0,
@@ -71,72 +71,59 @@
       "carried" : false
     } ],
     "position" : {
+      "y" : 10,
+      "x" : 1
+    },
+    "experience" : 0,
+    "level" : 1
+  }, {
+    "thing" : "npc",
+    "id" : "443",
+    "name" : "Nolan",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 10,
+    "defense" : 3,
+    "magic" : 5,
+    "speed" : 2,
+    "inventory" : [ ],
+    "position" : {
       "y" : 2,
       "x" : 0
     },
-    "experience" : 0,
-    "level" : 1,
-    "menu" : [ {
-      "rpg.types.Command@64729b1e" : "Move Up"
-    }, {
-      "rpg.types.Command@10bbd20a" : "Move Down"
-    }, {
-      "rpg.types.Command@48503868" : "Move Left"
-    }, {
-      "rpg.types.Command@6895a785" : "Move Right"
-    }, {
-      "rpg.types.Command@184f6be2" : "Show Inventory"
-    }, {
-      "rpg.types.Command@56aac163" : "Interact"
-    } ]
+    "type" : "NPC",
+    "description" : "a wise sage",
+    "dialog" : "No puzzle is unsolvable with a keen mind."
   }, {
     "thing" : "npc",
-    "id" : "892",
-    "name" : "Gideon",
+    "id" : "154",
+    "name" : "Nolan",
     "healthPoints" : 100,
     "currentHealthPoints" : 100,
-    "attack" : 9,
-    "defense" : 3,
-    "magic" : 5,
+    "attack" : 6,
+    "defense" : 5,
+    "magic" : 4,
     "speed" : 1,
     "inventory" : [ ],
     "position" : {
-      "y" : 14,
-      "x" : 0
+      "y" : 3,
+      "x" : 3
     },
     "type" : "NPC",
-    "description" : "a brave knight",
-    "dialog" : "Every potion tells a story, and I am its author."
-  }, {
-    "thing" : "npc",
-    "id" : "411",
-    "name" : "Gideon",
-    "healthPoints" : 100,
-    "currentHealthPoints" : 100,
-    "attack" : 7,
-    "defense" : 5,
-    "magic" : 6,
-    "speed" : 3,
-    "inventory" : [ ],
-    "position" : {
-      "y" : 7,
-      "x" : 0
-    },
-    "type" : "NPC",
-    "description" : "a brave knight",
-    "dialog" : "Every potion tells a story, and I am its author."
+    "description" : "a wise sage",
+    "dialog" : "No puzzle is unsolvable with a keen mind."
   }, {
     "thing" : "item",
-    "id" : "136",
-    "name" : "Potion",
-    "description" : "Heals 50 HP",
+    "id" : "463",
+    "name" : "Amulet",
+    "description" : "Increases health",
     "damage" : 0,
-    "cure" : 50,
-    "defense" : 0,
-    "type" : "POTION",
+    "cure" : 0,
+    "defense" : 5,
+    "type" : "ACCESSORY",
     "position" : {
-      "y" : 3,
-      "x" : 0
+      "y" : 10,
+      "x" : 3
     },
     "carried" : false
   } ]

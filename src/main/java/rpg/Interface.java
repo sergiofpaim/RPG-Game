@@ -18,7 +18,7 @@ public class Interface {
         options = new ArrayList<>();
 
         for (IInteractable interactable : interactables) {
-            options.addAll(interactable.getMenu());
+            options.addAll(interactable.retrieveMenu());
         }
 
         System.out.println("\n--- Commands ---");

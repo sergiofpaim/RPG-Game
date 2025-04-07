@@ -16,7 +16,7 @@ public class Interaction implements IInteractable {
     }
 
     @Override
-    public List<Entry<Command, String>> getMenu() {
+    public List<Entry<Command, String>> retrieveMenu() {
         return Arrays.asList(
                 new AbstractMap.SimpleEntry<>(Command.LOOK, "Look"));
     }
