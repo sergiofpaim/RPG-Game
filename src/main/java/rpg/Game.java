@@ -158,7 +158,7 @@ public class Game extends Thing {
 
     public String drawCell() {
         for (IThing thing : things) {
-            if (thing.getPosition().getX() == currentRow && thing.getPosition().getY() == currentCol) {
+            if (thing.getPosition().getY() == currentRow && thing.getPosition().getX() == currentCol) {
                 return thing.draw();
             }
         }
@@ -170,7 +170,7 @@ public class Game extends Thing {
             return new AbstractMap.SimpleEntry<>(false, null);
         }
         for (IThing thing : things) {
-            if (thing.getPosition().getX() == newX && thing.getPosition().getY() == newY) {
+            if (thing.getPosition().getY() == newX && thing.getPosition().getX() == newY) {
                 return new AbstractMap.SimpleEntry<>(false, null);
             }
         }

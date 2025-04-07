@@ -2,7 +2,7 @@ package rpg.things;
 
 import java.util.List;
 import rpg.Game;
-import rpg.types.PlayerMovement;
+import rpg.types.Command;
 
 public class Player extends Character {
     private int experience;
@@ -43,28 +43,15 @@ public class Player extends Character {
 
         String message = "\n";
 
-        switch (key) {
-            case "w":
-                move(PlayerMovement.UP);
-                break;
-            case "s":
-                move(PlayerMovement.DOWN);
-                break;
-            case "a":
-                move(PlayerMovement.LEFT);
-                break;
-            case "d":
-                move(PlayerMovement.RIGHT);
-                break;
-            case "m":
+        Command command = Command.fromKey(key);
+        if (command != null) {
+            move(command);
+        } else {
+            if (command == Command.INVENTORY)
                 message = showInventory();
-            case "i":
+            else if (command == Command.INTERACT)
                 message = tryInteract();
-                break;
-            case "b":
-                break;
-
-            default:
+            else
                 message = "\nInvalid action!";
         }
         return message;
@@ -75,26 +62,21 @@ public class Player extends Character {
         throw new UnsupportedOperationException("Unimplemented method 'tryInteract'");
     }
 
-    public void move(PlayerMovement movement) {
+    public void move(Command movement) {
         int currentX = this.position.x;
         int currentY = this.position.y;
         int newX = currentX;
         int newY = currentY;
 
-        switch (movement) {
-            case UP:
-                newX = currentX - 1;
-                break;
-            case DOWN:
-                newX = currentX + 1;
-                break;
-            case LEFT:
-                newY = currentY - 1;
-                break;
-            case RIGHT:
-                newY = currentY + 1;
-                break;
-        }
+        if (movement == Command.UP)
+            newY = currentY - 1;
+        else if (movement == Command.DOWN)
+            newY = currentY + 1;
+        else if (movement == Command.LEFT)
+            newX = currentX - 1;
+        else if (movement == Command.RIGHT)
+            newX = currentX + 1;
+
         if (this.game.checkMovement(newX, newY).getKey()) {
             this.position.setX(newX);
             this.position.setY(newY);

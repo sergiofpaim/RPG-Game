@@ -3,6 +3,8 @@ package rpg;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import rpg.interfaces.IInteractable;
 import rpg.interfaces.IThing;
 import rpg.things.Item;
 import rpg.things.NPC;
@@ -13,6 +15,7 @@ public class Runner {
 
     public static Game game = null;
     public static Player player = null;
+    public static List<IInteractable> interactables = new ArrayList<>();
 
     public static void run(Game newGame) {
         game = newGame;
@@ -24,7 +27,7 @@ public class Runner {
 
         while (isRunning) {
             String key = RPGGame.scan.next().trim().toLowerCase();
-            Runner.processInput(key);
+            processInput(key);
         }
     }
 
@@ -58,8 +61,8 @@ public class Runner {
 
         for (IThing thing : game.getThings()) {
             for (int[] offset : offsets) {
-                if (thing.getPosition().getX() == player.getPosition().getX() + offset[0]
-                        && thing.getPosition().getY() == player.getPosition().getY() + offset[1]) {
+                if (thing.getPosition().getY() == player.getPosition().getY() + offset[0]
+                        && thing.getPosition().getX() == player.getPosition().getX() + offset[1]) {
                     interactiveThings.add(thing);
                     interaction = true;
                 }
@@ -109,7 +112,7 @@ public class Runner {
 
     private static void showCommands() {
         System.out.println(
-                "\nYou are the '\uD83C\uDFC7', Enter a direction (w/a/s/d), 'm' to see you inventory and 'k' to save:\n");
+                "\nYou are the '\uD83C\uDFC7', Enter a direction (w/a/s/d), 'h' for help, 'b' to see you inventory, 'i' to interact, 'x' to quit and 'k' to save:\n");
 
         System.out.println(player.showStats());
     }
