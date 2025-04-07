@@ -43,24 +43,6 @@ public class NPC extends Character {
     }
 
     @Override
-    public void init() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Init'");
-    }
-
-    @Override
-    public void destroy() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Destroy'");
-    }
-
-    @Override
-    public void startInteraction() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'StartInteraction'");
-    }
-
-    @Override
     public String draw() {
         if (this.type.equals("Enemy")) {
             return "\uD83D\uDC79";
@@ -72,6 +54,6 @@ public class NPC extends Character {
     @Override
     public String showStats() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'displayProfile'");
+        throw new UnsupportedOperationException("Unimplemented method 'showStats'");
     }
 }

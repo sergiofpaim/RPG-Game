@@ -2,15 +2,8 @@ package rpg.things;
 
 import java.util.List;
 import java.util.Random;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import rpg.interfaces.IThing;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = Player.class, name = "player"),
-        @JsonSubTypes.Type(value = NPC.class, name = "npc")
-})
 public abstract class Character extends Thing implements IThing {
     protected String name;
     protected int healthPoints;

@@ -42,7 +42,8 @@ public class Sessions {
 
                 try {
                         objectMapper.writeValue(new File(
-                                        directory + "/" + game.getCharacters().get(0).getName() + fileExtension), game);
+                                        directory + "/" + game.listCharacters().get(0).getName() + fileExtension),
+                                        game);
                         System.out.println("Game saved successfully!");
                 } catch (IOException e) {
                         e.printStackTrace();

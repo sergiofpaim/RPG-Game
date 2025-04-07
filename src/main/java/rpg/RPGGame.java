@@ -12,8 +12,6 @@ public class RPGGame {
 
     private static final List<String> sessions = Sessions.listSessionsNames();
 
-    public static Boolean isRunning = true;
-
     public static void main(String[] args) {
         System.out.println("\n" +
                 "***************************************\n" +
@@ -22,15 +20,7 @@ public class RPGGame {
                 "***************************************\n");
 
         Game game = gamePicker();
-        Runner.start(game);
-        ReadInput();
-    }
-
-    private static void ReadInput() {
-        while (isRunning) {
-            String key = RPGGame.scan.next().trim().toLowerCase();
-            Runner.processInput(key);
-        }
+        Runner.run(game);
     }
 
     private static Game gamePicker() {

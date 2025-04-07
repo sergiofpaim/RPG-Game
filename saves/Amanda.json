@@ -1,12 +1,12 @@
 {
-  "id" : "364",
-  "mapWidth" : 17,
-  "mapHeight" : 7,
-  "playerId" : "971",
-  "characters" : [ {
-    "type" : "player",
-    "id" : "971",
-    "name" : "Legolas",
+  "id" : "681",
+  "mapWidth" : 20,
+  "mapHeight" : 12,
+  "playerId" : "139",
+  "things" : [ {
+    "thing" : "player",
+    "id" : "139",
+    "name" : "Amanda",
     "healthPoints" : 5,
     "currentHealthPoints" : 5,
     "attack" : 5,
@@ -14,7 +14,8 @@
     "magic" : 5,
     "speed" : 10,
     "inventory" : [ {
-      "id" : "131",
+      "thing" : "item",
+      "id" : "866",
       "name" : "Shield",
       "description" : "A sturdy shield,",
       "damage" : 0,
@@ -27,7 +28,8 @@
       },
       "carried" : false
     }, {
-      "id" : "427",
+      "thing" : "item",
+      "id" : "987",
       "name" : "Boots",
       "description" : "A pair of sturdy boots",
       "damage" : 0,
@@ -40,7 +42,8 @@
       },
       "carried" : false
     }, {
-      "id" : "337",
+      "thing" : "item",
+      "id" : "744",
       "name" : "Clothes",
       "description" : "A set of comfortable clothes",
       "damage" : 0,
@@ -53,7 +56,8 @@
       },
       "carried" : false
     }, {
-      "id" : "291",
+      "thing" : "item",
+      "id" : "722",
       "name" : "Health Potion",
       "description" : "A potion that restores health",
       "damage" : 0,
@@ -73,84 +77,89 @@
     "experience" : 0,
     "level" : 1
   }, {
-    "type" : "npc",
-    "id" : "918",
-    "name" : "Tess",
+    "thing" : "npc",
+    "id" : "557",
+    "name" : "Pax",
     "healthPoints" : 100,
     "currentHealthPoints" : 100,
-    "attack" : 14,
-    "defense" : 7,
+    "attack" : 7,
+    "defense" : 5,
+    "magic" : 5,
+    "speed" : 1,
+    "inventory" : [ ],
+    "position" : {
+      "x" : 2,
+      "y" : 8
+    },
+    "type" : "NPC",
+    "description" : "a stealthy scout",
+    "dialog" : "Every potion tells a story, and I am its author."
+  }, {
+    "thing" : "npc",
+    "id" : "924",
+    "name" : "Pax",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 9,
+    "defense" : 6,
+    "magic" : 3,
+    "speed" : 3,
+    "inventory" : [ ],
+    "position" : {
+      "x" : 6,
+      "y" : 19
+    },
+    "type" : "NPC",
+    "description" : "a stealthy scout",
+    "dialog" : "Every potion tells a story, and I am its author."
+  }, {
+    "thing" : "npc",
+    "id" : "310",
+    "name" : "Pax",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 12,
+    "defense" : 4,
     "magic" : 5,
     "speed" : 5,
     "inventory" : [ ],
     "position" : {
-      "x" : 5,
-      "y" : 1
+      "x" : 9,
+      "y" : 14
     },
-    "type" : "ENEMY",
-    "description" : "a cunning rogue",
-    "dialog" : "The sword is an extension of oneself, never let it falter."
+    "type" : "NPC",
+    "description" : "a stealthy scout",
+    "dialog" : "Every potion tells a story, and I am its author."
   }, {
-    "type" : "npc",
-    "id" : "99",
-    "name" : "Tess",
+    "thing" : "npc",
+    "id" : "223",
+    "name" : "Pax",
     "healthPoints" : 100,
     "currentHealthPoints" : 100,
-    "attack" : 5,
-    "defense" : 7,
+    "attack" : 14,
+    "defense" : 3,
     "magic" : 2,
-    "speed" : 5,
+    "speed" : 4,
     "inventory" : [ ],
     "position" : {
-      "x" : 0,
-      "y" : 13
+      "x" : 10,
+      "y" : 15
     },
-    "type" : "ENEMY",
-    "description" : "a cunning rogue",
-    "dialog" : "The sword is an extension of oneself, never let it falter."
+    "type" : "NPC",
+    "description" : "a stealthy scout",
+    "dialog" : "Every potion tells a story, and I am its author."
   }, {
-    "type" : "npc",
-    "id" : "535",
-    "name" : "Tess",
-    "healthPoints" : 100,
-    "currentHealthPoints" : 100,
-    "attack" : 5,
-    "defense" : 5,
-    "magic" : 4,
-    "speed" : 1,
-    "inventory" : [ ],
-    "position" : {
-      "x" : 3,
-      "y" : 11
-    },
-    "type" : "ENEMY",
-    "description" : "a cunning rogue",
-    "dialog" : "The sword is an extension of oneself, never let it falter."
-  } ],
-  "items" : [ {
-    "id" : "23",
-    "name" : "Boots",
-    "description" : "Increases speed",
+    "thing" : "item",
+    "id" : "487",
+    "name" : "Amulet",
+    "description" : "Increases health",
     "damage" : 0,
     "cure" : 0,
-    "defense" : 2,
-    "type" : "ARMOR",
-    "position" : {
-      "x" : 2,
-      "y" : 2
-    },
-    "carried" : false
-  }, {
-    "id" : "232",
-    "name" : "Sword",
-    "description" : "A sharp blade",
-    "damage" : 10,
-    "cure" : 0,
-    "defense" : 0,
-    "type" : "WEAPON",
+    "defense" : 5,
+    "type" : "ACCESSORY",
     "position" : {
       "x" : 6,
-      "y" : 0
+      "y" : 13
     },
     "carried" : false
   } ]

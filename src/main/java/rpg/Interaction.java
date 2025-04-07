@@ -17,7 +17,7 @@ public class Interaction {
     }
 
     public Map.Entry<Game, String> manageInteraction(Game game) {
-        Player player = (Player) game.getCharacters().get(0);
+        Player player = (Player) game.listCharacters().get(0);
 
         if (target != null) {
             if (target instanceof rpg.things.Character) {
@@ -42,13 +42,13 @@ public class Interaction {
                 else if (choice == 3) {
                     Player playerAfterFight = startBattle(player, npc);
                     if (playerAfterFight.getCurrentHealthPoints() > 0) {
-                        game.getCharacters().remove(npc);
+                        game.listCharacters().remove(npc);
                         message = "You defeated " + npc.getName() + "!";
                     }
 
                     else {
                         message = "You died";
-                        game.getCharacters().remove(player);
+                        game.listCharacters().remove(player);
                     }
                 }
             }
@@ -70,7 +70,7 @@ public class Interaction {
                 else if (choice == 2) {
                     item.setCarried(true);
                     player.getInventory().add(item);
-                    game.getItems().remove(item);
+                    game.listItems().remove(item);
 
                     message = "You're now carrying the item";
                 }

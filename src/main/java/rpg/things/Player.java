@@ -1,7 +1,6 @@
 package rpg.things;
 
 import java.util.List;
-
 import rpg.Game;
 import rpg.types.PlayerMovement;
 
@@ -60,6 +59,7 @@ public class Player extends Character {
             case "m":
                 message = showInventory();
             case "i":
+                message = tryInteract();
                 break;
             case "b":
                 break;
@@ -68,6 +68,11 @@ public class Player extends Character {
                 message = "\nInvalid action!";
         }
         return message;
+    }
+
+    private String tryInteract() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'tryInteract'");
     }
 
     public void move(PlayerMovement movement) {
@@ -94,24 +99,6 @@ public class Player extends Character {
             this.position.setX(newX);
             this.position.setY(newY);
         }
-    }
-
-    @Override
-    public void init() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Init'");
-    }
-
-    @Override
-    public void destroy() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Destroy'");
-    }
-
-    @Override
-    public void startInteraction() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'StartInteraction'");
     }
 
     @Override

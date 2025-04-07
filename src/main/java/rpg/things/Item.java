@@ -100,24 +100,6 @@ public class Item implements IThing {
     }
 
     @Override
-    public void init() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Init'");
-    }
-
-    @Override
-    public void destroy() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Destroy'");
-    }
-
-    @Override
-    public void startInteraction() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'StartInteraction'");
-    }
-
-    @Override
     public String draw() {
         if (this.type == ItemType.WEAPON) {
             return "\u2694";

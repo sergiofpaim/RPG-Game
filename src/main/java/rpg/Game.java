@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
-
 import rpg.interfaces.IThing;
 import rpg.templateData.*;
 import rpg.things.*;
@@ -43,14 +42,14 @@ public class Game extends Thing {
         return things;
     }
 
-    public List<Character> getCharacters() {
+    public List<Character> listCharacters() {
         return things.stream()
                 .filter(t -> t instanceof Character)
                 .map(t -> (Character) t)
                 .collect(Collectors.toList());
     }
 
-    public List<Item> getItems() {
+    public List<Item> listItems() {
         return things.stream()
                 .filter(t -> t instanceof Item)
                 .map(t -> (Item) t)
