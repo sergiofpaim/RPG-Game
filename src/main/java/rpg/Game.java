@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
+
 import rpg.interfaces.IThing;
 import rpg.templateData.*;
 import rpg.things.*;
@@ -16,6 +17,7 @@ public class Game extends Thing {
     private int mapWidth;
     private int mapHeight;
     private String playerId;
+    private boolean changed = true;
     private List<IThing> things = new ArrayList<IThing>();
 
     private int currentRow = -1;
@@ -166,15 +168,94 @@ public class Game extends Thing {
     }
 
     public Map.Entry<Boolean, List<IThing>> checkMovement(int newX, int newY) {
-        if (newX < 0 || newX >= mapHeight || newY < 0 || newY >= mapWidth) {
+        changed = true;
+
+        if (newX < 0 || newX >= mapWidth || newY < 0 || newY >= mapHeight) {
             return new AbstractMap.SimpleEntry<>(false, null);
         }
         for (IThing thing : things) {
-            if (thing.getPosition().getY() == newX && thing.getPosition().getX() == newY) {
+            if (thing.getPosition().getX() == newX && thing.getPosition().getY() == newY) {
                 return new AbstractMap.SimpleEntry<>(false, null);
             }
         }
 
         return new AbstractMap.SimpleEntry<>(true, null);
     }
+
+    public boolean hasChanged() {
+        if (changed) {
+            changed = false;
+            return true;
+        }
+        return false;
+    }
+
+    // private static boolean checkInteraction() {
+    // boolean interaction = false;
+    // List<IThing> interactiveThings = new ArrayList<>();
+
+    // int[][] offsets = {
+    // { -1, -1 },
+    // { -1, 0 },
+    // { -1, 1 },
+    // { 0, -1 },
+    // { 0, 1 },
+    // { 1, -1 },
+    // { 1, 0 },
+    // { 1, 1 }
+    // };
+
+    // for (IThing thing : game.getThings()) {
+    // for (int[] offset : offsets) {
+    // if (thing.getPosition().getY() == player.getPosition().getY() + offset[0]
+    // && thing.getPosition().getX() == player.getPosition().getX() + offset[1]) {
+    // interactiveThings.add(thing);
+    // interaction = true;
+    // }
+    // }
+    // }
+
+    // if (interaction) {
+    // System.out.println("Do you want to start an interaction? (y/n)");
+    // if (RPGGame.scan.hasNextLine()) {
+    // RPGGame.scan.nextLine();
+    // }
+    // String choice = RPGGame.scan.nextLine().trim().toLowerCase();
+
+    // if (choice.equals("y")) {
+
+    // int counter = 1;
+
+    // System.out.println("\nType the number of the thing you want to interact with:
+    // ");
+
+    // for (IThing thing : interactiveThings) {
+    // if (thing instanceof NPC) {
+    // System.out.println("\n" + counter + "- " + ((NPC) thing).getName() + ": "
+    // + ((NPC) thing).getDescription());
+    // } else if (thing instanceof Item) {
+    // System.out.println("\n" + counter + "- " + ((Item) thing).getName() + ": "
+    // + ((Item) thing).getDescription());
+    // }
+    // }
+    // counter++;
+    // }
+
+    // Interaction newInteraction = new
+    // Interaction(interactiveThings.get(RPGGame.scan.nextInt() - 1));
+
+    // Map.Entry<Game, String> resultInteraction =
+    // newInteraction.manageInteraction(game);
+
+    // game = resultInteraction.getKey();
+    // System.out.println(resultInteraction.getValue());
+
+    // if (!game.listCharacters().contains(player))
+    // isRunning = false;
+    // else
+    // player = (Player) game.listCharacters().get(0);
+    // }
+
+    // return interaction;
+    // }
 }

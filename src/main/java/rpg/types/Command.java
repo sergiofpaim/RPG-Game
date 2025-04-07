@@ -1,14 +1,12 @@
 package rpg.types;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Arrays;
 
 public class Command {
     private final String command;
     private final String key;
 
-    // Private constructor to restrict instantiation
     private Command(String command, String key) {
         this.command = command;
         this.key = key;
@@ -32,10 +30,22 @@ public class Command {
     public static final Command SAVE = new Command("SAVE", "K");
     public static final Command HELP = new Command("HELP", "H");
     public static final Command EXIT = new Command("EXIT", "X");
+    public static final Command ATTACK = new Command("ATTACK", "T");
+    public static final Command DEFEND = new Command("DEFEND", "F");
+    public static final Command MAGIC = new Command("MAGIC", "M");
+    public static final Command LOOK = new Command("LOOK", "L");
+    public static final Command USE_ITEM = new Command("USE_ITEM", "U");
+    public static final Command PICK_UP_ITEM = new Command("PICK_UP", "P");
+    public static final Command DROP_ITEM = new Command("DROP_ITEM", "D");
+    public static final Command TALK = new Command("TALK", "Q");
+    public static final Command RUN = new Command("RUN", "R");
+    public static final Command OPEN = new Command("OPEN", "O");
+    public static final Command CLOSE = new Command("CLOSE", "C");
 
     // Optionally: get all commands
     public static List<Command> all() {
-        return Arrays.asList(UP, DOWN, LEFT, RIGHT, INVENTORY, INTERACT, SAVE, HELP, EXIT);
+        return Arrays.asList(UP, DOWN, LEFT, RIGHT, INVENTORY, INTERACT, SAVE, HELP, EXIT,
+                ATTACK, DEFEND, MAGIC, PICK_UP_ITEM, USE_ITEM, DROP_ITEM, TALK, LOOK, RUN, OPEN, CLOSE);
     }
 
     public static Command fromKey(String key) {

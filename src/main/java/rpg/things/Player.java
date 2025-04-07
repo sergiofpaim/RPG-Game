@@ -1,10 +1,16 @@
 package rpg.things;
 
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map.Entry;
+
 import rpg.Game;
+import rpg.interfaces.IInteractable;
 import rpg.types.Command;
 
-public class Player extends Character {
+public class Player extends Character implements IInteractable {
     private int experience;
     private int level;
     private Game game;
@@ -39,30 +45,12 @@ public class Player extends Character {
         this.game = game;
     }
 
-    public String processInput(String key) {
-
-        String message = "\n";
-
-        Command command = Command.fromKey(key);
-        if (command != null) {
-            move(command);
-        } else {
-            if (command == Command.INVENTORY)
-                message = showInventory();
-            else if (command == Command.INTERACT)
-                message = tryInteract();
-            else
-                message = "\nInvalid action!";
-        }
-        return message;
-    }
-
     private String tryInteract() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'tryInteract'");
     }
 
-    public void move(Command movement) {
+    private void move(Command movement) {
         int currentX = this.position.x;
         int currentY = this.position.y;
         int newX = currentX;
@@ -108,5 +96,30 @@ public class Player extends Character {
         }
         inventory.append("------------------\n");
         return inventory.toString();
+    }
+
+    @Override
+    public List<Entry<Command, String>> getMenu() {
+        return Arrays.asList(
+                new AbstractMap.SimpleEntry<>(Command.UP, "Move Up"),
+                new AbstractMap.SimpleEntry<>(Command.DOWN, "Move Down"),
+                new AbstractMap.SimpleEntry<>(Command.LEFT, "Move Left"),
+                new AbstractMap.SimpleEntry<>(Command.RIGHT, "Move Right"),
+                new AbstractMap.SimpleEntry<>(Command.INVENTORY, "Show Inventory"),
+                new AbstractMap.SimpleEntry<>(Command.INTERACT, "Interact"));
+    }
+
+    @Override
+    public List<String> processCommand(Command command) {
+        List<String> messages = new ArrayList<>();
+
+        if (command == Command.INVENTORY)
+            messages.add(showInventory());
+        else if (command == Command.INTERACT)
+            messages.add(tryInteract());
+        else
+            move(command);
+
+        return messages;
     }
 }

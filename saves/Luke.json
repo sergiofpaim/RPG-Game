@@ -1,0 +1,193 @@
+{
+  "id" : "945",
+  "mapWidth" : 24,
+  "mapHeight" : 5,
+  "playerId" : "125",
+  "things" : [ {
+    "thing" : "player",
+    "id" : "125",
+    "name" : "Luke",
+    "healthPoints" : 5,
+    "currentHealthPoints" : 5,
+    "attack" : 5,
+    "defense" : 5,
+    "magic" : 5,
+    "speed" : 10,
+    "inventory" : [ {
+      "thing" : "item",
+      "id" : "525",
+      "name" : "Shield",
+      "description" : "A sturdy shield,",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 2,
+      "type" : "ARMOR",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    }, {
+      "thing" : "item",
+      "id" : "649",
+      "name" : "Boots",
+      "description" : "A pair of sturdy boots",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 0,
+      "type" : "ACCESSORY",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    }, {
+      "thing" : "item",
+      "id" : "512",
+      "name" : "Clothes",
+      "description" : "A set of comfortable clothes",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 0,
+      "type" : "ACCESSORY",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    }, {
+      "thing" : "item",
+      "id" : "170",
+      "name" : "Health Potion",
+      "description" : "A potion that restores health",
+      "damage" : 0,
+      "cure" : 10,
+      "defense" : 0,
+      "type" : "POTION",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    } ],
+    "position" : {
+      "y" : 0,
+      "x" : 1
+    },
+    "experience" : 0,
+    "level" : 1,
+    "menu" : [ {
+      "rpg.types.Command@64729b1e" : "Move Up"
+    }, {
+      "rpg.types.Command@10bbd20a" : "Move Down"
+    }, {
+      "rpg.types.Command@48503868" : "Move Left"
+    }, {
+      "rpg.types.Command@6895a785" : "Move Right"
+    }, {
+      "rpg.types.Command@184f6be2" : "Show Inventory"
+    }, {
+      "rpg.types.Command@56aac163" : "Interact"
+    } ]
+  }, {
+    "thing" : "npc",
+    "id" : "457",
+    "name" : "Milo",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 11,
+    "defense" : 6,
+    "magic" : 4,
+    "speed" : 5,
+    "inventory" : [ ],
+    "position" : {
+      "y" : 3,
+      "x" : 19
+    },
+    "type" : "ENEMY",
+    "description" : "a skilled warrior",
+    "dialog" : "Patience builds stronger foundations than haste."
+  }, {
+    "thing" : "npc",
+    "id" : "173",
+    "name" : "Milo",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 6,
+    "defense" : 5,
+    "magic" : 5,
+    "speed" : 3,
+    "inventory" : [ ],
+    "position" : {
+      "y" : 2,
+      "x" : 9
+    },
+    "type" : "ENEMY",
+    "description" : "a skilled warrior",
+    "dialog" : "Patience builds stronger foundations than haste."
+  }, {
+    "thing" : "npc",
+    "id" : "608",
+    "name" : "Milo",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 10,
+    "defense" : 4,
+    "magic" : 4,
+    "speed" : 4,
+    "inventory" : [ ],
+    "position" : {
+      "y" : 3,
+      "x" : 12
+    },
+    "type" : "ENEMY",
+    "description" : "a skilled warrior",
+    "dialog" : "Patience builds stronger foundations than haste."
+  }, {
+    "thing" : "npc",
+    "id" : "670",
+    "name" : "Milo",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 14,
+    "defense" : 7,
+    "magic" : 4,
+    "speed" : 1,
+    "inventory" : [ ],
+    "position" : {
+      "y" : 4,
+      "x" : 14
+    },
+    "type" : "ENEMY",
+    "description" : "a skilled warrior",
+    "dialog" : "Patience builds stronger foundations than haste."
+  }, {
+    "thing" : "item",
+    "id" : "895",
+    "name" : "Amulet",
+    "description" : "Increases health",
+    "damage" : 0,
+    "cure" : 0,
+    "defense" : 5,
+    "type" : "ACCESSORY",
+    "position" : {
+      "y" : 4,
+      "x" : 13
+    },
+    "carried" : false
+  }, {
+    "thing" : "item",
+    "id" : "155",
+    "name" : "Bow",
+    "description" : "A long-range weapon",
+    "damage" : 8,
+    "cure" : 0,
+    "defense" : 0,
+    "type" : "WEAPON",
+    "position" : {
+      "y" : 2,
+      "x" : 12
+    },
+    "carried" : false
+  } ]
+}

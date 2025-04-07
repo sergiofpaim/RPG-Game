@@ -20,7 +20,7 @@ public class RPGGame {
                 "***************************************\n");
 
         Game game = gamePicker();
-        Runner.run(game);
+        new Runner().run(game);
     }
 
     private static Game gamePicker() {

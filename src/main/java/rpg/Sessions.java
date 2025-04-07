@@ -35,7 +35,7 @@ public class Sessions {
                 return sessions;
         }
 
-        public static void save(Game game) {
+        public static String save(Game game) {
                 File directory = getDirectory();
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -44,10 +44,10 @@ public class Sessions {
                         objectMapper.writeValue(new File(
                                         directory + "/" + game.listCharacters().get(0).getName() + fileExtension),
                                         game);
-                        System.out.println("Game saved successfully!");
                 } catch (IOException e) {
                         e.printStackTrace();
                 }
+                return "Game saved successfully!";
         }
 
         public static Game load(String playerName) {

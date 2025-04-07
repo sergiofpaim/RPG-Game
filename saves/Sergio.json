@@ -1,0 +1,143 @@
+{
+  "id" : "647",
+  "mapWidth" : 1,
+  "mapHeight" : 18,
+  "playerId" : "299",
+  "things" : [ {
+    "thing" : "player",
+    "id" : "299",
+    "name" : "Sergio",
+    "healthPoints" : 5,
+    "currentHealthPoints" : 5,
+    "attack" : 5,
+    "defense" : 5,
+    "magic" : 5,
+    "speed" : 10,
+    "inventory" : [ {
+      "thing" : "item",
+      "id" : "201",
+      "name" : "Shield",
+      "description" : "A sturdy shield,",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 2,
+      "type" : "ARMOR",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    }, {
+      "thing" : "item",
+      "id" : "285",
+      "name" : "Boots",
+      "description" : "A pair of sturdy boots",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 0,
+      "type" : "ACCESSORY",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    }, {
+      "thing" : "item",
+      "id" : "462",
+      "name" : "Clothes",
+      "description" : "A set of comfortable clothes",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 0,
+      "type" : "ACCESSORY",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    }, {
+      "thing" : "item",
+      "id" : "164",
+      "name" : "Health Potion",
+      "description" : "A potion that restores health",
+      "damage" : 0,
+      "cure" : 10,
+      "defense" : 0,
+      "type" : "POTION",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    } ],
+    "position" : {
+      "y" : 2,
+      "x" : 0
+    },
+    "experience" : 0,
+    "level" : 1,
+    "menu" : [ {
+      "rpg.types.Command@64729b1e" : "Move Up"
+    }, {
+      "rpg.types.Command@10bbd20a" : "Move Down"
+    }, {
+      "rpg.types.Command@48503868" : "Move Left"
+    }, {
+      "rpg.types.Command@6895a785" : "Move Right"
+    }, {
+      "rpg.types.Command@184f6be2" : "Show Inventory"
+    }, {
+      "rpg.types.Command@56aac163" : "Interact"
+    } ]
+  }, {
+    "thing" : "npc",
+    "id" : "892",
+    "name" : "Gideon",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 9,
+    "defense" : 3,
+    "magic" : 5,
+    "speed" : 1,
+    "inventory" : [ ],
+    "position" : {
+      "y" : 14,
+      "x" : 0
+    },
+    "type" : "NPC",
+    "description" : "a brave knight",
+    "dialog" : "Every potion tells a story, and I am its author."
+  }, {
+    "thing" : "npc",
+    "id" : "411",
+    "name" : "Gideon",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 7,
+    "defense" : 5,
+    "magic" : 6,
+    "speed" : 3,
+    "inventory" : [ ],
+    "position" : {
+      "y" : 7,
+      "x" : 0
+    },
+    "type" : "NPC",
+    "description" : "a brave knight",
+    "dialog" : "Every potion tells a story, and I am its author."
+  }, {
+    "thing" : "item",
+    "id" : "136",
+    "name" : "Potion",
+    "description" : "Heals 50 HP",
+    "damage" : 0,
+    "cure" : 50,
+    "defense" : 0,
+    "type" : "POTION",
+    "position" : {
+      "y" : 3,
+      "x" : 0
+    },
+    "carried" : false
+  } ]
+}

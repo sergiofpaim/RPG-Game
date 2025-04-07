@@ -1,0 +1,34 @@
+package rpg.interactions;
+
+import java.util.Map.Entry;
+import rpg.things.Item;
+import rpg.things.Player;
+import rpg.types.Command;
+import java.util.AbstractMap;
+import java.util.Arrays;
+import java.util.List;
+
+public class ItemInteraction extends Interaction {
+    private Item item;
+
+    public ItemInteraction(Player player, Item item) {
+        super(player);
+        this.item = item;
+    }
+
+    @Override
+    public List<Entry<Command, String>> getMenu() {
+        List<Entry<Command, String>> menu = super.getMenu();
+        menu.addAll(Arrays.asList(
+                new AbstractMap.SimpleEntry<>(Command.PICK_UP_ITEM, "Pick Up"),
+                new AbstractMap.SimpleEntry<>(Command.USE_ITEM, "Use"),
+                new AbstractMap.SimpleEntry<>(Command.DROP_ITEM, "Drop")));
+        return menu;
+    }
+
+    @Override
+    public List<String> processCommand(Command command) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'processCommand'");
+    }
+}
