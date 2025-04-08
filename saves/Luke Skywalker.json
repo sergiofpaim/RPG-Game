@@ -1,12 +1,12 @@
 {
-  "id" : "928",
-  "mapWidth" : 8,
+  "id" : "305",
+  "mapWidth" : 23,
   "mapHeight" : 24,
-  "playerId" : "918",
+  "playerId" : "451",
   "things" : [ {
     "thing" : "player",
-    "id" : "918",
-    "name" : "Luke",
+    "id" : "451",
+    "name" : "Luke Skywalker",
     "healthPoints" : 5,
     "currentHealthPoints" : 5,
     "attack" : 5,
@@ -15,7 +15,7 @@
     "speed" : 10,
     "inventory" : [ {
       "thing" : "item",
-      "id" : "256",
+      "id" : "973",
       "name" : "Shield",
       "description" : "A sturdy shield,",
       "damage" : 0,
@@ -29,7 +29,7 @@
       "carried" : false
     }, {
       "thing" : "item",
-      "id" : "172",
+      "id" : "681",
       "name" : "Boots",
       "description" : "A pair of sturdy boots",
       "damage" : 0,
@@ -43,7 +43,7 @@
       "carried" : false
     }, {
       "thing" : "item",
-      "id" : "440",
+      "id" : "523",
       "name" : "Clothes",
       "description" : "A set of comfortable clothes",
       "damage" : 0,
@@ -57,7 +57,7 @@
       "carried" : false
     }, {
       "thing" : "item",
-      "id" : "801",
+      "id" : "656",
       "name" : "Health Potion",
       "description" : "A potion that restores health",
       "damage" : 0,
@@ -71,33 +71,69 @@
       "carried" : false
     } ],
     "position" : {
-      "y" : 11,
-      "x" : 3
+      "y" : 12,
+      "x" : 7
     },
+    "description" : null,
     "experience" : 0,
-    "level" : 1,
-    "description" : null
+    "level" : 1
   }, {
     "thing" : "npc",
-    "id" : "607",
-    "name" : "Gemma",
+    "id" : "586",
+    "name" : "Veda",
     "healthPoints" : 100,
     "currentHealthPoints" : 100,
-    "attack" : 11,
-    "defense" : 5,
-    "magic" : 3,
+    "attack" : 5,
+    "defense" : 3,
+    "magic" : 5,
     "speed" : 3,
     "inventory" : [ ],
     "position" : {
-      "y" : 22,
-      "x" : 6
+      "y" : 14,
+      "x" : 17
     },
+    "description" : "a playful spirit",
     "type" : "NPC",
-    "description" : "a cunning trickster",
-    "dialog" : "Paths cross for reasons unknown, cherish the journey."
+    "dialog" : "One must adapt to thrive in this wild world."
+  }, {
+    "thing" : "npc",
+    "id" : "755",
+    "name" : "Veda",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 9,
+    "defense" : 5,
+    "magic" : 5,
+    "speed" : 5,
+    "inventory" : [ ],
+    "position" : {
+      "y" : 21,
+      "x" : 3
+    },
+    "description" : "a playful spirit",
+    "type" : "NPC",
+    "dialog" : "One must adapt to thrive in this wild world."
+  }, {
+    "thing" : "npc",
+    "id" : "460",
+    "name" : "Veda",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 7,
+    "defense" : 5,
+    "magic" : 3,
+    "speed" : 2,
+    "inventory" : [ ],
+    "position" : {
+      "y" : 18,
+      "x" : 16
+    },
+    "description" : "a playful spirit",
+    "type" : "NPC",
+    "dialog" : "One must adapt to thrive in this wild world."
   }, {
     "thing" : "item",
-    "id" : "890",
+    "id" : "253",
     "name" : "Helmet",
     "description" : "Protects your head",
     "damage" : 0,
@@ -105,8 +141,8 @@
     "defense" : 5,
     "type" : "ARMOR",
     "position" : {
-      "y" : 11,
-      "x" : 4
+      "y" : 13,
+      "x" : 11
     },
     "carried" : false
   } ]

@@ -1,7 +1,10 @@
 package rpg.things;
 
+import java.util.Random;
+
 import rpg.Game;
 import rpg.interfaces.IThing;
+import rpg.templateData.ItemData;
 import rpg.types.ItemType;
 
 public class Item implements IThing {
@@ -27,6 +30,24 @@ public class Item implements IThing {
         this.cure = cure;
         this.defense = defense;
         this.type = type;
+    }
+
+    public Item(Game game) {
+        Random random = new Random();
+
+        Item randomItem = ItemData.defaultItems[random.nextInt(ItemData.defaultItems.length)];
+
+        this.id = randomItem.getId();
+        this.name = randomItem.getName();
+        this.description = randomItem.getDescription();
+        this.damage = randomItem.getDamage();
+        this.cure = randomItem.getCure();
+        this.defense = randomItem.getDefense();
+        this.type = randomItem.getType();
+        this.setPosition(new Position(random.nextInt(game.getMapHeight()), random.nextInt(game.getMapWidth())));
+        this.setId(String.valueOf(new Random().nextInt(1000) + 1));
+        this.setCarried(false);
+        this.setGame(game);
     }
 
     public String getId() {
@@ -102,16 +123,16 @@ public class Item implements IThing {
     }
 
     public void drop() {
-        this.defineCarried(false);
+        this.setCarried(false);
         this.game.add(this);
     }
 
     public void pick() {
-        this.defineCarried(true);
+        this.setCarried(true);
         this.game.remove(this);
     }
 
-    public void defineCarried(boolean isCarried) {
+    public void setCarried(boolean isCarried) {
         this.isCarried = isCarried;
     }
 

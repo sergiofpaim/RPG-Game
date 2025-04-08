@@ -14,6 +14,7 @@ public abstract class Character extends Thing implements IThing {
     protected int speed;
     protected List<Item> inventory;
     protected Position position;
+    protected String description;
 
     public Character() {
     }

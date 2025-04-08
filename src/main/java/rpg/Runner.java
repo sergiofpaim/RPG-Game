@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 import rpg.interfaces.IInteractable;
+import rpg.interfaces.IThing;
 import rpg.things.Player;
 import rpg.types.Command;
 
@@ -19,7 +20,9 @@ public class Runner implements IInteractable {
     public void run(Game newGame) {
         game = newGame;
         player = (Player) game.listCharacters().get(0);
-        player.setGame(game);
+
+        for (IThing thing : game.getThings())
+            thing.setGame(game);
 
         Interface.add(this);
         Interface.add(player);

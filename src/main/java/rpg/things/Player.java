@@ -148,13 +148,7 @@ public class Player extends Character implements IInteractable {
         if (command == Command.INVENTORY)
             messages.add(showInventory());
         else if (command == Command.INTERACT) {
-
-            if (interacting) {
-                interacting = false;
-                messages.add("You stopped checking things to interact around you.");
-            }
-
-            else {
+            if (!interacting && interactableThings.size() > 0) {
                 interacting = true;
                 messages.add("You are next to the following things, pick one to interact with:\n");
 
@@ -164,6 +158,15 @@ public class Player extends Character implements IInteractable {
                                     + thing.getDescription());
                 }
             }
+
+            else if (interacting && interactableThings.size() > 0) {
+                interacting = false;
+                messages.add("You stopped checking things to interact around you.");
+            }
+
+            else
+                messages.add("There is nothing here to interact with.");
+
         }
 
         else if (interacting && command.getKey() != null && command.getKey().matches("\\d+")) {

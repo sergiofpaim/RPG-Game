@@ -8,10 +8,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import rpg.interfaces.IThing;
-import rpg.templateData.*;
 import rpg.things.*;
 import rpg.things.Character;
-import rpg.types.NPCType;
 
 public class Game extends Thing {
     private int mapWidth;
@@ -89,15 +87,10 @@ public class Game extends Thing {
     }
 
     private List<Item> generateItems() {
-        Random random = new Random();
         List<Item> items = new ArrayList<Item>();
 
         for (int j = 0; j < new Random().nextInt(2) + 1; j++) {
-            Item item = ItemData.defaultItems[random.nextInt(ItemData.defaultItems.length)];
-            item.setPosition(new Position(random.nextInt(this.mapHeight), random.nextInt(this.mapWidth)));
-            item.setId(String.valueOf(new Random().nextInt(1000) + 1));
-            item.defineCarried(false);
-            item.setGame(this);
+            Item item = new Item(this);
             items.add(item);
         }
 
@@ -107,27 +100,8 @@ public class Game extends Thing {
     private List<Character> generateNPCs() {
         List<Character> npcs = new ArrayList<Character>();
 
-        Random random = new Random();
-
-        String name = NPCData.NAMES[random.nextInt(NPCData.NAMES.length)];
-        String description = NPCData.DESCRIPTIONS[random.nextInt(NPCData.DESCRIPTIONS.length)];
-        String dialog = NPCData.DIALOGS[random.nextInt(NPCData.DIALOGS.length)];
-        NPCType type = NPCType.values()[random.nextInt(NPCType.values().length)];
-
         for (int j = 0; j < new Random().nextInt(4) + 1; j++) {
-            NPC npc = new NPC(
-                    name,
-                    100,
-                    100,
-                    random.nextInt(10) + 5,
-                    random.nextInt(5) + 3,
-                    random.nextInt(5) + 2,
-                    random.nextInt(5) + 1,
-                    new ArrayList<>(),
-                    new Position(random.nextInt(this.mapHeight), random.nextInt(this.mapWidth)),
-                    type.name(),
-                    description,
-                    dialog);
+            NPC npc = new NPC(this);
             npcs.add(npc);
         }
 
