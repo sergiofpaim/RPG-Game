@@ -2,6 +2,7 @@ package rpg.interactions;
 
 import java.util.Map.Entry;
 
+import rpg.BattleManager;
 import rpg.Interface;
 import rpg.things.NPC;
 import rpg.things.Player;
@@ -52,6 +53,9 @@ public class NPCInteraction extends Interaction {
             messages.add("\nYou stopped interacting with " + npc.getName() + ".");
             Interface.remove(this);
             Interface.add(player);
+        } else if (command == Command.BATTLE) {
+            BattleManager battle = new BattleManager(player, npc);
+            battle.ControlBattle();
         }
 
         return messages;

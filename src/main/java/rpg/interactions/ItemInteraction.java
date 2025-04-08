@@ -40,6 +40,7 @@ public class ItemInteraction extends Interaction {
         if (command == Command.PICK_UP_ITEM) {
             player.addToInventory(item);
             messages.add("\nYou picked up " + item.getName() + ".");
+            player.setInteracting(false);
             Interface.remove(this);
             Interface.add(player);
         }

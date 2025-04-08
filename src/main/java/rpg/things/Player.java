@@ -59,6 +59,10 @@ public class Player extends Character implements IInteractable {
         }
     }
 
+    public void setInteracting(boolean interacting) {
+        this.interacting = interacting;
+    }
+
     public void addToInventory(Item item) {
         item.pick();
         this.inventory.add(item);
