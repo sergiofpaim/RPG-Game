@@ -19,4 +19,8 @@ public interface IThing {
     public String showStats();
 
     public Position getPosition();
+
+    public String getName();
+
+    public String getDescription();
 }

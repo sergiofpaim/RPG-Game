@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Interaction implements IInteractable {
-    private Player player;
+    protected Player player;
 
     public Interaction(Player player) {
         this.player = player;

@@ -1,12 +1,12 @@
 {
-  "id" : "725",
-  "mapWidth" : 6,
-  "mapHeight" : 16,
-  "playerId" : "988",
+  "id" : "928",
+  "mapWidth" : 8,
+  "mapHeight" : 24,
+  "playerId" : "918",
   "things" : [ {
     "thing" : "player",
-    "id" : "988",
-    "name" : "Aline",
+    "id" : "918",
+    "name" : "Luke",
     "healthPoints" : 5,
     "currentHealthPoints" : 5,
     "attack" : 5,
@@ -15,7 +15,7 @@
     "speed" : 10,
     "inventory" : [ {
       "thing" : "item",
-      "id" : "382",
+      "id" : "256",
       "name" : "Shield",
       "description" : "A sturdy shield,",
       "damage" : 0,
@@ -29,7 +29,7 @@
       "carried" : false
     }, {
       "thing" : "item",
-      "id" : "123",
+      "id" : "172",
       "name" : "Boots",
       "description" : "A pair of sturdy boots",
       "damage" : 0,
@@ -43,7 +43,7 @@
       "carried" : false
     }, {
       "thing" : "item",
-      "id" : "889",
+      "id" : "440",
       "name" : "Clothes",
       "description" : "A set of comfortable clothes",
       "damage" : 0,
@@ -57,7 +57,7 @@
       "carried" : false
     }, {
       "thing" : "item",
-      "id" : "395",
+      "id" : "801",
       "name" : "Health Potion",
       "description" : "A potion that restores health",
       "damage" : 0,
@@ -71,59 +71,42 @@
       "carried" : false
     } ],
     "position" : {
-      "y" : 10,
-      "x" : 1
-    },
-    "experience" : 0,
-    "level" : 1
-  }, {
-    "thing" : "npc",
-    "id" : "443",
-    "name" : "Nolan",
-    "healthPoints" : 100,
-    "currentHealthPoints" : 100,
-    "attack" : 10,
-    "defense" : 3,
-    "magic" : 5,
-    "speed" : 2,
-    "inventory" : [ ],
-    "position" : {
-      "y" : 2,
-      "x" : 0
-    },
-    "type" : "NPC",
-    "description" : "a wise sage",
-    "dialog" : "No puzzle is unsolvable with a keen mind."
-  }, {
-    "thing" : "npc",
-    "id" : "154",
-    "name" : "Nolan",
-    "healthPoints" : 100,
-    "currentHealthPoints" : 100,
-    "attack" : 6,
-    "defense" : 5,
-    "magic" : 4,
-    "speed" : 1,
-    "inventory" : [ ],
-    "position" : {
-      "y" : 3,
+      "y" : 11,
       "x" : 3
     },
+    "experience" : 0,
+    "level" : 1,
+    "description" : null
+  }, {
+    "thing" : "npc",
+    "id" : "607",
+    "name" : "Gemma",
+    "healthPoints" : 100,
+    "currentHealthPoints" : 100,
+    "attack" : 11,
+    "defense" : 5,
+    "magic" : 3,
+    "speed" : 3,
+    "inventory" : [ ],
+    "position" : {
+      "y" : 22,
+      "x" : 6
+    },
     "type" : "NPC",
-    "description" : "a wise sage",
-    "dialog" : "No puzzle is unsolvable with a keen mind."
+    "description" : "a cunning trickster",
+    "dialog" : "Paths cross for reasons unknown, cherish the journey."
   }, {
     "thing" : "item",
-    "id" : "463",
-    "name" : "Amulet",
-    "description" : "Increases health",
+    "id" : "890",
+    "name" : "Helmet",
+    "description" : "Protects your head",
     "damage" : 0,
     "cure" : 0,
     "defense" : 5,
-    "type" : "ACCESSORY",
+    "type" : "ARMOR",
     "position" : {
-      "y" : 10,
-      "x" : 3
+      "y" : 11,
+      "x" : 4
     },
     "carried" : false
   } ]

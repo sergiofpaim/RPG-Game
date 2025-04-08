@@ -1,5 +1,6 @@
 package rpg.things;
 
+import rpg.Game;
 import rpg.interfaces.IThing;
 import rpg.types.ItemType;
 
@@ -12,6 +13,7 @@ public class Item implements IThing {
     private int defense;
     private ItemType type;
     private Position position = new Position();
+    private Game game;
     private boolean isCarried;
 
     public Item() {
@@ -95,7 +97,21 @@ public class Item implements IThing {
         this.position = position;
     }
 
-    public void setCarried(boolean isCarried) {
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public void drop() {
+        this.defineCarried(false);
+        this.game.add(this);
+    }
+
+    public void pick() {
+        this.defineCarried(true);
+        this.game.remove(this);
+    }
+
+    public void defineCarried(boolean isCarried) {
         this.isCarried = isCarried;
     }
 

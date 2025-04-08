@@ -1,10 +1,9 @@
 package rpg;
 
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Scanner;
-
 import rpg.interfaces.IInteractable;
 import rpg.types.Command;
 
@@ -42,10 +41,6 @@ public class Interface {
         }
     }
 
-    public static void add(IInteractable interactable) {
-        interactables.add(interactable);
-    }
-
     public static Command getCommand() {
         String key = scan.next().trim().toLowerCase();
         Command command = Command.fromKey(key);
@@ -61,11 +56,19 @@ public class Interface {
     public static void interact() {
         Command command = getCommand();
 
-        for (IInteractable interactable : interactables) {
+        for (IInteractable interactable : new ArrayList<>(interactables)) {
             List<String> messages = interactable.processCommand(command);
             for (String message : messages) {
                 System.out.println(message);
             }
         }
+    }
+
+    public static void add(IInteractable interactable) {
+        interactables.add(interactable);
+    }
+
+    public static void remove(IInteractable interactable) {
+        interactables.remove(interactable);
     }
 }

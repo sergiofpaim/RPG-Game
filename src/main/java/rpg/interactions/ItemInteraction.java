@@ -1,10 +1,13 @@
 package rpg.interactions;
 
 import java.util.Map.Entry;
+
+import rpg.Interface;
 import rpg.things.Item;
 import rpg.things.Player;
 import rpg.types.Command;
 import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,7 +21,7 @@ public class ItemInteraction extends Interaction {
 
     @Override
     public List<Entry<Command, String>> retrieveMenu() {
-        List<Entry<Command, String>> menu = super.retrieveMenu();
+        List<Entry<Command, String>> menu = new ArrayList<>(super.retrieveMenu());
         menu.addAll(Arrays.asList(
                 new AbstractMap.SimpleEntry<>(Command.PICK_UP_ITEM, "Pick Up"),
                 new AbstractMap.SimpleEntry<>(Command.USE_ITEM, "Use"),
@@ -28,7 +31,13 @@ public class ItemInteraction extends Interaction {
 
     @Override
     public List<String> processCommand(Command command) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'processCommand'");
+        List<String> messages = new ArrayList<>();
+
+        if (command == Command.PICK_UP_ITEM) {
+            player.addToInventory(item);
+            messages.add("You picked up " + item.getName() + ".");
+        }
+
+        return messages;
     }
 }

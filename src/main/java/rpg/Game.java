@@ -96,7 +96,8 @@ public class Game extends Thing {
             Item item = ItemData.defaultItems[random.nextInt(ItemData.defaultItems.length)];
             item.setPosition(new Position(random.nextInt(this.mapHeight), random.nextInt(this.mapWidth)));
             item.setId(String.valueOf(new Random().nextInt(1000) + 1));
-            item.setCarried(false);
+            item.defineCarried(false);
+            item.setGame(this);
             items.add(item);
         }
 
@@ -169,6 +170,21 @@ public class Game extends Thing {
 
     public Map.Entry<Boolean, List<IThing>> checkMovement(int newX, int newY) {
         changed = true;
+        List<IThing> interactiveThings = retrieveNearThings(newX, newY);
+
+        if (newX < 0 || newX >= mapWidth || newY < 0 || newY >= mapHeight) {
+            return new AbstractMap.SimpleEntry<>(false, interactiveThings);
+        }
+        for (IThing thing : things) {
+            if (thing.getPosition().getX() == newX && thing.getPosition().getY() == newY) {
+                return new AbstractMap.SimpleEntry<>(false, interactiveThings);
+            }
+        }
+
+        return new AbstractMap.SimpleEntry<>(true, interactiveThings);
+    }
+
+    private List<IThing> retrieveNearThings(int newX, int newY) {
         List<IThing> interactiveThings = null;
 
         int[][] offsets = {
@@ -190,17 +206,7 @@ public class Game extends Thing {
                 }
             }
         }
-
-        if (newX < 0 || newX >= mapWidth || newY < 0 || newY >= mapHeight) {
-            return new AbstractMap.SimpleEntry<>(false, interactiveThings);
-        }
-        for (IThing thing : things) {
-            if (thing.getPosition().getX() == newX && thing.getPosition().getY() == newY) {
-                return new AbstractMap.SimpleEntry<>(false, interactiveThings);
-            }
-        }
-
-        return new AbstractMap.SimpleEntry<>(true, interactiveThings);
+        return interactiveThings;
     }
 
     public boolean hasChanged() {
@@ -209,5 +215,15 @@ public class Game extends Thing {
             return true;
         }
         return false;
+    }
+
+    public void remove(IThing thing) {
+        this.things.remove(thing);
+        changed = true;
+    }
+
+    public void add(IThing thing) {
+        this.things.add(thing);
+        changed = true;
     }
 }
