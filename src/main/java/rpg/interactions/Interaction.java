@@ -23,7 +23,6 @@ public class Interaction implements IInteractable {
 
     @Override
     public List<String> processCommand(Command command) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'processCommand'");
+        return null;
     }
 }

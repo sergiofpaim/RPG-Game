@@ -83,4 +83,10 @@ public class NPC extends Character {
             return "\uD83E\uDDD9";
         }
     }
+
+    @Override
+    public String showStats() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'showStats'");
+    }
 }

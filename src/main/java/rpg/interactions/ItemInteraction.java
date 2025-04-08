@@ -17,6 +17,8 @@ public class ItemInteraction extends Interaction {
     public ItemInteraction(Player player, Item item) {
         super(player);
         this.item = item;
+
+        Interface.remove(player);
     }
 
     @Override
@@ -25,7 +27,9 @@ public class ItemInteraction extends Interaction {
         menu.addAll(Arrays.asList(
                 new AbstractMap.SimpleEntry<>(Command.PICK_UP_ITEM, "Pick Up"),
                 new AbstractMap.SimpleEntry<>(Command.USE_ITEM, "Use"),
+                new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacton"),
                 new AbstractMap.SimpleEntry<>(Command.DROP_ITEM, "Drop")));
+
         return menu;
     }
 
@@ -35,8 +39,19 @@ public class ItemInteraction extends Interaction {
 
         if (command == Command.PICK_UP_ITEM) {
             player.addToInventory(item);
-            messages.add("You picked up " + item.getName() + ".");
+            messages.add("\nYou picked up " + item.getName() + ".");
             Interface.remove(this);
+            Interface.add(player);
+        }
+
+        else if (command == Command.LOOK) {
+            return Arrays.asList("\nYou see: " + item.getDescription());
+        }
+
+        else if (command == Command.STOP_INTERACTION) {
+            messages.add("\nYou stopped interacting with " + item.getName() + ".");
+            Interface.remove(this);
+            Interface.add(player);
         }
 
         return messages;

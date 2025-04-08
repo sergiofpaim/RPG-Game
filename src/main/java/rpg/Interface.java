@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
-
 import rpg.interfaces.IInteractable;
 import rpg.types.Command;
 
@@ -24,14 +23,20 @@ public class Interface {
 
         System.out.println("\n--- Commands ---");
         if (showDetails) {
-            int counter = 0;
-            for (Entry<Command, String> entry : options) {
-                System.out.print(
-                        String.format("%-25s", entry.getKey().getKey().toLowerCase() + " - " + entry.getValue() + " "));
-                counter++;
-                if (counter % 3 == 0) {
-                    System.out.println();
+            int columns = 4;
+            int total = options.size();
+            int rows = (int) Math.ceil((double) total / columns);
+
+            for (int row = 0; row < rows; row++) {
+                for (int col = 0; col < columns; col++) {
+                    int index = col * rows + row;
+                    if (index < total) {
+                        Entry<Command, String> entry = options.get(index);
+                        String text = entry.getKey().getKey().toLowerCase() + " - " + entry.getValue();
+                        System.out.print(String.format("%-25s", text));
+                    }
                 }
+                System.out.println();
             }
         } else {
             for (Entry<Command, String> entry : options) {

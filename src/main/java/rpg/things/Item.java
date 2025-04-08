@@ -150,4 +150,10 @@ public class Item implements IThing {
             return "\u2753";
         }
     }
+
+    @Override
+    public String showStats() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'showStats'");
+    }
 }

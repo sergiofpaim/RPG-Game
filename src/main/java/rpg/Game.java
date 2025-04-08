@@ -76,8 +76,8 @@ public class Game extends Thing {
 
     public Game(Player player) {
         setId(String.valueOf(new Random().nextInt(1000) + 1));
-        this.mapWidth = new Random().nextInt(25) + 1;
-        this.mapHeight = new Random().nextInt(25) + 1;
+        this.mapWidth = new Random().nextInt(10) + 10;
+        this.mapHeight = new Random().nextInt(10) + 10;
         this.playerId = player.getId();
         this.things.addAll(generateNPCs());
         this.things.add(0, player);

@@ -1,0 +1,131 @@
+{
+  "id" : "630",
+  "mapWidth" : 11,
+  "mapHeight" : 17,
+  "playerId" : "993",
+  "things" : [ {
+    "thing" : "player",
+    "id" : "993",
+    "name" : "Legolas",
+    "healthPoints" : 5,
+    "currentHealthPoints" : 5,
+    "attack" : 5,
+    "defense" : 5,
+    "magic" : 5,
+    "speed" : 10,
+    "inventory" : [ {
+      "thing" : "item",
+      "id" : "650",
+      "name" : "Shield",
+      "description" : "A sturdy shield,",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 2,
+      "type" : "ARMOR",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    }, {
+      "thing" : "item",
+      "id" : "274",
+      "name" : "Boots",
+      "description" : "A pair of sturdy boots",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 0,
+      "type" : "ACCESSORY",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    }, {
+      "thing" : "item",
+      "id" : "286",
+      "name" : "Clothes",
+      "description" : "A set of comfortable clothes",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 0,
+      "type" : "ACCESSORY",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    }, {
+      "thing" : "item",
+      "id" : "740",
+      "name" : "Health Potion",
+      "description" : "A potion that restores health",
+      "damage" : 0,
+      "cure" : 10,
+      "defense" : 0,
+      "type" : "POTION",
+      "position" : {
+        "y" : 0,
+        "x" : 0
+      },
+      "carried" : false
+    } ],
+    "position" : {
+      "y" : 13,
+      "x" : 2
+    },
+    "description" : null,
+    "experience" : 0,
+    "level" : 1
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Ava",
+    "healthPoints" : 5,
+    "currentHealthPoints" : 5,
+    "attack" : 5,
+    "defense" : 7,
+    "magic" : 2,
+    "speed" : 2,
+    "inventory" : [ ],
+    "position" : {
+      "y" : 4,
+      "x" : 8
+    },
+    "description" : "a skilled warrior",
+    "type" : "ENEMY",
+    "dialog" : "Plans within plans—that's my specialty."
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Una",
+    "healthPoints" : 7,
+    "currentHealthPoints" : 7,
+    "attack" : 11,
+    "defense" : 5,
+    "magic" : 2,
+    "speed" : 5,
+    "inventory" : [ ],
+    "position" : {
+      "y" : 12,
+      "x" : 0
+    },
+    "description" : "a brave explorer",
+    "type" : "ENEMY",
+    "dialog" : "History is written by those with the boldest hearts."
+  }, {
+    "thing" : "item",
+    "id" : "414",
+    "name" : "Bow",
+    "description" : "A long-range weapon",
+    "damage" : 8,
+    "cure" : 0,
+    "defense" : 0,
+    "type" : "WEAPON",
+    "position" : {
+      "y" : 14,
+      "x" : 6
+    },
+    "carried" : false
+  } ]
+}

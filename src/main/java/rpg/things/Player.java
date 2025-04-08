@@ -124,9 +124,10 @@ public class Player extends Character implements IInteractable {
             List<Entry<Command, String>> menu = new ArrayList<>();
             for (int i = 0; i < interactableThings.size(); i++) {
                 menu.add(new AbstractMap.SimpleEntry<>(
-                        Command.fromKey(String.valueOf(i + 1)), "Select " + (interactableThings.get(i).getName())));
+                        Command.fromKey(String.valueOf(i + 1)),
+                        "Interact with " + (interactableThings.get(i).getName())));
             }
-            menu.add(new AbstractMap.SimpleEntry<>(Command.INTERACT, "Stop Interacting"));
+            menu.add(new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacting"));
             return menu;
         } else {
             return Arrays.asList(
@@ -145,26 +146,24 @@ public class Player extends Character implements IInteractable {
 
         if (command == Command.INVENTORY)
             messages.add(showInventory());
+
         else if (command == Command.INTERACT) {
-            if (!interacting && interactableThings.size() > 0) {
+            if (interactableThings.size() > 0) {
                 interacting = true;
-                messages.add("You are next to the following things, pick one to interact with:\n");
+                messages.add("\nYou are next to the following things, pick one to interact with:\n");
 
                 for (IThing thing : interactableThings) {
                     messages.add(
-                            thing.draw() + " " + thing.getName() + " - "
-                                    + thing.getDescription());
+                            thing.draw() + " " + thing.getName());
                 }
-            }
+            } else
+                messages.add("\nThere is nothing here to interact with.");
 
-            else if (interacting && interactableThings.size() > 0) {
-                interacting = false;
-                messages.add("You stopped checking things to interact around you.");
-            }
+        }
 
-            else
-                messages.add("There is nothing here to interact with.");
-
+        else if (command == Command.STOP_INTERACTION) {
+            interacting = false;
+            messages.add("\nYou stopped checking things to interact around you.");
         }
 
         else if (interacting && command.getKey() != null && command.getKey().matches("\\d+")) {
@@ -195,7 +194,6 @@ public class Player extends Character implements IInteractable {
                 ItemInteraction interaction = new ItemInteraction(this, (Item) selectedThing);
                 Interface.add(interaction);
             }
-            interacting = false;
         }
     }
 }

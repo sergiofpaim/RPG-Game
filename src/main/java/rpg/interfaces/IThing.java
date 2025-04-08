@@ -18,6 +18,8 @@ import rpg.things.Position;
 public interface IThing {
     public String draw();
 
+    public String showStats();
+
     public Position getPosition();
 
     public String getName();
