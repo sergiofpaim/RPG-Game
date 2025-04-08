@@ -7,13 +7,18 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import rpg.Game;
+import rpg.interactions.ItemInteraction;
+import rpg.interactions.NPCInteraction;
 import rpg.interfaces.IInteractable;
+import rpg.interfaces.IThing;
 import rpg.types.Command;
 
 public class Player extends Character implements IInteractable {
     private int experience;
     private int level;
     private Game game;
+    private List<IThing> interactableThings = new ArrayList<IThing>();
+    private boolean interacting = false;
 
     public Player(String name, int health, int currentHealth, int attack, int defense, int magic, int speed,
             List<Item> inventory, Position position, int experience, int level) {
@@ -45,11 +50,6 @@ public class Player extends Character implements IInteractable {
         this.game = game;
     }
 
-    private String tryInteract() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tryInteract'");
-    }
-
     private void move(Command movement) {
         int currentX = this.position.x;
         int currentY = this.position.y;
@@ -68,6 +68,8 @@ public class Player extends Character implements IInteractable {
         if (this.game.checkMovement(newX, newY).getKey()) {
             this.position.setX(newX);
             this.position.setY(newY);
+
+            interactableThings = game.checkMovement(newX, newY).getValue();
         }
     }
 
@@ -100,13 +102,23 @@ public class Player extends Character implements IInteractable {
 
     @Override
     public List<Entry<Command, String>> retrieveMenu() {
-        return Arrays.asList(
-                new AbstractMap.SimpleEntry<>(Command.UP, "Move Up"),
-                new AbstractMap.SimpleEntry<>(Command.DOWN, "Move Down"),
-                new AbstractMap.SimpleEntry<>(Command.LEFT, "Move Left"),
-                new AbstractMap.SimpleEntry<>(Command.RIGHT, "Move Right"),
-                new AbstractMap.SimpleEntry<>(Command.INVENTORY, "Show Inventory"),
-                new AbstractMap.SimpleEntry<>(Command.INTERACT, "Interact"));
+        if (interacting) {
+            List<Entry<Command, String>> menu = new ArrayList<>();
+            for (int i = 0; i < interactableThings.size(); i++) {
+                menu.add(new AbstractMap.SimpleEntry<>(
+                        Command.fromKey(String.valueOf(i + 1)), "Select " + (i + 1)));
+            }
+            menu.add(new AbstractMap.SimpleEntry<>(Command.INTERACT, "Stop Interacting"));
+            return menu;
+        } else {
+            return Arrays.asList(
+                    new AbstractMap.SimpleEntry<>(Command.UP, "Move Up"),
+                    new AbstractMap.SimpleEntry<>(Command.DOWN, "Move Down"),
+                    new AbstractMap.SimpleEntry<>(Command.LEFT, "Move Left"),
+                    new AbstractMap.SimpleEntry<>(Command.RIGHT, "Move Right"),
+                    new AbstractMap.SimpleEntry<>(Command.INVENTORY, "Show Inventory"),
+                    new AbstractMap.SimpleEntry<>(Command.INTERACT, "Interact"));
+        }
     }
 
     @Override
@@ -115,10 +127,43 @@ public class Player extends Character implements IInteractable {
 
         if (command == Command.INVENTORY)
             messages.add(showInventory());
-        else if (command == Command.INTERACT)
-            messages.add(tryInteract());
-        else
+        else if (command == Command.INTERACT) {
+            if (interacting) {
+                interacting = false;
+                messages.add("You stopped checking things to interact around you.");
+            } else {
+                interacting = true;
+                messages.add("You are next to the following things, pick one to interact with:\n");
+
+                for (IThing thing : interactableThings) {
+                    if (thing instanceof NPC)
+                        messages.add(
+                                ((NPC) thing).draw() + " " + ((NPC) thing).getName() + " - "
+                                        + ((NPC) thing).getDescription());
+                    else if (thing instanceof Item)
+                        messages.add(
+                                ((Item) thing).draw() + " " + ((Item) thing).getName() + " - "
+                                        + ((Item) thing).getDescription());
+                }
+            }
+        }
+        if (command == Command.SELECT_1 || command == Command.SELECT_2 || command == Command.SELECT_3
+                || command == Command.SELECT_4 || command == Command.SELECT_5) {
+            int index = Integer.parseInt(command.getKey()) - 1;
+            if (index >= 0 && index < interactableThings.size()) {
+                IThing selectedThing = interactableThings.get(index);
+                if (selectedThing instanceof NPC) {
+                    NPCInteraction interaction = new NPCInteraction(this, (NPC) selectedThing);
+                } else if (selectedThing instanceof Item) {
+                    ItemInteraction interaction = new ItemInteraction(this, (Item) selectedThing);
+                }
+                interacting = false;
+            } else {
+                messages.add("Invalid selection.");
+            }
+        } else {
             move(command);
+        }
 
         return messages;
     }
