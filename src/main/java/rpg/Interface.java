@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Optional;
+
 import rpg.interfaces.IInteractable;
 import rpg.types.Command;
 
@@ -42,15 +44,22 @@ public class Interface {
     }
 
     public static Command getCommand() {
-        String key = scan.next().trim().toLowerCase();
-        Command command = Command.fromKey(key);
+        Command command = null;
+        while (command == null) {
+            System.out.print("> ");
+            String key = scan.next().trim().toLowerCase();
 
-        if (command == null) {
-            System.out.println("Invalid command! Please try again.");
-            return getCommand();
-        } else {
-            return command;
+            Optional<Entry<Command, String>> matchedOption = options.stream()
+                    .filter(entry -> entry.getKey().getKey().toLowerCase().equals(key))
+                    .findFirst();
+
+            if (!matchedOption.isPresent())
+                System.out.println("Invalid command! Please try again.");
+            else
+                command = matchedOption.get().getKey();
+
         }
+        return command;
     }
 
     public static void interact() {

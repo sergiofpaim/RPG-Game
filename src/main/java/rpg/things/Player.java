@@ -17,18 +17,17 @@ import rpg.types.Command;
 public class Player extends Character implements IInteractable {
     private int experience;
     private int level;
-    private Game game;
     private List<IThing> interactableThings = new ArrayList<IThing>();
     private boolean interacting = false;
+
+    public Player() {
+    }
 
     public Player(String name, int health, int currentHealth, int attack, int defense, int magic, int speed,
             List<Item> inventory, Position position, int experience, int level) {
         super(name, health, currentHealth, attack, defense, magic, speed, inventory, position);
         this.experience = experience;
         this.level = level;
-    }
-
-    public Player() {
     }
 
     public int getExperience() {
@@ -98,7 +97,6 @@ public class Player extends Character implements IInteractable {
         return "\uD83C\uDFC7";
     }
 
-    @Override
     public String showStats() {
         return "Total Health: " +
                 this.getHealthPoints() + " - Current Health: "

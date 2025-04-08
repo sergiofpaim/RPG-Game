@@ -12,7 +12,6 @@ public class NPC extends Character {
     private String type;
     private String description;
     private String dialog;
-    private Game game;
 
     public NPC() {
     }
@@ -34,8 +33,8 @@ public class NPC extends Character {
         NPCType type = NPCType.values()[random.nextInt(NPCType.values().length)];
 
         this.name = name;
-        this.healthPoints = 100;
-        this.currentHealthPoints = 100;
+        this.healthPoints = random.nextInt(10) + 3;
+        this.currentHealthPoints = healthPoints;
         this.attack = random.nextInt(10) + 5;
         this.defense = random.nextInt(5) + 3;
         this.magic = random.nextInt(5) + 2;
@@ -83,11 +82,5 @@ public class NPC extends Character {
         } else {
             return "\uD83E\uDDD9";
         }
-    }
-
-    @Override
-    public String showStats() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showStats'");
     }
 }

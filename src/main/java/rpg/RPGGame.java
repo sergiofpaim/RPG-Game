@@ -55,21 +55,21 @@ public class RPGGame {
     }
 
     private static Game selectSavedGame() {
-        System.out.println("\nSelect a character to play with:\n");
+        while (true) {
+            System.out.println("\nSelect a character to play with:\n");
 
-        for (String character : sessions) {
-            System.out.println(character + "\n");
-        }
-
-        String choice = scan.nextLine().trim();
-
-        for (String session : sessions) {
-            if (session.equalsIgnoreCase(choice)) {
-                return Sessions.load(choice);
+            for (String character : sessions) {
+                System.out.println(character + "\n");
             }
-        }
-        System.out.println("\nCharacter not found.\n");
 
-        return null;
+            String choice = scan.nextLine().trim();
+
+            for (String session : sessions) {
+                if (session.equalsIgnoreCase(choice)) {
+                    return Sessions.load(choice);
+                }
+            }
+            System.out.println("\nCharacter not found.\n");
+        }
     }
 }

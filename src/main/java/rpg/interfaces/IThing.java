@@ -16,15 +16,7 @@ import rpg.things.Position;
         @JsonSubTypes.Type(value = Item.class, name = "item")
 })
 public interface IThing {
-    public String description = null;
-
-    public String name = null;
-
-    public Game game = null;
-
     public String draw();
-
-    public String showStats();
 
     public Position getPosition();
 

@@ -2,6 +2,8 @@ package rpg.things;
 
 import java.util.List;
 import java.util.Random;
+
+import rpg.Game;
 import rpg.interfaces.IThing;
 
 public abstract class Character extends Thing implements IThing {
@@ -15,6 +17,7 @@ public abstract class Character extends Thing implements IThing {
     protected List<Item> inventory;
     protected Position position;
     protected String description;
+    protected Game game;
 
     public Character() {
     }
