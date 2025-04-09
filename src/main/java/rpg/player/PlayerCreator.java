@@ -41,7 +41,7 @@ public class PlayerCreator {
 
         List<Item> inventory = getInitialItems();
 
-        return new Player(name, health, health, attack, defense, magic, speed, inventory, new Position(), 0,
+        return new Player(name, health, health, attack, defense, magic, speed, inventory, inventory, new Position(), 0,
                 1);
     }
 

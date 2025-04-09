@@ -18,6 +18,7 @@ public abstract class Character extends Thing implements IThing {
     protected Position position;
     protected String description;
     protected Game game;
+    // proected Inventory inventory;
 
     public Character() {
     }

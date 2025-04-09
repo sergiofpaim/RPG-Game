@@ -1,15 +1,15 @@
 package rpg.things;
 
 public class Position {
-    int y = 0;
     int x = 0;
+    int y = 0;
 
     public Position() {
     }
 
     public Position(int x, int y) {
-        this.y = x;
-        this.x = y;
+        this.x = x;
+        this.y = y;
     }
 
     public int getY() {

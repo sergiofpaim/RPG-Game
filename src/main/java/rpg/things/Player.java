@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 import rpg.Game;
 import rpg.Interface;
+import rpg.interactions.InventoryInteraction;
 import rpg.interactions.ItemInteraction;
 import rpg.interactions.NPCInteraction;
 import rpg.interfaces.IInteractable;
@@ -15,19 +17,26 @@ import rpg.interfaces.IThing;
 import rpg.types.Command;
 
 public class Player extends Character implements IInteractable {
+    protected List<Item> equipedItems = null;
     private int experience;
     private int level;
     private List<IThing> interactableThings = new ArrayList<IThing>();
-    private boolean interacting = false;
+    private boolean interactingWithMap = false;
+    private boolean interactingWithInventory = false;
 
     public Player() {
     }
 
     public Player(String name, int health, int currentHealth, int attack, int defense, int magic, int speed,
-            List<Item> inventory, Position position, int experience, int level) {
+            List<Item> inventory, List<Item> equipedItems, Position position, int experience, int level) {
         super(name, health, currentHealth, attack, defense, magic, speed, inventory, position);
+        this.equipedItems = equipedItems;
         this.experience = experience;
         this.level = level;
+    }
+
+    public List<Item> getEquipedItems() {
+        return equipedItems;
     }
 
     public int getExperience() {
@@ -43,6 +52,10 @@ public class Player extends Character implements IInteractable {
         return null;
     }
 
+    public void setInteractingWithInventory(boolean interacting) {
+        this.interactingWithInventory = interacting;
+    }
+
     public void setExperience(int experience) {
         this.experience = experience;
     }
@@ -54,13 +67,21 @@ public class Player extends Character implements IInteractable {
     public void setGame(Game game) {
         this.game = game;
 
-        for (Item item : this.getInventory()) {
+        for (Item item : inventory) {
+            item.setGame(game);
+        }
+        for (Item item : equipedItems) {
             item.setGame(game);
         }
     }
 
-    public void setInteracting(boolean interacting) {
-        this.interacting = interacting;
+    public void setInteractingWithMap(boolean interacting) {
+        this.interactingWithMap = interacting;
+    }
+
+    public void setEquipedItems(Item item) {
+        item.pick();
+        this.equipedItems.add(item);
     }
 
     public void addToInventory(Item item) {
@@ -69,8 +90,27 @@ public class Player extends Character implements IInteractable {
     }
 
     public void removeFromInventory(Item item) {
-        item.drop();
         this.inventory.remove(item);
+        this.equipedItems.remove(item);
+
+        item.setPosition(new Position(this.position.getX(), this.position.getY() + 1));
+        item.drop();
+    }
+
+    public void addEquipedItem(Item equiped) {
+        if (checkEquiped(equiped))
+            this.equipedItems.add(equiped);
+    }
+
+    private boolean checkEquiped(Item item) {
+        Optional<Item> existingItem = this.equipedItems.stream()
+                .filter(o -> o.getType().equals(item.getType()))
+                .findFirst();
+
+        if (existingItem != null)
+            return false;
+
+        return true;
     }
 
     private void move(Command movement) {
@@ -111,20 +151,9 @@ public class Player extends Character implements IInteractable {
                 + " - Speed: " + this.getSpeed() + "\n";
     }
 
-    private String showInventory() {
-        StringBuilder inventory = new StringBuilder();
-        inventory.append("\n--- Inventory ---\n");
-        inventory.append("You have " + this.getInventory().size() + " items:\n");
-        for (Item item : this.getInventory()) {
-            inventory.append(item.getName() + " - " + item.getDescription() + "\n");
-        }
-        inventory.append("------------------\n");
-        return inventory.toString();
-    }
-
     @Override
     public List<Entry<Command, String>> retrieveMenu() {
-        if (interacting) {
+        if (interactingWithMap) {
             List<Entry<Command, String>> menu = new ArrayList<>();
             for (int i = 0; i < interactableThings.size(); i++) {
                 menu.add(new AbstractMap.SimpleEntry<>(
@@ -133,7 +162,20 @@ public class Player extends Character implements IInteractable {
             }
             menu.add(new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacting"));
             return menu;
-        } else {
+        }
+
+        else if (interactingWithInventory) {
+            List<Entry<Command, String>> menu = new ArrayList<>();
+            for (int i = 0; i < inventory.size(); i++) {
+                menu.add(new AbstractMap.SimpleEntry<>(
+                        Command.fromKey(String.valueOf(i + 1)),
+                        (inventory.get(i).getName())));
+            }
+            menu.add(new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacting"));
+            return menu;
+        }
+
+        else {
             return Arrays.asList(
                     new AbstractMap.SimpleEntry<>(Command.UP, "Move Up"),
                     new AbstractMap.SimpleEntry<>(Command.DOWN, "Move Down"),
@@ -148,12 +190,28 @@ public class Player extends Character implements IInteractable {
     public List<String> processCommand(Command command) {
         List<String> messages = new ArrayList<>();
 
-        if (command == Command.INVENTORY)
-            messages.add(showInventory());
+        if (command == Command.INVENTORY) {
+            if (inventory.size() > 0) {
+                interactingWithInventory = true;
+                messages.add("\nYou have got these things in your inventory:\n");
+                messages.add("\n--- Inventory ---\n");
+
+                for (Item item : inventory) {
+                    if (equipedItems.contains(item)) {
+                        messages.add(item.draw() + " " + item.getName() +
+                                " - equiped\n");
+                    } else
+                        messages.add(
+                                item.draw() + " " + item.getName());
+                }
+                messages.add("------------------\n");
+            } else
+                messages.add("\nThere is nothing in you inventory.");
+        }
 
         else if (command == Command.INTERACT) {
             if (interactableThings.size() > 0) {
-                interacting = true;
+                interactingWithMap = true;
                 messages.add("\nYou are next to the following things, pick one to interact with:\n");
 
                 for (IThing thing : interactableThings) {
@@ -166,12 +224,16 @@ public class Player extends Character implements IInteractable {
         }
 
         else if (command == Command.STOP_INTERACTION) {
-            interacting = false;
-            messages.add("\nYou stopped checking things to interact around you.");
+            interactingWithMap = false;
+            interactingWithInventory = false;
         }
 
-        else if (interacting && command.getKey() != null && command.getKey().matches("\\d+")) {
-            processInteractionSelection(command);
+        else if (interactingWithMap && command.getKey() != null && command.getKey().matches("\\d+")) {
+            processMapInteractionSelection(command);
+        }
+
+        else if (interactingWithInventory && command.getKey() != null && command.getKey().matches("\\d+")) {
+            processInventoryInteractionSelection(command);
         }
 
         else {
@@ -181,7 +243,19 @@ public class Player extends Character implements IInteractable {
         return messages;
     }
 
-    private void processInteractionSelection(Command command) {
+    private void processInventoryInteractionSelection(Command command) {
+        int index = Integer.parseInt(command.getKey()) - 1;
+
+        if (index >= 0 && index < inventory.size()) {
+
+            IThing selectedItem = inventory.get(index);
+
+            InventoryInteraction interaction = new InventoryInteraction(this, (Item) selectedItem);
+            Interface.add(interaction);
+        }
+    }
+
+    private void processMapInteractionSelection(Command command) {
 
         int index = Integer.parseInt(command.getKey()) - 1;
 
