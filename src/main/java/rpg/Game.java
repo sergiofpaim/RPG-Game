@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+
 import rpg.interfaces.IThing;
-import rpg.things.*;
 import rpg.things.Character;
+import rpg.things.Item;
+import rpg.things.NPC;
+import rpg.things.Thing;
 import rpg.things.player.Player;
-import rpg.types.ItemType;
 
 public class Game extends Thing {
     private int mapWidth;

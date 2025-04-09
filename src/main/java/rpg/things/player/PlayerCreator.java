@@ -2,6 +2,7 @@ package rpg.things.player;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import rpg.RPGGame;
 import rpg.things.Item;
 import rpg.things.Position;
@@ -40,9 +41,7 @@ public class PlayerCreator {
 
         List<Item> inventory = getInitialItems();
 
-        return new Player(name, health, health, attack, defense, magic, speed, inventory, new ArrayList<>(),
-                new Position(), 0,
-                1);
+        return new Player(name, health, health, attack, defense, magic, speed, inventory, new Position(), 0, 1);
     }
 
     private static List<Item> getInitialItems() {

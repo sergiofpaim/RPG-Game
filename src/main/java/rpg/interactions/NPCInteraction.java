@@ -1,14 +1,15 @@
 package rpg.interactions;
 
-import java.util.Map.Entry;
-import rpg.Interface;
-import rpg.things.NPC;
-import rpg.things.player.Player;
-import rpg.types.Command;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map.Entry;
+
+import rpg.Interface;
+import rpg.things.NPC;
+import rpg.things.player.Player;
+import rpg.types.Command;
 
 public class NPCInteraction extends Interaction {
     private NPC npc;
@@ -50,7 +51,6 @@ public class NPCInteraction extends Interaction {
         else if (command == Command.STOP_INTERACTION) {
             messages.add("\nYou stopped interacting with " + npc.getName() + ".");
             Interface.remove(this);
-            Interface.add(player);
         }
         // else if (command == Command.BATTLE) {}
 

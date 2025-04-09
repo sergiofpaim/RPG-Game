@@ -1,14 +1,15 @@
 package rpg.interactions;
 
-import java.util.Map.Entry;
-import rpg.Interface;
-import rpg.things.Item;
-import rpg.things.player.Player;
-import rpg.types.Command;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map.Entry;
+
+import rpg.Interface;
+import rpg.things.Item;
+import rpg.things.player.Player;
+import rpg.types.Command;
 
 public class ItemInteraction extends Interaction {
     private Item item;
@@ -16,8 +17,6 @@ public class ItemInteraction extends Interaction {
     public ItemInteraction(Player player, Item item) {
         super(player);
         this.item = item;
-
-        Interface.remove(player);
     }
 
     @Override
@@ -34,11 +33,9 @@ public class ItemInteraction extends Interaction {
         List<String> messages = new ArrayList<>();
 
         if (command == Command.PICK_UP_ITEM) {
-            player.addToInventory(item);
-            player.setInteractingWithMap(false);
-            Interface.remove(this);
-            Interface.add(player);
             messages.add("\nYou picked up " + item.getName() + ".");
+            player.addToInventory(item);
+            Interface.remove(this);
         }
 
         else if (command == Command.LOOK) {
@@ -48,7 +45,6 @@ public class ItemInteraction extends Interaction {
         else if (command == Command.STOP_INTERACTION) {
             messages.add("\nYou stopped interacting with " + item.getName() + ".");
             Interface.remove(this);
-            Interface.add(player);
         }
 
         return messages;

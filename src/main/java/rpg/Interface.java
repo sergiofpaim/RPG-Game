@@ -1,10 +1,11 @@
 package rpg;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Scanner;
+
 import rpg.interfaces.IInteractive;
 import rpg.types.Command;
 
@@ -17,9 +18,9 @@ public class Interface {
     public static void showCommands(boolean showDetails) {
         options = new ArrayList<>();
 
-        for (IInteractive interactable : interactables) {
-            options.addAll(interactable.retrieveMenu());
-        }
+        options.addAll(interactables.get(0).retrieveMenu());
+        if (interactables.size() > 1)
+            options.addAll(interactables.get(interactables.size() - 1).retrieveMenu());
 
         System.out.println("\n--- Commands ---");
         if (showDetails) {

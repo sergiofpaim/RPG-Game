@@ -2,8 +2,10 @@ package rpg.things;
 
 import java.util.List;
 import java.util.Random;
+
 import rpg.Game;
 import rpg.interfaces.IThing;
+import rpg.things.player.Inventory;
 
 public abstract class Character extends Thing implements IThing {
     protected String name;
@@ -13,11 +15,11 @@ public abstract class Character extends Thing implements IThing {
     protected int defense;
     protected int magic;
     protected int speed;
-    protected List<Item> inventory;
+    protected Inventory inventory = new Inventory(this);
     protected Position position;
     protected String description;
     protected Game game;
-    // proected Inventory inventory;
+    // protected Inventory inventory;
 
     public Character() {
     }
@@ -32,7 +34,7 @@ public abstract class Character extends Thing implements IThing {
         this.defense = defense;
         this.magic = magic;
         this.speed = speed;
-        this.inventory = inventory;
+        this.inventory.setItems(inventory);
         this.position = position;
     }
 
@@ -64,7 +66,7 @@ public abstract class Character extends Thing implements IThing {
         return speed;
     }
 
-    public List<Item> getInventory() {
+    public Inventory getInventory() {
         return inventory;
     }
 
@@ -100,7 +102,7 @@ public abstract class Character extends Thing implements IThing {
         this.speed = speed;
     }
 
-    public void setInventory(List<Item> inventory) {
+    public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
 

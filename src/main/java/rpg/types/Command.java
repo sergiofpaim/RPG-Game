@@ -60,6 +60,10 @@ public class Command {
                 SELECT_1, SELECT_2, SELECT_3, SELECT_4, SELECT_5, SELECT_6, SELECT_7, SELECT_8, SELECT_9);
     }
 
+    public Boolean isSelect() {
+        return this.command.startsWith("SELECT_");
+    }
+
     public static Command fromKey(String key) {
         Command command = all().stream()
                 .filter(c -> c.key.equalsIgnoreCase(key))
