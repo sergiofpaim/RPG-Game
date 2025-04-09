@@ -1,4 +1,4 @@
-package rpg.things;
+package rpg.things.player;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
-
 import rpg.Game;
 import rpg.Interface;
 import rpg.interactions.InventoryInteraction;
@@ -14,12 +13,17 @@ import rpg.interactions.ItemInteraction;
 import rpg.interactions.NPCInteraction;
 import rpg.interfaces.IInteractable;
 import rpg.interfaces.IThing;
+import rpg.things.Character;
+import rpg.things.Item;
+import rpg.things.NPC;
+import rpg.things.Position;
 import rpg.types.Command;
 
 public class Player extends Character implements IInteractable {
-    protected List<Item> equipedItems = null;
+    private List<Item> equipment = new ArrayList<Item>();
     private int experience;
     private int level;
+
     private List<IThing> interactableThings = new ArrayList<IThing>();
     private boolean interactingWithMap = false;
     private boolean interactingWithInventory = false;
@@ -28,15 +32,15 @@ public class Player extends Character implements IInteractable {
     }
 
     public Player(String name, int health, int currentHealth, int attack, int defense, int magic, int speed,
-            List<Item> inventory, List<Item> equipedItems, Position position, int experience, int level) {
+            List<Item> inventory, List<Item> equippedItems, Position position, int experience, int level) {
         super(name, health, currentHealth, attack, defense, magic, speed, inventory, position);
-        this.equipedItems = equipedItems;
+        this.equipment = equippedItems;
         this.experience = experience;
         this.level = level;
     }
 
-    public List<Item> getEquipedItems() {
-        return equipedItems;
+    public List<Item> getEquippedItems() {
+        return equipment;
     }
 
     public int getExperience() {
@@ -52,8 +56,8 @@ public class Player extends Character implements IInteractable {
         return null;
     }
 
-    public void setInteractingWithInventory(boolean interacting) {
-        this.interactingWithInventory = interacting;
+    public void setEquippedItems(List<Item> equippedItems) {
+        this.equipment = equippedItems;
     }
 
     public void setExperience(int experience) {
@@ -70,18 +74,25 @@ public class Player extends Character implements IInteractable {
         for (Item item : inventory) {
             item.setGame(game);
         }
-        for (Item item : equipedItems) {
+        for (Item item : equipment) {
             item.setGame(game);
         }
     }
 
-    public void setInteractingWithMap(boolean interacting) {
-        this.interactingWithMap = interacting;
+    public void equipItem(Item item) {
+        if (!isEquipped(item)) {
+            this.equipment.add(item);
+            this.attack += item.getDamage();
+            this.defense += item.getDefense();
+        }
     }
 
-    public void setEquipedItems(Item item) {
-        item.pick();
-        this.equipedItems.add(item);
+    public void unequipItem(Item item) {
+        if (isEquipped(item)) {
+            this.equipment.remove(item);
+            this.attack -= item.getDamage();
+            this.defense -= item.getDefense();
+        }
     }
 
     public void addToInventory(Item item) {
@@ -91,31 +102,23 @@ public class Player extends Character implements IInteractable {
 
     public void removeFromInventory(Item item) {
         this.inventory.remove(item);
-        this.equipedItems.remove(item);
+        this.equipment.remove(item);
 
         item.setPosition(new Position(this.position.getX(), this.position.getY() + 1));
         item.drop();
     }
 
-    public void addEquipedItem(Item equiped) {
-        if (checkEquiped(equiped))
-            this.equipedItems.add(equiped);
+    public void setInteractingWithMap(boolean interacting) {
+        this.interactingWithMap = interacting;
     }
 
-    private boolean checkEquiped(Item item) {
-        Optional<Item> existingItem = this.equipedItems.stream()
-                .filter(o -> o.getType().equals(item.getType()))
-                .findFirst();
-
-        if (existingItem != null)
-            return false;
-
-        return true;
+    public void setInteractingWithInventory(boolean interacting) {
+        this.interactingWithInventory = interacting;
     }
 
     private void move(Command movement) {
-        int currentX = this.position.x;
-        int currentY = this.position.y;
+        int currentX = this.position.getX();
+        int currentY = this.position.getY();
         int newX = currentX;
         int newY = currentY;
 
@@ -128,27 +131,16 @@ public class Player extends Character implements IInteractable {
         else if (movement == Command.RIGHT)
             newX = currentX + 1;
 
-        if (this.game.checkMovement(newX, newY).getKey()) {
+        if (this.game.checkMovement(newX, newY)) {
             this.position.setX(newX);
             this.position.setY(newY);
-
-            interactableThings = game.checkMovement(newX, newY).getValue();
+            ;
         }
     }
 
     @Override
     public String draw() {
         return "\uD83C\uDFC7";
-    }
-
-    public String showStats() {
-        return "Total Health: " +
-                this.getHealthPoints() + " - Current Health: "
-                + this.getCurrentHealthPoints() + " - Attack: "
-                + this.getAttack()
-                + " - Defense: " + this.getDefense() + " - Magic: "
-                + this.getMagic()
-                + " - Speed: " + this.getSpeed() + "\n";
     }
 
     @Override
@@ -182,6 +174,7 @@ public class Player extends Character implements IInteractable {
                     new AbstractMap.SimpleEntry<>(Command.LEFT, "Move Left"),
                     new AbstractMap.SimpleEntry<>(Command.RIGHT, "Move Right"),
                     new AbstractMap.SimpleEntry<>(Command.INVENTORY, "Show Inventory"),
+                    new AbstractMap.SimpleEntry<>(Command.SHOW_STATS, "Show Stats"),
                     new AbstractMap.SimpleEntry<>(Command.INTERACT, "Interact"));
         }
     }
@@ -197,9 +190,9 @@ public class Player extends Character implements IInteractable {
                 messages.add("\n--- Inventory ---\n");
 
                 for (Item item : inventory) {
-                    if (equipedItems.contains(item)) {
+                    if (equipment.contains(item)) {
                         messages.add(item.draw() + " " + item.getName() +
-                                " - equiped\n");
+                                " - equipped\n");
                     } else
                         messages.add(
                                 item.draw() + " " + item.getName());
@@ -210,6 +203,8 @@ public class Player extends Character implements IInteractable {
         }
 
         else if (command == Command.INTERACT) {
+            interactableThings = game.checkSurroundings(this.position.getX(), this.position.getY());
+
             if (interactableThings.size() > 0) {
                 interactingWithMap = true;
                 messages.add("\nYou are next to the following things, pick one to interact with:\n");
@@ -228,6 +223,12 @@ public class Player extends Character implements IInteractable {
             interactingWithInventory = false;
         }
 
+        else if (command == Command.SHOW_STATS) {
+            messages.add("\n--- Player Stats ---\n");
+            messages.add(this.showStats());
+            messages.add("---------------------\n");
+        }
+
         else if (interactingWithMap && command.getKey() != null && command.getKey().matches("\\d+")) {
             processMapInteractionSelection(command);
         }
@@ -241,6 +242,27 @@ public class Player extends Character implements IInteractable {
         }
 
         return messages;
+    }
+
+    public String showStats() {
+        return "Total Health: " +
+                this.getHealthPoints() + " - Current Health: "
+                + this.getCurrentHealthPoints() + " - Attack: "
+                + this.getAttack()
+                + " - Defense: " + this.getDefense() + " - Magic: "
+                + this.getMagic()
+                + " - Speed: " + this.getSpeed() + "\n";
+    }
+
+    private boolean isEquipped(Item item) {
+        Optional<Item> existingItem = this.equipment.stream()
+                .filter(o -> o.getType().equals(item.getType()))
+                .findFirst();
+
+        if (existingItem.isPresent())
+            return true;
+
+        return false;
     }
 
     private void processInventoryInteractionSelection(Command command) {

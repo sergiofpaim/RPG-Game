@@ -4,7 +4,7 @@ import java.util.Map.Entry;
 
 import rpg.Interface;
 import rpg.things.Item;
-import rpg.things.Player;
+import rpg.things.player.Player;
 import rpg.types.Command;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -26,6 +26,8 @@ public class InventoryInteraction extends Interaction {
         List<Entry<Command, String>> menu = new ArrayList<>(super.retrieveMenu());
         menu.addAll(Arrays.asList(
                 new AbstractMap.SimpleEntry<>(Command.USE_ITEM, "Use"),
+                new AbstractMap.SimpleEntry<>(Command.EQUIP_ITEM, "Equip"),
+                new AbstractMap.SimpleEntry<>(Command.UNEQUIP_ITEM, "Unequip"),
                 new AbstractMap.SimpleEntry<>(Command.DROP_ITEM, "Drop"),
                 new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacton")));
 
@@ -40,10 +42,20 @@ public class InventoryInteraction extends Interaction {
             return Arrays.asList("\n Item: " + item.getName() + " - Description: " + item.getDescription());
         }
 
-        else if (command == Command.USE_ITEM) {
-            messages.add("\nYou used " + item.getName() + ".");
-            player.addEquipedItem(item);
+        else if (command == Command.EQUIP_ITEM) {
+            messages.add("\nYou equipped: " + item.getName() + ".");
+            player.equipItem(item);
             player.setInteractingWithMap(false);
+
+            Interface.remove(this);
+            Interface.add(player);
+        }
+
+        else if (command == Command.UNEQUIP_ITEM) {
+            messages.add("\nYou unequipped: " + item.getName() + ".");
+            player.unequipItem(item);
+            player.setInteractingWithMap(false);
+
             Interface.remove(this);
             Interface.add(player);
         }

@@ -22,7 +22,7 @@ public class Item implements IThing {
     public Item() {
     }
 
-    public Item(String name, String description, int damage, int cure, int defense, ItemType type) {
+    public Item(String name, String description, int damage, int cure, int defense, ItemType type, boolean isCarried) {
         this.id = String.valueOf((int) (Math.random() * 1000) + 1);
         this.name = name;
         this.description = description;
@@ -30,6 +30,7 @@ public class Item implements IThing {
         this.cure = cure;
         this.defense = defense;
         this.type = type;
+        this.isCarried = isCarried;
     }
 
     public Item(Game game) {
@@ -140,10 +141,12 @@ public class Item implements IThing {
     public String draw() {
         if (this.type == ItemType.WEAPON) {
             return "\u2694";
-        } else if (this.type == ItemType.ARMOR) {
+        } else if (this.type == ItemType.SHIELD) {
             return "\u26E8";
-        } else if (this.type == ItemType.POTION) {
-            return "\uD83E\uDDEA";
+        } else if (this.type == ItemType.ARMOR) {
+            return "\uD83E\uDDE5";
+        } else if (this.type == ItemType.USABLE) {
+            return "\uD83D\uDD2E";
         } else if (this.type == ItemType.ACCESSORY) {
             return "\uD83D\uDCE2";
         } else {
@@ -155,5 +158,22 @@ public class Item implements IThing {
     public String showStats() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'showStats'");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+
+        Item other = (Item) obj;
+
+        return this.id != null && this.id.equals(other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

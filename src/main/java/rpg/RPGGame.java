@@ -3,8 +3,8 @@ package rpg;
 import java.util.List;
 import java.util.Scanner;
 
-import rpg.player.PlayerCreator;
-import rpg.things.Player;
+import rpg.things.player.Player;
+import rpg.things.player.PlayerCreator;
 
 public class RPGGame {
 

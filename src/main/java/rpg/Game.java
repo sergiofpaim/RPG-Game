@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import rpg.interfaces.IThing;
 import rpg.things.*;
 import rpg.things.Character;
+import rpg.things.player.Player;
 
 public class Game extends Thing {
     private int mapWidth;
@@ -142,24 +143,27 @@ public class Game extends Thing {
         return ".";
     }
 
-    public Map.Entry<Boolean, List<IThing>> checkMovement(int newX, int newY) {
+    public Boolean checkMovement(int newX, int newY) {
         changed = true;
-        List<IThing> interactiveThings = retrieveNearThings(newX, newY);
 
-        if (newX < 0 || newX >= mapWidth || newY < 0 || newY >= mapHeight) {
-            return new AbstractMap.SimpleEntry<>(false, interactiveThings);
-        }
-        for (IThing thing : things) {
-            if (thing.getPosition().getX() == newX && thing.getPosition().getY() == newY) {
-                return new AbstractMap.SimpleEntry<>(false, interactiveThings);
-            }
-        }
+        if (newX < 0 || newX >= mapWidth || newY < 0 || newY >= mapHeight)
+            return false;
 
-        return new AbstractMap.SimpleEntry<>(true, interactiveThings);
+        for (IThing thing : things)
+            if (thing.getPosition().getX() == newX && thing.getPosition().getY() == newY)
+                return false;
+
+        return true;
     }
 
-    private List<IThing> retrieveNearThings(int newX, int newY) {
-        List<IThing> interactiveThings = null;
+    public List<IThing> checkSurroundings(int x, int y) {
+        List<IThing> interactiveThings = retrieveNearThings(x, y);
+
+        return interactiveThings;
+    }
+
+    private List<IThing> retrieveNearThings(int x, int y) {
+        List<IThing> interactiveThings = new ArrayList<>();
 
         int[][] offsets = {
                 { -1, -1 },
@@ -174,8 +178,7 @@ public class Game extends Thing {
 
         for (IThing thing : this.getThings()) {
             for (int[] offset : offsets) {
-                if (thing.getPosition().getY() == newY + offset[0] && thing.getPosition().getX() == newX + offset[1]) {
-                    interactiveThings = new ArrayList<>();
+                if (thing.getPosition().getY() == y + offset[0] && thing.getPosition().getX() == x + offset[1]) {
                     interactiveThings.add(thing);
                 }
             }

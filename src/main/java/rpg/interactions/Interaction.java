@@ -2,7 +2,7 @@ package rpg.interactions;
 
 import java.util.Map.Entry;
 import rpg.interfaces.IInteractable;
-import rpg.things.Player;
+import rpg.things.player.Player;
 import rpg.types.Command;
 import java.util.AbstractMap;
 import java.util.Arrays;

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import rpg.interfaces.IInteractable;
 import rpg.interfaces.IThing;
-import rpg.things.Player;
+import rpg.things.player.Player;
 import rpg.types.Command;
 
 public class Runner implements IInteractable {

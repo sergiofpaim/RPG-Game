@@ -4,7 +4,7 @@ import java.util.Map.Entry;
 
 import rpg.Interface;
 import rpg.things.Item;
-import rpg.things.Player;
+import rpg.things.player.Player;
 import rpg.types.Command;
 import java.util.AbstractMap;
 import java.util.ArrayList;

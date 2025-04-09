@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import rpg.Game;
 import rpg.things.Item;
 import rpg.things.NPC;
-import rpg.things.Player;
 import rpg.things.Position;
+import rpg.things.player.Player;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "thing")
 @JsonSubTypes({

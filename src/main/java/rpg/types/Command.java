@@ -26,6 +26,7 @@ public class Command {
     public static final Command LEFT = new Command("LEFT", "A");
     public static final Command RIGHT = new Command("RIGHT", "D");
     public static final Command INVENTORY = new Command("INVENTORY", "B");
+    public static final Command SHOW_STATS = new Command("SHOW_STATS", "C");
     public static final Command INTERACT = new Command("INTERACT", "I");
     public static final Command STOP_INTERACTION = new Command("Stop Interacton", "I");
     public static final Command HELP = new Command("HELP", "H");
@@ -39,6 +40,8 @@ public class Command {
     public static final Command TALK = new Command("TALK", "Q");
     public static final Command RUN = new Command("RUN", "R");
     public static final Command USE_ITEM = new Command("USE_ITEM", "U");
+    public static final Command EQUIP_ITEM = new Command("EQUIP_ITEM", "E");
+    public static final Command UNEQUIP_ITEM = new Command("UNEQUIP_ITEM", "N");
     public static final Command PICK_UP_ITEM = new Command("PICK_UP", "P");
     public static final Command DROP_ITEM = new Command("DROP_ITEM", "D");
     public static final Command SELECT_1 = new Command("SELECT_1", "1");
@@ -52,8 +55,8 @@ public class Command {
     public static final Command SELECT_9 = new Command("SELECT_9", "9");
 
     public static List<Command> all() {
-        return Arrays.asList(UP, DOWN, LEFT, RIGHT, INVENTORY, INTERACT, STOP_INTERACTION, SAVE, HELP, EXIT,
-                ATTACK, DEFEND, MAGIC, PICK_UP_ITEM, USE_ITEM, DROP_ITEM, TALK, LOOK, RUN,
+        return Arrays.asList(UP, DOWN, LEFT, RIGHT, INVENTORY, SHOW_STATS, INTERACT, STOP_INTERACTION, SAVE, HELP, EXIT,
+                ATTACK, DEFEND, MAGIC, PICK_UP_ITEM, USE_ITEM, EQUIP_ITEM, UNEQUIP_ITEM, DROP_ITEM, TALK, LOOK, RUN,
                 SELECT_1, SELECT_2, SELECT_3, SELECT_4, SELECT_5, SELECT_6, SELECT_7, SELECT_8, SELECT_9);
     }
 

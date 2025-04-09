@@ -1,0 +1,178 @@
+{
+  "id" : "295",
+  "mapWidth" : 13,
+  "mapHeight" : 15,
+  "playerId" : "964",
+  "things" : [ {
+    "thing" : "player",
+    "id" : "964",
+    "name" : "Luke",
+    "healthPoints" : 5,
+    "currentHealthPoints" : 5,
+    "attack" : 5,
+    "defense" : 7,
+    "magic" : 5,
+    "speed" : 10,
+    "inventory" : [ {
+      "thing" : "item",
+      "id" : "489",
+      "name" : "Shield",
+      "description" : "A sturdy shield,",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 2,
+      "type" : "SHIELD",
+      "position" : {
+        "x" : 0,
+        "y" : 0
+      },
+      "carried" : true
+    }, {
+      "thing" : "item",
+      "id" : "58",
+      "name" : "Boots",
+      "description" : "A pair of sturdy boots",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 0,
+      "type" : "ACCESSORY",
+      "position" : {
+        "x" : 0,
+        "y" : 0
+      },
+      "carried" : true
+    }, {
+      "thing" : "item",
+      "id" : "798",
+      "name" : "Clothes",
+      "description" : "A set of comfortable clothes",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 0,
+      "type" : "ACCESSORY",
+      "position" : {
+        "x" : 0,
+        "y" : 0
+      },
+      "carried" : true
+    }, {
+      "thing" : "item",
+      "id" : "681",
+      "name" : "Health Potion",
+      "description" : "A potion that restores health",
+      "damage" : 0,
+      "cure" : 10,
+      "defense" : 0,
+      "type" : "USABLE",
+      "position" : {
+        "x" : 0,
+        "y" : 0
+      },
+      "carried" : true
+    } ],
+    "position" : {
+      "x" : 3,
+      "y" : 8
+    },
+    "description" : null,
+    "experience" : 0,
+    "level" : 1,
+    "equippedItems" : [ {
+      "thing" : "item",
+      "id" : "489",
+      "name" : "Shield",
+      "description" : "A sturdy shield,",
+      "damage" : 0,
+      "cure" : 0,
+      "defense" : 2,
+      "type" : "SHIELD",
+      "position" : {
+        "x" : 0,
+        "y" : 0
+      },
+      "carried" : true
+    } ]
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Ezra",
+    "healthPoints" : 8,
+    "currentHealthPoints" : 8,
+    "attack" : 8,
+    "defense" : 7,
+    "magic" : 4,
+    "speed" : 3,
+    "inventory" : [ ],
+    "position" : {
+      "x" : 7,
+      "y" : 4
+    },
+    "description" : "a brave pioneer",
+    "type" : "ENEMY",
+    "dialog" : "Strength lies not in might, but in unity."
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Ruby",
+    "healthPoints" : 12,
+    "currentHealthPoints" : 12,
+    "attack" : 12,
+    "defense" : 5,
+    "magic" : 6,
+    "speed" : 3,
+    "inventory" : [ ],
+    "position" : {
+      "x" : 11,
+      "y" : 12
+    },
+    "description" : "a crafty engineer",
+    "type" : "NPC",
+    "dialog" : "A curious mind is never truly lost."
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Briar",
+    "healthPoints" : 6,
+    "currentHealthPoints" : 6,
+    "attack" : 6,
+    "defense" : 4,
+    "magic" : 2,
+    "speed" : 2,
+    "inventory" : [ ],
+    "position" : {
+      "x" : 14,
+      "y" : 12
+    },
+    "description" : "a playful spirit",
+    "type" : "NPC",
+    "dialog" : "Find the beauty in chaos and you'll see the truth."
+  }, {
+    "thing" : "item",
+    "id" : "885",
+    "name" : "Armor",
+    "description" : "Protects your body",
+    "damage" : 0,
+    "cure" : 0,
+    "defense" : 15,
+    "type" : "ARMOR",
+    "position" : {
+      "x" : 9,
+      "y" : 7
+    },
+    "carried" : false
+  }, {
+    "thing" : "item",
+    "id" : "732",
+    "name" : "Shield",
+    "description" : "A sturdy shield",
+    "damage" : 0,
+    "cure" : 0,
+    "defense" : 10,
+    "type" : "SHIELD",
+    "position" : {
+      "x" : 7,
+      "y" : 7
+    },
+    "carried" : false
+  } ]
+}
