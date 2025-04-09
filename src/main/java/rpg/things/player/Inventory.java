@@ -41,7 +41,10 @@ public class Inventory implements IInteractive {
 
     @Override
     public List<String> processCommand(Command command) {
-        if (command.isSelect()) {
+
+        if (command == Command.STOP_INTERACTION) {
+            Interface.remove(this);
+        } else if (command.isSelect()) {
             int index = Integer.parseInt(command.getKey()) - 1;
 
             if (index >= 0 && index < loads.size()) {

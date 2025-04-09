@@ -18,8 +18,6 @@ public class NPCInteraction extends Interaction {
     public NPCInteraction(Player player, NPC npc) {
         super(player);
         this.npc = npc;
-
-        Interface.remove(player);
     }
 
     @Override
