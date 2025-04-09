@@ -1,14 +1,14 @@
 package rpg.interactions;
 
 import java.util.Map.Entry;
-import rpg.interfaces.IInteractable;
+import rpg.interfaces.IInteractive;
 import rpg.things.player.Player;
 import rpg.types.Command;
 import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.List;
 
-public class Interaction implements IInteractable {
+public class Interaction implements IInteractive {
     protected Player player;
 
     public Interaction(Player player) {

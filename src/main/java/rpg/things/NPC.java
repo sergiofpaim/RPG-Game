@@ -86,7 +86,12 @@ public class NPC extends Character {
 
     @Override
     public String showStats() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showStats'");
+        return "Total Health: " +
+                this.getHealthPoints() + " - Current Health: "
+                + this.getCurrentHealthPoints() + " - Attack: "
+                + this.getAttack()
+                + " - Defense: " + this.getDefense() + " - Magic: "
+                + this.getMagic()
+                + " - Speed: " + this.getSpeed() + "\n";
     }
 }

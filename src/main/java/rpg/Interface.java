@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
-import rpg.interfaces.IInteractable;
+import rpg.interfaces.IInteractive;
 import rpg.types.Command;
 
 public class Interface {
     public static final Scanner scan = new Scanner(System.in);
 
-    private static List<IInteractable> interactables = new ArrayList<>();
+    private static List<IInteractive> interactables = new ArrayList<>();
     private static List<Entry<Command, String>> options;
 
     public static void showCommands(boolean showDetails) {
         options = new ArrayList<>();
 
-        for (IInteractable interactable : interactables) {
+        for (IInteractive interactable : interactables) {
             options.addAll(interactable.retrieveMenu());
         }
 
@@ -70,7 +70,7 @@ public class Interface {
     public static void interact() {
         Command command = getCommand();
 
-        for (IInteractable interactable : new ArrayList<>(interactables)) {
+        for (IInteractive interactable : new ArrayList<>(interactables)) {
             List<String> messages = interactable.processCommand(command);
             for (String message : messages) {
                 System.out.println(message);
@@ -78,11 +78,11 @@ public class Interface {
         }
     }
 
-    public static void add(IInteractable interactable) {
+    public static void add(IInteractive interactable) {
         interactables.add(interactable);
     }
 
-    public static void remove(IInteractable interactable) {
+    public static void remove(IInteractive interactable) {
         interactables.remove(interactable);
     }
 }

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import rpg.interfaces.IInteractable;
+import rpg.interfaces.IInteractive;
 import rpg.interfaces.IThing;
 import rpg.types.Command;
 
-public class Contact implements IInteractable {
+public class Contact implements IInteractive {
 
     private List<IThing> things = new ArrayList<>();
 

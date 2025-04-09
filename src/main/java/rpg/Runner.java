@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
-import rpg.interfaces.IInteractable;
+import rpg.interfaces.IInteractive;
 import rpg.interfaces.IThing;
 import rpg.things.player.Player;
 import rpg.types.Command;
 
-public class Runner implements IInteractable {
+public class Runner implements IInteractive {
     public static Boolean isRunning = true;
     public static Boolean showingHelp = false;
 

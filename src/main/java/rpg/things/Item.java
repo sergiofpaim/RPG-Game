@@ -156,8 +156,13 @@ public class Item implements IThing {
 
     @Override
     public String showStats() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showStats'");
+        return "Item's name: " +
+                this.name + " - Damage: "
+                + this.damage + " - Defense: "
+                + this.defense
+                + " - Cure: " + this.cure + " - Description: "
+                + this.description
+                + "\n";
     }
 
     @Override

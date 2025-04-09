@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import rpg.interfaces.IInteractable;
+import rpg.interfaces.IInteractive;
 import rpg.things.Item;
 import rpg.types.Command;
 
-public class Inventory implements IInteractable {
+public class Inventory implements IInteractive {
 
     private List<Item> items = new ArrayList<Item>();
 

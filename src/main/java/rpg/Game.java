@@ -1,12 +1,9 @@
 package rpg;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
-
 import rpg.interfaces.IThing;
 import rpg.things.*;
 import rpg.things.Character;

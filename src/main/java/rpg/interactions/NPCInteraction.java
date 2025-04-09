@@ -1,7 +1,6 @@
 package rpg.interactions;
 
 import java.util.Map.Entry;
-
 import rpg.Interface;
 import rpg.things.NPC;
 import rpg.things.player.Player;

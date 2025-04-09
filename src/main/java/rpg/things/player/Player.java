@@ -11,7 +11,7 @@ import rpg.Interface;
 import rpg.interactions.InventoryInteraction;
 import rpg.interactions.ItemInteraction;
 import rpg.interactions.NPCInteraction;
-import rpg.interfaces.IInteractable;
+import rpg.interfaces.IInteractive;
 import rpg.interfaces.IThing;
 import rpg.things.Character;
 import rpg.things.Item;
@@ -19,12 +19,12 @@ import rpg.things.NPC;
 import rpg.things.Position;
 import rpg.types.Command;
 
-public class Player extends Character implements IInteractable {
+public class Player extends Character implements IInteractive {
     private List<Item> equipment = new ArrayList<Item>();
     private int experience;
     private int level;
 
-    private List<IThing> interactableThings = new ArrayList<IThing>();
+    private List<IThing> interactiveThings = new ArrayList<IThing>();
     private boolean interactingWithMap = false;
     private boolean interactingWithInventory = false;
 
@@ -147,10 +147,10 @@ public class Player extends Character implements IInteractable {
     public List<Entry<Command, String>> retrieveMenu() {
         if (interactingWithMap) {
             List<Entry<Command, String>> menu = new ArrayList<>();
-            for (int i = 0; i < interactableThings.size(); i++) {
+            for (int i = 0; i < interactiveThings.size(); i++) {
                 menu.add(new AbstractMap.SimpleEntry<>(
                         Command.fromKey(String.valueOf(i + 1)),
-                        "Interact with " + (interactableThings.get(i).getName())));
+                        "Interact with " + (interactiveThings.get(i).getName())));
             }
             menu.add(new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacting"));
             return menu;
@@ -203,13 +203,13 @@ public class Player extends Character implements IInteractable {
         }
 
         else if (command == Command.INTERACT) {
-            interactableThings = game.checkSurroundings(this.position.getX(), this.position.getY());
+            interactiveThings = game.checkSurroundings(this.position.getX(), this.position.getY());
 
-            if (interactableThings.size() > 0) {
+            if (interactiveThings.size() > 0) {
                 interactingWithMap = true;
                 messages.add("\nYou are next to the following things, pick one to interact with:\n");
 
-                for (IThing thing : interactableThings) {
+                for (IThing thing : interactiveThings) {
                     messages.add(
                             thing.draw() + " " + thing.getName());
                 }
@@ -281,9 +281,9 @@ public class Player extends Character implements IInteractable {
 
         int index = Integer.parseInt(command.getKey()) - 1;
 
-        if (index >= 0 && index < interactableThings.size()) {
+        if (index >= 0 && index < interactiveThings.size()) {
 
-            IThing selectedThing = interactableThings.get(index);
+            IThing selectedThing = interactiveThings.get(index);
 
             if (selectedThing instanceof NPC) {
                 NPCInteraction interaction = new NPCInteraction(this, (NPC) selectedThing);
