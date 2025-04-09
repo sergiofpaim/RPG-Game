@@ -8,6 +8,7 @@ import rpg.interfaces.IThing;
 import rpg.things.*;
 import rpg.things.Character;
 import rpg.things.player.Player;
+import rpg.types.ItemType;
 
 public class Game extends Thing {
     private int mapWidth;
@@ -80,6 +81,8 @@ public class Game extends Thing {
         this.things.addAll(generateNPCs());
         this.things.add(0, player);
         this.things.addAll(generateItems());
+
+        // Display Boss
 
         player.setGame(this);
     }

@@ -3,7 +3,6 @@ package rpg.things.player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
-
 import rpg.interfaces.IInteractive;
 import rpg.things.Item;
 import rpg.types.Command;

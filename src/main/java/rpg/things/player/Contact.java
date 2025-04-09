@@ -1,5 +1,6 @@
 package rpg.things.player;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -14,8 +15,14 @@ public class Contact implements IInteractive {
 
     @Override
     public List<Entry<Command, String>> retrieveMenu() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'retrieveMenu'");
+        List<Entry<Command, String>> menu = new ArrayList<>();
+        for (int i = 0; i < things.size(); i++) {
+            menu.add(new AbstractMap.SimpleEntry<>(
+                    Command.fromKey(String.valueOf(i + 1)),
+                    "Interact with " + (things.get(i).getName())));
+        }
+        menu.add(new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacting"));
+        return menu;
     }
 
     @Override

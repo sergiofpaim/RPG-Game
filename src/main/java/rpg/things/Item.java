@@ -50,6 +50,11 @@ public class Item implements IThing {
         this.setGame(game);
     }
 
+    public Item(String name, String description, int damage, int cure, int defense, ItemType type, Position position,
+            boolean isCarried) {
+        // TODO Auto-generated constructor stub
+    }
+
     public String getId() {
         return id;
     }
