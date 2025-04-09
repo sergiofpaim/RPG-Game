@@ -1,7 +1,6 @@
 package rpg.things;
 
 import java.util.Random;
-
 import rpg.Game;
 import rpg.interfaces.IThing;
 import rpg.templateData.ItemData;
