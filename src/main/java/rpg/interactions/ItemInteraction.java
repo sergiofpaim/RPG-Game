@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import rpg.Interface;
+import rpg.Runner;
 import rpg.things.Item;
 import rpg.things.player.Player;
 import rpg.types.Command;
+import rpg.types.ItemType;
 
 public class ItemInteraction extends Interaction {
     private Item item;
@@ -22,9 +24,14 @@ public class ItemInteraction extends Interaction {
     @Override
     public List<Entry<Command, String>> retrieveMenu() {
         List<Entry<Command, String>> menu = new ArrayList<>(super.retrieveMenu());
-        menu.addAll(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(Command.PICK_UP_ITEM, "Pick Up"),
-                new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacton")));
+
+        if (item.getType() != ItemType.DOOR) {
+            menu.addAll(Arrays.asList(
+                    new AbstractMap.SimpleEntry<>(Command.PICK_UP_ITEM, "Pick Up"),
+                    new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacton")));
+        } else
+            menu.addAll(Arrays.asList(new AbstractMap.SimpleEntry<>(Command.ENTER_DOOR, "Enter Door")));
+
         return menu;
     }
 
@@ -44,6 +51,12 @@ public class ItemInteraction extends Interaction {
 
         else if (command == Command.STOP_INTERACTION) {
             messages.add("\nYou stopped interacting with " + item.getName() + ".");
+            Interface.remove(this);
+        }
+
+        else if (command == Command.ENTER_DOOR) {
+            messages.add("\nYou entered a new Dungeon!");
+            Runner.newWorld();
             Interface.remove(this);
         }
 

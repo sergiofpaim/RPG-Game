@@ -83,7 +83,7 @@ public abstract class Character extends Thing implements IThing {
     }
 
     public void setCurrentHealthPoints(int currentHealth) {
-        this.currentHealthPoints = currentHealth;
+        this.currentHealthPoints = Math.min(currentHealth, this.healthPoints);
     }
 
     public void setAttack(int attack) {

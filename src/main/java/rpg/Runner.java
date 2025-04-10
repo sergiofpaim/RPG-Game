@@ -91,4 +91,11 @@ public class Runner implements IInteractive {
     private void showHelp() {
         showingHelp = true;
     }
+
+    public static void newWorld() {
+        game.redefineMap(player);
+
+        for (IThing thing : game.getThings())
+            thing.setGame(game);
+    }
 }

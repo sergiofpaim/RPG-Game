@@ -32,7 +32,7 @@ public class Command {
     public static final Command HELP = new Command("HELP", "H");
     public static final Command SAVE = new Command("SAVE", "K");
     public static final Command EXIT = new Command("EXIT", "X");
-    public static final Command BATTLE = new Command("Battle", "T");
+    public static final Command BATTLE = new Command("BATTLE", "T");
     public static final Command ATTACK = new Command("ATTACK", "T");
     public static final Command DEFEND = new Command("DEFEND", "F");
     public static final Command MAGIC = new Command("MAGIC", "M");
@@ -53,11 +53,13 @@ public class Command {
     public static final Command SELECT_7 = new Command("SELECT_7", "7");
     public static final Command SELECT_8 = new Command("SELECT_8", "8");
     public static final Command SELECT_9 = new Command("SELECT_9", "9");
+    public static final Command ENTER_DOOR = new Command("ENTER_DOOR", "0");
 
     public static List<Command> all() {
         return Arrays.asList(UP, DOWN, LEFT, RIGHT, INVENTORY, SHOW_STATS, INTERACT, STOP_INTERACTION, SAVE, HELP, EXIT,
+                BATTLE,
                 ATTACK, DEFEND, MAGIC, PICK_UP_ITEM, USE_ITEM, EQUIP_ITEM, UNEQUIP_ITEM, DROP_ITEM, TALK, LOOK, RUN,
-                SELECT_1, SELECT_2, SELECT_3, SELECT_4, SELECT_5, SELECT_6, SELECT_7, SELECT_8, SELECT_9);
+                SELECT_1, SELECT_2, SELECT_3, SELECT_4, SELECT_5, SELECT_6, SELECT_7, SELECT_8, SELECT_9, ENTER_DOOR);
     }
 
     public Boolean isSelect() {

@@ -65,11 +65,11 @@ public class BattleInteraction extends Interaction {
 
             if (npc.getCurrentHealthPoints() <= 0) {
                 messages.add("You defeated:" + npc.getName());
-                Interface.remove(this);
                 npc.destroy();
-            }
 
-            messages.addAll(npcAttack());
+                Interface.remove(this);
+            } else
+                messages.addAll(npcAttack());
         }
 
         return messages;
@@ -100,6 +100,7 @@ public class BattleInteraction extends Interaction {
         if (player.getCurrentHealthPoints() <= 0) {
             messages.add("You were defeated by:" + npc.getName());
             player.destroy();
+
             Runner.isRunning = false;
         }
 

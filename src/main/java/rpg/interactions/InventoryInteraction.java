@@ -50,6 +50,16 @@ public class InventoryInteraction extends Interaction {
             Interface.remove(this);
         }
 
+        else if (command == Command.USE_ITEM) {
+            messages.add("\nYou used: " + load.getItem().getName() + ".");
+            if (load.getItem().getCure() > 0)
+                player.setCurrentHealthPoints(player.getCurrentHealthPoints() + load.getItem().getCure());
+            else
+                messages.add("\nYou cannot use this item on yourself");
+
+            Interface.remove(this);
+        }
+
         else if (command == Command.UNEQUIP_ITEM) {
             messages.add("\nYou unequipped: " + load.getItem().getName() + ".");
             unequipItem(load);

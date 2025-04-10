@@ -90,8 +90,6 @@ public class Game extends Thing {
         this.things.addAll(generatePassage());
         this.things.add(0, player);
 
-        // Display Boss
-
         player.setGame(this);
     }
 
@@ -230,6 +228,20 @@ public class Game extends Thing {
 
     public void add(IThing thing) {
         this.things.add(thing);
+        changed = true;
+    }
+
+    public void redefineMap(Player player) {
+        this.mapWidth = new Random().nextInt(10) + 10;
+        this.mapHeight = new Random().nextInt(10) + 10;
+        this.playerId = player.getId();
+        this.things.clear();
+        this.things.addAll(generateItems());
+        this.things.addAll(generateNPCs());
+        this.things.addAll(generatePassage());
+        this.things.add(0, player);
+
+        player.setGame(this);
         changed = true;
     }
 }
