@@ -108,4 +108,9 @@ public class BattleInteraction extends Interaction {
 
         return messages;
     }
+
+    @Override
+    public String retrieveLabel() {
+        return "Battle";
+    }
 }

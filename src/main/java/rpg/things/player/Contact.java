@@ -61,8 +61,9 @@ public class Contact implements IInteractive {
         if (things.size() > 0) {
             messages.add("\nYou are next to the following things, pick one to interact with:\n");
 
+            int count = 0;
             for (IThing thing : things)
-                messages.add(thing.draw() + " " + thing.getName());
+                messages.add(++count + ") " + thing.draw() + " " + thing.getName());
 
         } else {
             messages.add("\nThere is nothing here to interact with.");
@@ -95,5 +96,10 @@ public class Contact implements IInteractive {
 
     public void setThings(List<IThing> things) {
         this.things = things;
+    }
+
+    @Override
+    public String retrieveLabel() {
+        return "Contact";
     }
 }

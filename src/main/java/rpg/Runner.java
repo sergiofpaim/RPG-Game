@@ -105,4 +105,9 @@ public class Runner implements IInteractive {
             thing.setGame(game);
     }
 
+    @Override
+    public String retrieveLabel() {
+        return "General";
+    }
+
 }

@@ -26,4 +26,9 @@ public class Interaction implements IInteractive {
     public List<String> processCommand(Command command) {
         return null;
     }
+
+    @Override
+    public String retrieveLabel() {
+        return "Interaction";
+    }
 }

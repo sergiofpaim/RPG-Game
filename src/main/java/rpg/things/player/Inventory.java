@@ -63,13 +63,15 @@ public class Inventory implements IInteractive {
         messages.add("\nYou have got these things in your inventory:\n");
         messages.add("\n--- Inventory ---\n");
 
+        int count = 0;
         for (Load load : loads) {
             if (load.getEquipped()) {
-                messages.add(load.getItem().draw() + " " + load.getItem().getName() +
+                messages.add(++count + ") "
+                        + load.getItem().draw() + " " + load.getItem().getName() +
                         " - equipped\n");
             } else
                 messages.add(
-                        load.getItem().draw() + " " + load.getItem().getName());
+                        ++count + ") " + load.getItem().draw() + " " + load.getItem().getName());
         }
         messages.add("------------------\n");
 
@@ -114,5 +116,10 @@ public class Inventory implements IInteractive {
 
     public void useLoad(Load load) {
         loads.remove(load);
+    }
+
+    @Override
+    public String retrieveLabel() {
+        return "Inventory";
     }
 }

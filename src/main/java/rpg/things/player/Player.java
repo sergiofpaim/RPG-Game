@@ -144,4 +144,9 @@ public class Player extends Character implements IInteractive {
     public void useFromInventory(Load load) {
         inventory.useLoad(load);
     }
+
+    @Override
+    public String retrieveLabel() {
+        return "Player";
+    }
 }
