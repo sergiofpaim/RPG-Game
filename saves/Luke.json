@@ -1,0 +1,143 @@
+{
+  "id" : "165",
+  "mapWidth" : 12,
+  "mapHeight" : 14,
+  "playerId" : "178",
+  "things" : [ {
+    "thing" : "player",
+    "id" : "178",
+    "name" : "Luke",
+    "healthPoints" : 5,
+    "currentHealthPoints" : 5,
+    "attack" : 5,
+    "defense" : 11,
+    "magic" : 5,
+    "speed" : 10,
+    "inventory" : {
+      "loads" : [ {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "446",
+          "name" : "Shield",
+          "description" : "A sturdy shield,",
+          "damage" : 0,
+          "cure" : 0,
+          "defense" : 2,
+          "type" : "SHIELD",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "757",
+          "name" : "Boots",
+          "description" : "A pair of sturdy boots",
+          "damage" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "ACCESSORY",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "592",
+          "name" : "Clothes",
+          "description" : "A set of comfortable clothes",
+          "damage" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "ACCESSORY",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "194",
+          "name" : "Health Potion",
+          "description" : "A potion that restores health",
+          "damage" : 0,
+          "cure" : 10,
+          "defense" : 0,
+          "type" : "USABLE",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      } ]
+    },
+    "position" : {
+      "x" : 0,
+      "y" : 9
+    },
+    "description" : null,
+    "experience" : 0,
+    "level" : 1
+  }, {
+    "thing" : "item",
+    "id" : "598",
+    "name" : "Amulet",
+    "description" : "Increases health",
+    "damage" : 0,
+    "cure" : 0,
+    "defense" : 5,
+    "type" : "ACCESSORY",
+    "position" : {
+      "x" : 6,
+      "y" : 10
+    },
+    "isCarried" : false
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Yara",
+    "healthPoints" : 6,
+    "currentHealthPoints" : 6,
+    "attack" : 8,
+    "defense" : 6,
+    "magic" : 2,
+    "speed" : 3,
+    "inventory" : {
+      "loads" : [ ]
+    },
+    "position" : {
+      "x" : 11,
+      "y" : 8
+    },
+    "description" : "a skilled warrior",
+    "type" : "NPC",
+    "dialog" : "Victory is earned, not given."
+  }, {
+    "thing" : "item",
+    "id" : "173",
+    "name" : "Door",
+    "description" : "The passage to a new adventure!",
+    "damage" : 0,
+    "cure" : 0,
+    "defense" : 0,
+    "type" : "DOOR",
+    "position" : {
+      "x" : 1,
+      "y" : 10
+    },
+    "isCarried" : false
+  } ]
+}
