@@ -32,7 +32,7 @@ public class Inventory implements IInteractive {
         List<Entry<Command, String>> menu = new ArrayList<>();
         for (int i = 0; i < loads.size(); i++) {
             menu.add(new AbstractMap.SimpleEntry<>(
-                    Command.fromKey(String.valueOf(i + 1)),
+                    Command.fromKey((char) (i + 49)),
                     (loads.get(i).getItem().getName())));
         }
         menu.add(new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacting"));
@@ -45,7 +45,7 @@ public class Inventory implements IInteractive {
         if (command == Command.STOP_INTERACTION) {
             Interface.remove(this);
         } else if (command.isSelect()) {
-            int index = Integer.parseInt(command.getKey()) - 1;
+            int index = Character.getNumericValue(command.getKey()) - 1;
 
             if (index >= 0 && index < loads.size()) {
                 InventoryInteraction interaction = new InventoryInteraction(player, loads.get(index));
@@ -80,7 +80,7 @@ public class Inventory implements IInteractive {
         loads.add(new Load(item));
     }
 
-    public void removeItem(Load load) {
+    public void dropLoad(Load load) {
         loads.remove(load);
         // TODO: Check if item is still on the map after being thrown
         load.getItem().setPosition(new Position(player.getPosition().getX(), player.getPosition().getY() + 1));
@@ -110,5 +110,9 @@ public class Inventory implements IInteractive {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public void useLoad(Load load) {
+        loads.remove(load);
     }
 }

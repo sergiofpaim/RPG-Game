@@ -54,11 +54,13 @@ public class BattleInteraction extends Interaction {
                 } else
                     messages.add("\nYou miss the magic, causing: 0 damage");
             } else if (command == Command.USE_ITEM) {
-
+                Interface.add(player.getInventory());
+                messages.addAll(player.getInventory().showInventory());
             } else if (command == Command.RUN) {
                 if (random.nextInt(10) + player.getSpeed() > npc.getSpeed()) {
                     messages.add("\nYou run away from the fight");
                     Interface.remove(this);
+                    return messages;
                 } else
                     messages.add("\nYou try to scape the fight, but you can't");
             }
@@ -77,24 +79,24 @@ public class BattleInteraction extends Interaction {
 
     private List<String> npcAttack() {
         Random random = new Random();
-        int decision = random.nextInt(3) + 1;
+        int npcDecision = npc.decideAction();
         List<String> messages = new ArrayList<>();
-        if (decision == 1) {
+        if (npcDecision == 1) {
             if (random.nextInt(10) + npc.getSpeed() > player.getDefense()) {
                 player.setCurrentHealthPoints(player.getCurrentHealthPoints() - npc.getAttack());
-                messages.add("\nThe enemy attacks yoou, causing: " + npc.getAttack() + " damage");
+                messages.add("\nThe enemy attacks you, causing: " + npc.getAttack() + " damage");
             } else
-                messages.add("\nYou miss the attack, causing: 0 damage");
-        } else if (decision == 2) {
+                messages.add("\nThe enemy misses the attack, causing: 0 damage");
+        } else if (npcDecision == 2) {
             player.setDefense(player.getDefense() + 3);
             messages.add("\nThe enemy defended and increased his defense by 3");
-        } else if (decision == 3) {
+        } else if (npcDecision == 3) {
             if (random.nextInt(10) + npc.getSpeed() > player.getDefense()) {
                 player.setCurrentHealthPoints(player.getCurrentHealthPoints() - npc.getMagic());
                 messages.add("\nThe enemy used magic on you, causing: " + npc.getMagic() + " damage");
             } else
-                messages.add("\nYou miss the magic, causing: 0 damage");
-        } else if (decision == 4) {
+                messages.add("\nThe enemy misses the magic, causing: 0 damage");
+        } else if (npcDecision == 4) {
         }
 
         if (player.getCurrentHealthPoints() <= 0) {

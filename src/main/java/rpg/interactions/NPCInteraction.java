@@ -34,10 +34,10 @@ public class NPCInteraction extends Interaction {
     public List<String> processCommand(Command command) {
         List<String> messages = new ArrayList<>();
 
-        if (command == Command.TALK)
-            messages.add("\n" + npc.draw() + " " + npc.getName() + ": " + npc.getDialog());
-        else if (command == Command.LOOK)
+        if (command == Command.LOOK)
             messages.add("\nYou see: " + npc.getDescription());
+        else if (command == Command.TALK)
+            messages.add("\n" + npc.draw() + " " + npc.getName() + ": " + npc.getDialog());
         else if (command == Command.STOP_INTERACTION) {
             messages.add("\nYou stopped interacting with " + npc.getName() + ".");
             Interface.remove(this);

@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import rpg.interfaces.IInteractive;
 import rpg.types.Command;
+import rpg.utils.InputHelper;
 
 public class Interface {
     public static final Scanner scan = new Scanner(System.in);
@@ -33,7 +34,7 @@ public class Interface {
                     int index = col * rows + row;
                     if (index < total) {
                         Entry<Command, String> entry = options.get(index);
-                        String text = entry.getKey().getKey().toLowerCase() + " - " + entry.getValue();
+                        String text = entry.getKey().getKey() + " - " + entry.getValue();
                         System.out.print(String.format("%-25s", text));
                     }
                 }
@@ -41,7 +42,7 @@ public class Interface {
             }
         } else {
             for (Entry<Command, String> entry : options) {
-                System.out.print(entry.getKey().getKey().toLowerCase() + " ");
+                System.out.print(entry.getKey().getKey() + " ");
                 if (entry.getKey() == Command.HELP)
                     System.out.print(" (help)\n");
             }
@@ -53,10 +54,12 @@ public class Interface {
         Command command = null;
         while (command == null) {
             System.out.print("> ");
-            String key = scan.next().trim().toLowerCase();
+            char key = InputHelper.readKey();
+            System.out.print(key);
+            System.out.println();
 
             Optional<Entry<Command, String>> matchedOption = options.stream()
-                    .filter(entry -> entry.getKey().getKey().toLowerCase().equals(key))
+                    .filter(entry -> entry.getKey().getKey() == key)
                     .findFirst();
 
             if (!matchedOption.isPresent())

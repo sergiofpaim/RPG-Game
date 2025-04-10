@@ -32,7 +32,7 @@ public class Contact implements IInteractive {
         List<Entry<Command, String>> menu = new ArrayList<>();
         for (int i = 0; i < things.size(); i++) {
             menu.add(new AbstractMap.SimpleEntry<>(
-                    Command.fromKey(String.valueOf(i + 1)),
+                    Command.fromKey((char) (i + 49)),
                     "Interact with " + (things.get(i).getName())));
         }
         menu.add(new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacting"));
@@ -47,7 +47,7 @@ public class Contact implements IInteractive {
             Interface.remove(this);
         }
 
-        else if (command.getKey().matches("\\d+")) {
+        else if (command.getCommand().startsWith("SELECT_")) {
             processMapInteractionSelection(command);
             Interface.remove(this);
         }
@@ -64,15 +64,17 @@ public class Contact implements IInteractive {
             for (IThing thing : things)
                 messages.add(thing.draw() + " " + thing.getName());
 
-        } else
+        } else {
             messages.add("\nThere is nothing here to interact with.");
+            Interface.remove(this);
+        }
 
         return messages;
     }
 
     private void processMapInteractionSelection(Command command) {
 
-        int index = Integer.parseInt(command.getKey()) - 1;
+        int index = Character.getNumericValue(command.getKey()) - 1;
 
         IThing selectedThing = things.get(index);
 

@@ -39,14 +39,19 @@ public class ItemInteraction extends Interaction {
     public List<String> processCommand(Command command) {
         List<String> messages = new ArrayList<>();
 
-        if (command == Command.PICK_UP_ITEM) {
-            messages.add("\nYou picked up " + item.getName() + ".");
-            player.addToInventory(item);
+        if (command == Command.LOOK) {
+            messages.add(
+                    "\n Item: " + item.getName() +
+                            "\nDescription: " + item.getDescription()
+                            + "\nStats: " + item.showStats());
+
             Interface.remove(this);
         }
 
-        else if (command == Command.LOOK) {
-            return Arrays.asList("\nYou see: " + item.getDescription());
+        else if (command == Command.PICK_UP_ITEM) {
+            messages.add("\nYou picked up " + item.getName() + ".");
+            player.addToInventory(item);
+            Interface.remove(this);
         }
 
         else if (command == Command.STOP_INTERACTION) {

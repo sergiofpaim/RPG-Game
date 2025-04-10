@@ -108,4 +108,11 @@ public class NPC extends Character {
     public void destroy() {
         game.remove(this);
     }
+
+    public int decideAction() {
+        Random random = new Random();
+        int decision = random.nextInt(3) + 1;
+
+        return decision;
+    }
 }

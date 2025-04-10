@@ -62,8 +62,8 @@ public class Player extends Character implements IInteractive {
         inventory.addItem(item);
     }
 
-    public void removeFromInventory(Load item) {
-        inventory.removeItem(item);
+    public void dropFromInventory(Load load) {
+        inventory.dropLoad(load);
     }
 
     private void move(Command movement) {
@@ -139,5 +139,9 @@ public class Player extends Character implements IInteractive {
 
     public void destroy() {
         game.remove(this);
+    }
+
+    public void useFromInventory(Load load) {
+        inventory.useLoad(load);
     }
 }

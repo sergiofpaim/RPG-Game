@@ -158,9 +158,9 @@ public class Item implements IThing {
     @Override
     public String draw() {
         if (this.type == ItemType.WEAPON) {
-            return "\u2694";
+            return " \u2694";
         } else if (this.type == ItemType.SHIELD) {
-            return "\u26E8";
+            return " \u26E8";
         } else if (this.type == ItemType.ARMOR) {
             return "\uD83E\uDDE5";
         } else if (this.type == ItemType.USABLE) {
@@ -170,7 +170,7 @@ public class Item implements IThing {
         } else if (this.type == ItemType.DOOR) {
             return "\uD83D\uDEAA";
         } else {
-            return "\u2753";
+            return " \u2753";
         }
     }
 

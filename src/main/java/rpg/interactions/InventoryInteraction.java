@@ -10,6 +10,7 @@ import rpg.Interface;
 import rpg.things.player.Load;
 import rpg.things.player.Player;
 import rpg.types.Command;
+import rpg.types.ItemType;
 
 public class InventoryInteraction extends Interaction {
     private Load load;
@@ -22,12 +23,18 @@ public class InventoryInteraction extends Interaction {
     @Override
     public List<Entry<Command, String>> retrieveMenu() {
         List<Entry<Command, String>> menu = new ArrayList<>(super.retrieveMenu());
-        menu.addAll(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(Command.USE_ITEM, "Use"),
-                new AbstractMap.SimpleEntry<>(Command.EQUIP_ITEM, "Equip"),
-                new AbstractMap.SimpleEntry<>(Command.UNEQUIP_ITEM, "Unequip"),
-                new AbstractMap.SimpleEntry<>(Command.DROP_ITEM, "Drop"),
-                new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacton")));
+        if (load.getItem().getType() != ItemType.USABLE) {
+            menu.addAll(Arrays.asList(
+                    new AbstractMap.SimpleEntry<>(Command.USE_ITEM, "Use"),
+                    new AbstractMap.SimpleEntry<>(Command.EQUIP_ITEM, "Equip"),
+                    new AbstractMap.SimpleEntry<>(Command.UNEQUIP_ITEM, "Unequip"),
+                    new AbstractMap.SimpleEntry<>(Command.DROP_ITEM, "Drop"),
+                    new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacton")));
+        } else {
+            menu.addAll(Arrays.asList(new AbstractMap.SimpleEntry<>(Command.USE_ITEM, "Use"),
+                    new AbstractMap.SimpleEntry<>(Command.DROP_ITEM, "Drop"),
+                    new AbstractMap.SimpleEntry<>(Command.STOP_INTERACTION, "Stop Interacton")));
+        }
 
         return menu;
     }
@@ -38,8 +45,9 @@ public class InventoryInteraction extends Interaction {
 
         if (command == Command.LOOK) {
             messages.add(
-                    "\n Item: " + load.getItem().getName() + " - Description: "
-                            + load.getItem().getDescription());
+                    "\n Item: " + load.getItem().getName() +
+                            "\nDescription: " + load.getItem().getDescription() +
+                            "\nStats: " + load.getItem().showStats());
 
             Interface.remove(this);
         }
@@ -57,6 +65,7 @@ public class InventoryInteraction extends Interaction {
             else
                 messages.add("\nYou cannot use this item on yourself");
 
+            player.useFromInventory(load);
             Interface.remove(this);
         }
 
@@ -68,7 +77,7 @@ public class InventoryInteraction extends Interaction {
 
         else if (command == Command.DROP_ITEM) {
             messages.add("\nYou dropped " + load.getItem().getName() + ".");
-            player.removeFromInventory(load);
+            player.dropFromInventory(load);
             Interface.remove(this);
         }
 

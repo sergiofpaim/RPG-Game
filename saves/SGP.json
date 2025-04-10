@@ -1,0 +1,217 @@
+{
+  "id" : "39",
+  "mapWidth" : 18,
+  "mapHeight" : 10,
+  "playerId" : "869",
+  "things" : [ {
+    "thing" : "player",
+    "id" : "869",
+    "name" : "SGP",
+    "healthPoints" : 5,
+    "currentHealthPoints" : 5,
+    "attack" : 5,
+    "defense" : 5,
+    "magic" : 5,
+    "speed" : 10,
+    "inventory" : {
+      "loads" : [ {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "575",
+          "name" : "Shield",
+          "description" : "A sturdy shield,",
+          "damage" : 0,
+          "cure" : 0,
+          "defense" : 2,
+          "type" : "SHIELD",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "909",
+          "name" : "Boots",
+          "description" : "A pair of sturdy boots",
+          "damage" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "ACCESSORY",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "423",
+          "name" : "Clothes",
+          "description" : "A set of comfortable clothes",
+          "damage" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "ACCESSORY",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "129",
+          "name" : "Health Potion",
+          "description" : "A potion that restores health",
+          "damage" : 0,
+          "cure" : 10,
+          "defense" : 0,
+          "type" : "USABLE",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      } ]
+    },
+    "position" : {
+      "x" : 0,
+      "y" : 2
+    },
+    "description" : null,
+    "experience" : 0,
+    "level" : 1
+  }, {
+    "thing" : "item",
+    "id" : "333",
+    "name" : "Shield",
+    "description" : "A sturdy shield",
+    "damage" : 0,
+    "cure" : 0,
+    "defense" : 10,
+    "type" : "SHIELD",
+    "position" : {
+      "x" : 9,
+      "y" : 17
+    },
+    "isCarried" : false
+  }, {
+    "thing" : "item",
+    "id" : "313",
+    "name" : "Staff",
+    "description" : "A magical staff",
+    "damage" : 5,
+    "cure" : 0,
+    "defense" : 5,
+    "type" : "WEAPON",
+    "position" : {
+      "x" : 1,
+      "y" : 14
+    },
+    "isCarried" : false
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Jovan",
+    "healthPoints" : 10,
+    "currentHealthPoints" : 10,
+    "attack" : 8,
+    "defense" : 6,
+    "magic" : 6,
+    "speed" : 5,
+    "inventory" : {
+      "loads" : [ ]
+    },
+    "position" : {
+      "x" : 2,
+      "y" : 11
+    },
+    "description" : "a thoughtful mentor",
+    "type" : "NPC",
+    "dialog" : "The stars hold secrets for those who dare to look."
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Harlow",
+    "healthPoints" : 6,
+    "currentHealthPoints" : 6,
+    "attack" : 6,
+    "defense" : 6,
+    "magic" : 5,
+    "speed" : 1,
+    "inventory" : {
+      "loads" : [ ]
+    },
+    "position" : {
+      "x" : 6,
+      "y" : 16
+    },
+    "description" : "a fierce protector",
+    "type" : "NPC",
+    "dialog" : "A storm may rage, but it cannot bend a resolute spirit."
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Xanthe",
+    "healthPoints" : 5,
+    "currentHealthPoints" : 5,
+    "attack" : 7,
+    "defense" : 5,
+    "magic" : 3,
+    "speed" : 2,
+    "inventory" : {
+      "loads" : [ ]
+    },
+    "position" : {
+      "x" : 4,
+      "y" : 0
+    },
+    "description" : "a spirited wanderer",
+    "type" : "NPC",
+    "dialog" : "Duty binds me, but my soul is free."
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Elena",
+    "healthPoints" : 10,
+    "currentHealthPoints" : 10,
+    "attack" : 10,
+    "defense" : 10,
+    "magic" : 5,
+    "speed" : 8,
+    "inventory" : {
+      "loads" : [ ]
+    },
+    "position" : {
+      "x" : 2,
+      "y" : 7
+    },
+    "description" : "THE BIG BOSS!",
+    "type" : "ENEMY",
+    "dialog" : "KILL ME IF YOU WANT TO ACCESS THE DOOR! HAHAHAHA!"
+  }, {
+    "thing" : "item",
+    "id" : "547",
+    "name" : "Door",
+    "description" : "The passage to a new adventure!",
+    "damage" : 0,
+    "cure" : 0,
+    "defense" : 0,
+    "type" : "DOOR",
+    "position" : {
+      "x" : 2,
+      "y" : 7
+    },
+    "isCarried" : false
+  } ]
+}
