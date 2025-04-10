@@ -49,9 +49,11 @@ public class Inventory implements IInteractive {
 
             if (index >= 0 && index < loads.size()) {
                 InventoryInteraction interaction = new InventoryInteraction(player, loads.get(index));
+                Interface.remove(this);
                 Interface.add(interaction);
             }
         }
+
         return showInventory();
     }
 

@@ -8,7 +8,7 @@ import rpg.templateData.NPCData;
 import rpg.types.NPCType;
 
 public class NPC extends Character {
-    private String type;
+    private NPCType type;
     private String description;
     private String dialog;
 
@@ -16,7 +16,7 @@ public class NPC extends Character {
     }
 
     public NPC(String name, int health, int currentHealth, int attack, int defense, int magic, int speed,
-            List<Item> inventory, Position position, String type, String description, String dialog) {
+            List<Item> inventory, Position position, NPCType type, String description, String dialog) {
         super(name, health, currentHealth, attack, defense, magic, speed, inventory, position);
         this.type = type;
         this.description = description;
@@ -34,13 +34,30 @@ public class NPC extends Character {
         magic = random.nextInt(5) + 2;
         speed = random.nextInt(5) + 1;
         position = new Position(random.nextInt(game.getMapHeight()), random.nextInt(game.getMapWidth()));
-        type = NPCType.values()[random.nextInt(NPCType.values().length)].name();
+        type = NPCType.NPC;
         description = NPCData.DESCRIPTIONS[random.nextInt(NPCData.DESCRIPTIONS.length)];
         dialog = NPCData.DIALOGS[random.nextInt(NPCData.DIALOGS.length)];
         this.game = game;
     }
 
-    public String getType() {
+    public NPC(Game game, Position position) {
+        Random random = new Random();
+
+        name = NPCData.NAMES[random.nextInt(NPCData.NAMES.length)];
+        healthPoints = random.nextInt(10) + 3;
+        currentHealthPoints = healthPoints;
+        attack = random.nextInt(10) + 5;
+        defense = random.nextInt(10) + 3;
+        magic = random.nextInt(10) + 2;
+        speed = random.nextInt(10) + 1;
+        this.position = position;
+        type = NPCType.ENEMY;
+        description = "THE BIG BOSS!";
+        dialog = "KILL ME IF YOU WANT TO ACCESS THE DOOR! HAHAHAHA!";
+        this.game = game;
+    }
+
+    public NPCType getType() {
         return type;
     }
 
@@ -52,7 +69,7 @@ public class NPC extends Character {
         return dialog;
     }
 
-    public void setType(String type) {
+    public void setType(NPCType type) {
         this.type = type;
     }
 
@@ -70,7 +87,7 @@ public class NPC extends Character {
 
     @Override
     public String draw() {
-        if (type.equals("Enemy")) {
+        if (this.type == NPCType.ENEMY) {
             return "\uD83D\uDC79";
         } else {
             return "\uD83E\uDDD9";

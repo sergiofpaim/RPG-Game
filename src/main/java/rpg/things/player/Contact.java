@@ -49,6 +49,7 @@ public class Contact implements IInteractive {
 
         else if (command.getKey().matches("\\d+")) {
             processMapInteractionSelection(command);
+            Interface.remove(this);
         }
 
         return messages;

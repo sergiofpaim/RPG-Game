@@ -1,9 +1,13 @@
 package rpg;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.mongodb.client.model.geojson.Position;
 
 import rpg.interfaces.IThing;
 import rpg.things.Character;
@@ -11,6 +15,7 @@ import rpg.things.Item;
 import rpg.things.NPC;
 import rpg.things.Thing;
 import rpg.things.player.Player;
+import rpg.types.ItemType;
 
 public class Game extends Thing {
     private int mapWidth;
@@ -80,13 +85,25 @@ public class Game extends Thing {
         this.mapWidth = new Random().nextInt(10) + 10;
         this.mapHeight = new Random().nextInt(10) + 10;
         this.playerId = player.getId();
-        this.things.addAll(generateNPCs());
-        this.things.add(0, player);
         this.things.addAll(generateItems());
+        this.things.addAll(generateNPCs());
+        this.things.addAll(generatePassage());
+        this.things.add(0, player);
 
         // Display Boss
 
         player.setGame(this);
+    }
+
+    private List<IThing> generatePassage() {
+        List<IThing> things = new ArrayList<IThing>();
+        Item door = new Item("Door", "The passage to a new adventure!", ItemType.DOOR, this);
+        NPC boss = new NPC(this, door.getPosition());
+
+        things.add(boss);
+        things.add(door);
+
+        return things;
     }
 
     private List<Item> generateItems() {
@@ -166,6 +183,7 @@ public class Game extends Thing {
 
     private List<IThing> retrieveNearThings(int x, int y) {
         List<IThing> interactiveThings = new ArrayList<>();
+        List<Position> addedPositions = new ArrayList<Position>();
 
         int[][] offsets = {
                 { -1, -1 },
@@ -178,13 +196,22 @@ public class Game extends Thing {
                 { 1, 1 }
         };
 
-        for (IThing thing : this.getThings()) {
-            for (int[] offset : offsets) {
-                if (thing.getPosition().getY() == y + offset[0] && thing.getPosition().getX() == x + offset[1]) {
-                    interactiveThings.add(thing);
+        for (int[] offset : offsets) {
+            int targetY = y + offset[0];
+            int targetX = x + offset[1];
+            Position position = new Position(targetX, targetY);
+
+            if (!addedPositions.contains(position)) {
+                for (IThing thing : this.getThings()) {
+                    if (thing.getPosition().getY() == targetY && thing.getPosition().getX() == targetX) {
+                        interactiveThings.add(thing);
+                        addedPositions.add(position);
+                        break;
+                    }
                 }
             }
         }
+
         return interactiveThings;
     }
 

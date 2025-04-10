@@ -51,9 +51,22 @@ public class Item implements IThing {
         this.setGame(game);
     }
 
-    public Item(String name, String description, int damage, int cure, int defense, ItemType type, Position position,
-            boolean isload) {
-        // TODO Auto-generated constructor stub
+    public Item(String name, String description, ItemType type, Game game) {
+        Random random = new Random();
+
+        Item randomItem = ItemData.defaultItems[random.nextInt(ItemData.defaultItems.length)];
+
+        this.id = randomItem.getId();
+        this.name = name;
+        this.description = description;
+        this.damage = 0;
+        this.cure = 0;
+        this.defense = 0;
+        this.type = type;
+        this.setPosition(new Position(random.nextInt(game.getMapHeight()), random.nextInt(game.getMapWidth())));
+        this.setId(String.valueOf(new Random().nextInt(1000) + 1));
+        this.setIsCarried(false);
+        this.setGame(game);
     }
 
     public String getId() {
@@ -154,6 +167,8 @@ public class Item implements IThing {
             return "\uD83D\uDD2E";
         } else if (this.type == ItemType.ACCESSORY) {
             return "\uD83D\uDCE2";
+        } else if (this.type == ItemType.DOOR) {
+            return "\uD83D\uDEAA";
         } else {
             return "\u2753";
         }
