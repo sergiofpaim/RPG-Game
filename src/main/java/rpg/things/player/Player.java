@@ -136,4 +136,8 @@ public class Player extends Character implements IInteractive {
                 + this.getMagic()
                 + " - Speed: " + this.getSpeed() + "\n";
     }
+
+    public void destroy() {
+        game.remove(this);
+    }
 }

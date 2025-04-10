@@ -104,4 +104,8 @@ public class NPC extends Character {
                 + getMagic()
                 + " - Speed: " + getSpeed() + "\n";
     }
+
+    public void destroy() {
+        game.remove(this);
+    }
 }
