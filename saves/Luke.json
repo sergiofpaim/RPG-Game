@@ -1,30 +1,29 @@
 {
-  "id" : "165",
-  "mapWidth" : 12,
-  "mapHeight" : 14,
-  "playerId" : "178",
+  "id" : "629",
+  "mapWidth" : 14,
+  "mapHeight" : 12,
   "things" : [ {
     "thing" : "player",
-    "id" : "178",
+    "id" : "20",
     "name" : "Luke",
-    "healthPoints" : 5,
-    "currentHealthPoints" : 5,
-    "attack" : 5,
-    "defense" : 11,
-    "magic" : 5,
-    "speed" : 10,
+    "healthPoints" : 7,
+    "currentHealthPoints" : 4,
+    "attack" : 3,
+    "defense" : 19,
+    "magic" : 1,
+    "speed" : 4,
     "inventory" : {
       "loads" : [ {
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "446",
-          "name" : "Shield",
-          "description" : "A sturdy shield,",
-          "damage" : 0,
+          "id" : "122",
+          "name" : "Sword",
+          "description" : "A sharp sword,",
+          "attack" : 2,
           "cure" : 0,
-          "defense" : 2,
-          "type" : "SHIELD",
+          "defense" : 0,
+          "type" : "WEAPON",
           "position" : {
             "x" : 0,
             "y" : 0
@@ -35,10 +34,10 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "757",
+          "id" : "877",
           "name" : "Boots",
           "description" : "A pair of sturdy boots",
-          "damage" : 0,
+          "attack" : 0,
           "cure" : 0,
           "defense" : 0,
           "type" : "ACCESSORY",
@@ -52,10 +51,10 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "592",
+          "id" : "270",
           "name" : "Clothes",
           "description" : "A set of comfortable clothes",
-          "damage" : 0,
+          "attack" : 0,
           "cure" : 0,
           "defense" : 0,
           "type" : "ACCESSORY",
@@ -69,10 +68,10 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "194",
+          "id" : "377",
           "name" : "Health Potion",
           "description" : "A potion that restores health",
-          "damage" : 0,
+          "attack" : 0,
           "cure" : 10,
           "defense" : 0,
           "type" : "USABLE",
@@ -85,58 +84,78 @@
       } ]
     },
     "position" : {
-      "x" : 0,
-      "y" : 9
+      "x" : 1,
+      "y" : 1
     },
     "description" : null,
     "experience" : 0,
     "level" : 1
   }, {
     "thing" : "item",
-    "id" : "598",
-    "name" : "Amulet",
-    "description" : "Increases health",
-    "damage" : 0,
+    "id" : "557",
+    "name" : "Bow",
+    "description" : "A long-range weapon",
+    "attack" : 2,
     "cure" : 0,
-    "defense" : 5,
-    "type" : "ACCESSORY",
+    "defense" : 0,
+    "type" : "WEAPON",
     "position" : {
-      "x" : 6,
+      "x" : 7,
       "y" : 10
     },
     "isCarried" : false
   }, {
     "thing" : "npc",
     "id" : null,
-    "name" : "Yara",
+    "name" : "Violet",
     "healthPoints" : 6,
     "currentHealthPoints" : 6,
-    "attack" : 8,
-    "defense" : 6,
-    "magic" : 2,
-    "speed" : 3,
+    "attack" : 1,
+    "defense" : 8,
+    "magic" : 1,
+    "speed" : 2,
+    "inventory" : {
+      "loads" : [ ]
+    },
+    "position" : {
+      "x" : 10,
+      "y" : 13
+    },
+    "description" : "a bold visionary",
+    "type" : "NPC",
+    "dialog" : "The sword is an extension of oneself, never let it falter."
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Gareth",
+    "healthPoints" : 6,
+    "currentHealthPoints" : 6,
+    "attack" : 1,
+    "defense" : 8,
+    "magic" : 1,
+    "speed" : 2,
     "inventory" : {
       "loads" : [ ]
     },
     "position" : {
       "x" : 11,
-      "y" : 8
+      "y" : 1
     },
-    "description" : "a skilled warrior",
+    "description" : "a fierce warrior",
     "type" : "NPC",
-    "dialog" : "Victory is earned, not given."
+    "dialog" : "Enemies lurk at every turn; keep your senses sharp."
   }, {
     "thing" : "item",
-    "id" : "173",
+    "id" : "657",
     "name" : "Door",
     "description" : "The passage to a new adventure!",
-    "damage" : 0,
+    "attack" : 0,
     "cure" : 0,
     "defense" : 0,
     "type" : "DOOR",
     "position" : {
-      "x" : 1,
-      "y" : 10
+      "x" : 4,
+      "y" : 2
     },
     "isCarried" : false
   } ]

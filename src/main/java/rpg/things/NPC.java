@@ -5,6 +5,7 @@ import java.util.Random;
 
 import rpg.Game;
 import rpg.templateData.NPCData;
+import rpg.things.player.Player;
 import rpg.types.NPCType;
 
 public class NPC extends Character {
@@ -23,16 +24,16 @@ public class NPC extends Character {
         this.dialog = dialog;
     }
 
-    public NPC(Game game) {
+    public NPC(Game game, Player player) {
         Random random = new Random();
 
         name = NPCData.NAMES[random.nextInt(NPCData.NAMES.length)];
-        healthPoints = random.nextInt(10) + 3;
+        healthPoints = (random.nextInt(player.getLevel()) + 2) * 3;
         currentHealthPoints = healthPoints;
-        attack = random.nextInt(10) + 5;
-        defense = random.nextInt(5) + 3;
-        magic = random.nextInt(5) + 2;
-        speed = random.nextInt(5) + 1;
+        attack = random.nextInt(player.getAttack()) + 1;
+        defense = (random.nextInt(player.getLevel()) / 2) + 8;
+        magic = random.nextInt(player.getLevel()) + 1;
+        speed = random.nextInt(player.getSpeed()) + 2;
         position = new Position(random.nextInt(game.getMapHeight()), random.nextInt(game.getMapWidth()));
         type = NPCType.NPC;
         description = NPCData.DESCRIPTIONS[random.nextInt(NPCData.DESCRIPTIONS.length)];
@@ -40,16 +41,16 @@ public class NPC extends Character {
         this.game = game;
     }
 
-    public NPC(Game game, Position position) {
+    public NPC(Game game, Position position, Player player) {
         Random random = new Random();
 
         name = NPCData.NAMES[random.nextInt(NPCData.NAMES.length)];
-        healthPoints = random.nextInt(10) + 3;
+        healthPoints = (random.nextInt(player.getLevel()) + 2) * 3;
         currentHealthPoints = healthPoints;
-        attack = random.nextInt(10) + 5;
-        defense = random.nextInt(10) + 3;
-        magic = random.nextInt(10) + 2;
-        speed = random.nextInt(10) + 1;
+        attack = random.nextInt(player.getAttack()) + 1;
+        defense = (random.nextInt(player.getLevel()) / 2) + 8;
+        magic = random.nextInt(player.getLevel()) + 1;
+        speed = random.nextInt(player.getSpeed()) + 2;
         this.position = position;
         type = NPCType.ENEMY;
         description = "THE BIG BOSS!";

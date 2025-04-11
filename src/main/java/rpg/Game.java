@@ -18,9 +18,9 @@ import rpg.types.ItemType;
 public class Game extends Thing {
     private int mapWidth;
     private int mapHeight;
-    private String playerId;
     private boolean changed = true;
     private List<IThing> things = new ArrayList<IThing>();
+    private Player player;
 
     private int currentRow = -1;
     private int currentCol = -1;
@@ -36,10 +36,6 @@ public class Game extends Thing {
 
     public int getMapHeight() {
         return mapHeight;
-    }
-
-    public String getPlayerId() {
-        return playerId;
     }
 
     public List<IThing> getThings() {
@@ -68,10 +64,6 @@ public class Game extends Thing {
         this.mapHeight = height;
     }
 
-    public void setPlayerId(String playerId) {
-        this.playerId = playerId;
-    }
-
     public void setThings(List<IThing> things) {
         this.things = things;
     }
@@ -82,7 +74,7 @@ public class Game extends Thing {
         setId(String.valueOf(new Random().nextInt(1000) + 1));
         this.mapWidth = new Random().nextInt(10) + 10;
         this.mapHeight = new Random().nextInt(10) + 10;
-        this.playerId = player.getId();
+        this.player = player;
         this.things.addAll(generateItems());
         this.things.addAll(generateNPCs());
         this.things.addAll(generatePassage());
@@ -94,7 +86,7 @@ public class Game extends Thing {
     private List<IThing> generatePassage() {
         List<IThing> things = new ArrayList<IThing>();
         Item door = new Item("Door", "The passage to a new adventure!", ItemType.DOOR, this);
-        NPC boss = new NPC(this, door.getPosition());
+        NPC boss = new NPC(this, door.getPosition(), player);
 
         things.add(boss);
         things.add(door);
@@ -117,7 +109,7 @@ public class Game extends Thing {
         List<Character> npcs = new ArrayList<Character>();
 
         for (int j = 0; j < new Random().nextInt(4) + 1; j++) {
-            NPC npc = new NPC(this);
+            NPC npc = new NPC(this, player);
             npcs.add(npc);
         }
 
@@ -232,7 +224,7 @@ public class Game extends Thing {
     public void redefineMap(Player player) {
         this.mapWidth = new Random().nextInt(10) + 10;
         this.mapHeight = new Random().nextInt(10) + 10;
-        this.playerId = player.getId();
+        this.player = player;
         this.things.clear();
         this.things.addAll(generateItems());
         this.things.addAll(generateNPCs());

@@ -1,27 +1,26 @@
 {
-  "id" : "39",
-  "mapWidth" : 18,
+  "id" : "461",
+  "mapWidth" : 17,
   "mapHeight" : 10,
-  "playerId" : "869",
   "things" : [ {
     "thing" : "player",
-    "id" : "869",
-    "name" : "SGP",
-    "healthPoints" : 5,
-    "currentHealthPoints" : 5,
-    "attack" : 5,
-    "defense" : 5,
-    "magic" : 5,
-    "speed" : 10,
+    "id" : "208",
+    "name" : "Legolas",
+    "healthPoints" : 7,
+    "currentHealthPoints" : 6,
+    "attack" : 3,
+    "defense" : 17,
+    "magic" : 1,
+    "speed" : 4,
     "inventory" : {
       "loads" : [ {
-        "equipped" : false,
+        "equipped" : true,
         "item" : {
           "thing" : "item",
-          "id" : "575",
+          "id" : "72",
           "name" : "Shield",
           "description" : "A sturdy shield,",
-          "damage" : 0,
+          "attack" : 0,
           "cure" : 0,
           "defense" : 2,
           "type" : "SHIELD",
@@ -35,10 +34,10 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "909",
+          "id" : "167",
           "name" : "Boots",
           "description" : "A pair of sturdy boots",
-          "damage" : 0,
+          "attack" : 0,
           "cure" : 0,
           "defense" : 0,
           "type" : "ACCESSORY",
@@ -52,10 +51,10 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "423",
+          "id" : "153",
           "name" : "Clothes",
           "description" : "A set of comfortable clothes",
-          "damage" : 0,
+          "attack" : 0,
           "cure" : 0,
           "defense" : 0,
           "type" : "ACCESSORY",
@@ -69,10 +68,10 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "129",
+          "id" : "301",
           "name" : "Health Potion",
           "description" : "A potion that restores health",
-          "damage" : 0,
+          "attack" : 0,
           "cure" : 10,
           "defense" : 0,
           "type" : "USABLE",
@@ -82,135 +81,132 @@
           },
           "isCarried" : true
         }
+      }, {
+        "equipped" : true,
+        "item" : {
+          "thing" : "item",
+          "id" : "910",
+          "name" : "Armor",
+          "description" : "Protects your body",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 5,
+          "type" : "ARMOR",
+          "position" : {
+            "x" : 5,
+            "y" : 3
+          },
+          "isCarried" : true
+        }
       } ]
     },
     "position" : {
-      "x" : 0,
-      "y" : 2
+      "x" : 12,
+      "y" : 1
     },
     "description" : null,
     "experience" : 0,
     "level" : 1
   }, {
     "thing" : "item",
-    "id" : "333",
+    "id" : "613",
     "name" : "Shield",
     "description" : "A sturdy shield",
-    "damage" : 0,
+    "attack" : 0,
     "cure" : 0,
-    "defense" : 10,
+    "defense" : 2,
     "type" : "SHIELD",
     "position" : {
-      "x" : 9,
-      "y" : 17
+      "x" : 5,
+      "y" : 14
     },
     "isCarried" : false
   }, {
     "thing" : "item",
-    "id" : "313",
-    "name" : "Staff",
-    "description" : "A magical staff",
-    "damage" : 5,
+    "id" : "843",
+    "name" : "Bow",
+    "description" : "A long-range weapon",
+    "attack" : 2,
     "cure" : 0,
-    "defense" : 5,
+    "defense" : 0,
     "type" : "WEAPON",
     "position" : {
-      "x" : 1,
-      "y" : 14
+      "x" : 4,
+      "y" : 15
     },
     "isCarried" : false
   }, {
     "thing" : "npc",
     "id" : null,
-    "name" : "Jovan",
-    "healthPoints" : 10,
-    "currentHealthPoints" : 10,
-    "attack" : 8,
-    "defense" : 6,
-    "magic" : 6,
+    "name" : "Calix",
+    "healthPoints" : 6,
+    "currentHealthPoints" : 6,
+    "attack" : 3,
+    "defense" : 8,
+    "magic" : 1,
     "speed" : 5,
     "inventory" : {
       "loads" : [ ]
     },
     "position" : {
-      "x" : 2,
-      "y" : 11
+      "x" : 4,
+      "y" : 7
     },
-    "description" : "a thoughtful mentor",
+    "description" : "a rugged nomad",
     "type" : "NPC",
-    "dialog" : "The stars hold secrets for those who dare to look."
+    "dialog" : "The sword is an extension of oneself, never let it falter."
   }, {
     "thing" : "npc",
     "id" : null,
-    "name" : "Harlow",
+    "name" : "Zorin",
     "healthPoints" : 6,
     "currentHealthPoints" : 6,
-    "attack" : 6,
-    "defense" : 6,
-    "magic" : 5,
-    "speed" : 1,
+    "attack" : 2,
+    "defense" : 8,
+    "magic" : 1,
+    "speed" : 5,
     "inventory" : {
       "loads" : [ ]
     },
     "position" : {
-      "x" : 6,
-      "y" : 16
+      "x" : 7,
+      "y" : 14
     },
-    "description" : "a fierce protector",
+    "description" : "a jovial trickster",
     "type" : "NPC",
-    "dialog" : "A storm may rage, but it cannot bend a resolute spirit."
+    "dialog" : "Kindness is the light that illuminates the harshest paths."
   }, {
     "thing" : "npc",
     "id" : null,
-    "name" : "Xanthe",
-    "healthPoints" : 5,
-    "currentHealthPoints" : 5,
-    "attack" : 7,
-    "defense" : 5,
-    "magic" : 3,
-    "speed" : 2,
+    "name" : "Zuri",
+    "healthPoints" : 6,
+    "currentHealthPoints" : 6,
+    "attack" : 2,
+    "defense" : 8,
+    "magic" : 1,
+    "speed" : 3,
     "inventory" : {
       "loads" : [ ]
     },
     "position" : {
-      "x" : 4,
-      "y" : 0
-    },
-    "description" : "a spirited wanderer",
-    "type" : "NPC",
-    "dialog" : "Duty binds me, but my soul is free."
-  }, {
-    "thing" : "npc",
-    "id" : null,
-    "name" : "Elena",
-    "healthPoints" : 10,
-    "currentHealthPoints" : 10,
-    "attack" : 10,
-    "defense" : 10,
-    "magic" : 5,
-    "speed" : 8,
-    "inventory" : {
-      "loads" : [ ]
-    },
-    "position" : {
-      "x" : 2,
-      "y" : 7
+      "x" : 1,
+      "y" : 2
     },
     "description" : "THE BIG BOSS!",
     "type" : "ENEMY",
     "dialog" : "KILL ME IF YOU WANT TO ACCESS THE DOOR! HAHAHAHA!"
   }, {
     "thing" : "item",
-    "id" : "547",
+    "id" : "776",
     "name" : "Door",
     "description" : "The passage to a new adventure!",
-    "damage" : 0,
+    "attack" : 0,
     "cure" : 0,
     "defense" : 0,
     "type" : "DOOR",
     "position" : {
-      "x" : 2,
-      "y" : 7
+      "x" : 1,
+      "y" : 2
     },
     "isCarried" : false
   } ]

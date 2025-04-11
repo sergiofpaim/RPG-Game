@@ -25,7 +25,6 @@ public class InventoryInteraction extends Interaction {
         List<Entry<Command, String>> menu = new ArrayList<>(super.retrieveMenu());
         if (load.getItem().getType() != ItemType.USABLE) {
             menu.addAll(Arrays.asList(
-                    new AbstractMap.SimpleEntry<>(Command.USE_ITEM, "Use"),
                     new AbstractMap.SimpleEntry<>(Command.EQUIP_ITEM, "Equip"),
                     new AbstractMap.SimpleEntry<>(Command.UNEQUIP_ITEM, "Unequip"),
                     new AbstractMap.SimpleEntry<>(Command.DROP_ITEM, "Drop"),
@@ -45,7 +44,7 @@ public class InventoryInteraction extends Interaction {
 
         if (command == Command.LOOK) {
             messages.add(
-                    "\n Item: " + load.getItem().getName() +
+                    "\nItem: " + load.getItem().getName() +
                             "\nDescription: " + load.getItem().getDescription() +
                             "\nStats: " + load.getItem().showStats());
 
@@ -91,7 +90,7 @@ public class InventoryInteraction extends Interaction {
     public void equipItem(Load load) {
         if (!load.getEquipped()) {
             load.setEquipped(true);
-            player.setAttack(player.getAttack() + load.getItem().getDamage());
+            player.setAttack(player.getAttack() + load.getItem().getAttack());
             player.setDefense(player.getDefense() + load.getItem().getDefense());
         }
     }
@@ -99,7 +98,7 @@ public class InventoryInteraction extends Interaction {
     public void unequipItem(Load load) {
         if (load.getEquipped()) {
             load.setEquipped(false);
-            player.setAttack(player.getAttack() - load.getItem().getDamage());
+            player.setAttack(player.getAttack() - load.getItem().getAttack());
             player.setDefense(player.getDefense() - load.getItem().getDefense());
         }
     }

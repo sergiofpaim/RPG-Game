@@ -10,19 +10,10 @@ import rpg.types.ItemType;
 
 public class PlayerCreator {
     public static Player createPlayer() {
-        int points = 30;
+        int points = 10;
 
         System.out.println("\nEnter your character's name: ");
         String name = RPGGame.scan.nextLine();
-
-        int health = setAttributes("Health", points);
-        points -= health;
-
-        while (health == 0) {
-            System.out.println("Health cannot be 0. Please allocate at least 1 point to Health.");
-            health = setAttributes("Health", points);
-            points -= health;
-        }
 
         int attack = setAttributes("Attack", points);
         points -= attack;
@@ -33,15 +24,13 @@ public class PlayerCreator {
         int magic = setAttributes("Magic", points);
         points -= magic;
 
-        int speed = points;
-        if (speed > 10) {
-            speed = 10;
-        }
+        int speed = points + 1;
+
         System.out.println("Speed is automatically set to: " + speed);
 
         List<Item> inventory = getInitialItems();
 
-        return new Player(name, health, health, attack, defense, magic, speed, inventory, new Position(), 0, 1);
+        return new Player(name, 7, 7, attack, defense + 7, magic, speed, inventory, new Position(), 0, 1);
     }
 
     private static List<Item> getInitialItems() {
@@ -77,18 +66,24 @@ public class PlayerCreator {
     }
 
     private static int setAttributes(String statName, int availablePoints) {
-        int value;
+        int value = -1;
         do {
-            System.out.println("Enter " + statName + " (1-10, remaining points: " + availablePoints + "): ");
-            value = RPGGame.scan.nextInt();
+            System.out.println("Enter " + statName + " (1-3, remaining points: " + availablePoints + "): ");
 
-            if (value < 0 || value > 10) {
-                System.out.println("Invalid input! " + statName + " must be between 1 and 10.");
-            } else if (value > availablePoints) {
-                System.out.println("Not enough points! You only have " + availablePoints + " remaining.");
+            if (RPGGame.scan.hasNextInt()) {
+                value = RPGGame.scan.nextInt();
+                if (value < 1 || value > 3) {
+                    System.out.println("Invalid input! " + statName + " must be between 1 and 3.");
+                } else if (value > availablePoints) {
+                    System.out.println("Not enough points! You only have " + availablePoints + " remaining.");
+                }
+            } else {
+                System.out.println("Please enter a valid number.");
+                RPGGame.scan.next();
             }
-        } while (value < 0 || value > 10 || value > availablePoints);
+        } while (value < 1 || value > 3 || value > availablePoints);
 
         return value;
     }
+
 }

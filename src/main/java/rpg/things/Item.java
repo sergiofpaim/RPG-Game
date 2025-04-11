@@ -11,7 +11,7 @@ public class Item implements IThing {
     private String id;
     private String name;
     private String description;
-    private int damage;
+    private int attack;
     private int cure;
     private int defense;
     private ItemType type;
@@ -22,11 +22,11 @@ public class Item implements IThing {
     public Item() {
     }
 
-    public Item(String name, String description, int damage, int cure, int defense, ItemType type, boolean isCarried) {
+    public Item(String name, String description, int attack, int cure, int defense, ItemType type, boolean isCarried) {
         this.id = String.valueOf((int) (Math.random() * 1000) + 1);
         this.name = name;
         this.description = description;
-        this.damage = damage;
+        this.attack = attack;
         this.cure = cure;
         this.defense = defense;
         this.type = type;
@@ -41,7 +41,7 @@ public class Item implements IThing {
         this.id = randomItem.getId();
         this.name = randomItem.getName();
         this.description = randomItem.getDescription();
-        this.damage = randomItem.getDamage();
+        this.attack = randomItem.getAttack();
         this.cure = randomItem.getCure();
         this.defense = randomItem.getDefense();
         this.type = randomItem.getType();
@@ -59,11 +59,11 @@ public class Item implements IThing {
         this.id = randomItem.getId();
         this.name = name;
         this.description = description;
-        this.damage = 0;
+        this.attack = 0;
         this.cure = 0;
         this.defense = 0;
         this.type = type;
-        this.setPosition(new Position(random.nextInt(game.getMapHeight()), random.nextInt(game.getMapWidth())));
+        this.setPosition(new Position(random.nextInt(game.getMapHeight()) - 1, random.nextInt(game.getMapWidth()) - 1));
         this.setId(String.valueOf(new Random().nextInt(1000) + 1));
         this.setIsCarried(false);
         this.setGame(game);
@@ -81,8 +81,8 @@ public class Item implements IThing {
         return description;
     }
 
-    public int getDamage() {
-        return damage;
+    public int getAttack() {
+        return attack;
     }
 
     public int getCure() {
@@ -117,8 +117,8 @@ public class Item implements IThing {
         this.description = description;
     }
 
-    public void setDamage(int damage) {
-        this.damage = damage;
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     public void setCure(int cure) {
@@ -166,7 +166,7 @@ public class Item implements IThing {
         } else if (this.type == ItemType.USABLE) {
             return "\uD83D\uDD2E";
         } else if (this.type == ItemType.ACCESSORY) {
-            return "\uD83D\uDCE2";
+            return " \u25CF";
         } else if (this.type == ItemType.DOOR) {
             return "\uD83D\uDEAA";
         } else {
@@ -176,12 +176,10 @@ public class Item implements IThing {
 
     @Override
     public String showStats() {
-        return "Item's name: " +
-                this.name + " - Damage: "
-                + this.damage + " - Defense: "
+        return "Attack: "
+                + this.attack + " - Defense: "
                 + this.defense
-                + " - Cure: " + this.cure + " - Description: "
-                + this.description
+                + " - Cure: " + this.cure
                 + "\n";
     }
 

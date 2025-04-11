@@ -41,6 +41,7 @@ public class Inventory implements IInteractive {
 
     @Override
     public List<String> processCommand(Command command) {
+        List<String> messages = new ArrayList<>();
 
         if (command == Command.STOP_INTERACTION) {
             Interface.remove(this);
@@ -52,9 +53,10 @@ public class Inventory implements IInteractive {
                 Interface.remove(this);
                 Interface.add(interaction);
             }
-        }
+        } else
+            messages.addAll(showInventory());
 
-        return showInventory();
+        return messages;
     }
 
     public List<String> showInventory() {
