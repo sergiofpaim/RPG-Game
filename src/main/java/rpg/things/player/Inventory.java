@@ -62,8 +62,7 @@ public class Inventory implements IInteractive {
     public List<String> showInventory() {
         List<String> messages = new ArrayList<>();
 
-        messages.add("\nYou have got these things in your inventory:\n");
-        messages.add("\n--- Inventory ---\n");
+        messages.add("\n───── Inventory ─────");
 
         int count = 0;
         for (Load load : loads) {
@@ -75,7 +74,6 @@ public class Inventory implements IInteractive {
                 messages.add(
                         ++count + ") " + load.getItem().draw() + " " + load.getItem().getName());
         }
-        messages.add("------------------\n");
 
         return messages;
     }
@@ -86,8 +84,11 @@ public class Inventory implements IInteractive {
 
     public void dropLoad(Load load) {
         loads.remove(load);
-        // TODO: Check if item is still on the map after being thrown
-        load.getItem().setPosition(new Position(player.getPosition().getX(), player.getPosition().getY() + 1));
+        if (player.isOnMapLimits())
+            load.getItem().setPosition(new Position(player.getPosition().getX(), player.getPosition().getY() - 1));
+        else
+            load.getItem().setPosition(new Position(player.getPosition().getX(), player.getPosition().getY() + 1));
+
         load.getItem().drop();
     }
 

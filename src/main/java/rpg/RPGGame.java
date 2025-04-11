@@ -28,7 +28,7 @@ public class RPGGame {
         Game game = null;
 
         while (player == null) {
-            System.out.println("\nWould you like to create a new character? (y/n)\n");
+            System.out.print("Would you like to create a new character? (y/n) ");
             String choice = scan.nextLine().trim().toLowerCase();
 
             if (choice.equals("y")) {
@@ -38,7 +38,7 @@ public class RPGGame {
 
             else if (choice.equals("n")) {
                 if (sessions.isEmpty())
-                    System.out.println("\nNo characters available. You must create one first.\n");
+                    System.out.println("\nNo characters available. You must create one first.");
                 else {
                     game = selectSavedGame();
                     return game;
@@ -46,10 +46,10 @@ public class RPGGame {
             }
 
             else {
-                System.out.println("\nInvalid input. Please enter 'y' or 'n'.\n");
+                System.out.println("\nInvalid input. Please enter 'y' or 'n'.");
             }
         }
-        System.out.println("\n" + player.getName() + " selected!\n");
+        System.out.println("\n" + player.getName() + " selected!");
 
         return game;
     }

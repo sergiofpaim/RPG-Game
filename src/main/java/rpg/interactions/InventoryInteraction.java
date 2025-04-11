@@ -43,10 +43,11 @@ public class InventoryInteraction extends Interaction {
         List<String> messages = new ArrayList<>();
 
         if (command == Command.LOOK) {
+            messages.add("\n──── Item Stats ────");
             messages.add(
                     "\nItem: " + load.getItem().getName() +
                             "\nDescription: " + load.getItem().getDescription() +
-                            "\nStats: " + load.getItem().showStats());
+                            "\n" + load.getItem().showStats() + "\n");
 
             Interface.remove(this);
         }

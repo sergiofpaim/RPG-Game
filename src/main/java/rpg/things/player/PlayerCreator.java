@@ -12,7 +12,7 @@ public class PlayerCreator {
     public static Player createPlayer() {
         int points = 10;
 
-        System.out.println("\nEnter your character's name: ");
+        System.out.print("\nEnter your character's name: ");
         String name = RPGGame.scan.nextLine();
 
         int attack = setAttributes("Attack", points);
@@ -37,24 +37,24 @@ public class PlayerCreator {
         List<Item> inventory = new ArrayList<>();
 
         System.out.println("Pick 1 of the following items: ");
-        System.out.println("1. Sword (Damage +2)");
-        System.out.println("2. Shield (Defense +2)");
-        System.out.println("3. Staff (Magic +2)");
+        System.out.println("   1. Sword (Damage +2)");
+        System.out.println("   2. Shield (Defense +2)");
+        System.out.println("   3. Staff (Magic +2)");
 
         int choice = RPGGame.scan.nextInt();
 
         if (choice == 1) {
             System.out.print("You got a sword");
-            inventory.add(new Item("Sword", "A sharp sword,", 2, 0, 0, ItemType.WEAPON, true));
+            inventory.add(new Item("Sword", "A sharp sword", 2, 0, 0, ItemType.WEAPON, true));
         } else if (choice == 2) {
             System.out.print("You got a shield");
-            inventory.add(new Item("Shield", "A sturdy shield,", 0, 0, 2, ItemType.SHIELD, true));
+            inventory.add(new Item("Shield", "A sturdy shield", 0, 0, 2, ItemType.SHIELD, true));
         } else if (choice == 3) {
             System.out.print("You got a staff");
-            inventory.add(new Item("Staff", "A magical staff,", 0, 0, 0, ItemType.WEAPON, true));
+            inventory.add(new Item("Staff", "A magical staff", 0, 0, 0, ItemType.WEAPON, true));
         } else {
             System.out.print("Invalid answer! You got a sword by default,");
-            inventory.add(new Item("Sword", "A sharp sword,", 2, 0, 0, ItemType.WEAPON, true));
+            inventory.add(new Item("Sword", "A sharp sword", 2, 0, 0, ItemType.WEAPON, true));
         }
         System.out.print(" clothes, and a health potion.\n");
 
@@ -68,7 +68,7 @@ public class PlayerCreator {
     private static int setAttributes(String statName, int availablePoints) {
         int value = -1;
         do {
-            System.out.println("Enter " + statName + " (1-3, remaining points: " + availablePoints + "): ");
+            System.out.print("Enter " + statName + " (1-3, remaining points: " + availablePoints + "): ");
 
             if (RPGGame.scan.hasNextInt()) {
                 value = RPGGame.scan.nextInt();

@@ -3,6 +3,8 @@ package rpg.things;
 import java.util.List;
 import java.util.Random;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import rpg.Game;
 import rpg.interfaces.IThing;
 import rpg.things.player.Inventory;
@@ -19,7 +21,6 @@ public abstract class Character extends Thing implements IThing {
     protected Position position;
     protected String description;
     protected Game game;
-    // protected Inventory inventory;
 
     public Character() {
     }
@@ -108,5 +109,23 @@ public abstract class Character extends Thing implements IThing {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    @JsonIgnore
+    public boolean isOnMapLimits() {
+        if (position.getY() == game.getMapHeight() - 1)
+            return true;
+
+        return false;
+    }
+
+    public String showStats() {
+        return "Total Health: " +
+                this.getHealthPoints() + "\nCurrent Health: "
+                + this.getCurrentHealthPoints() + "\nAttack: "
+                + this.getAttack()
+                + "\nDefense: " + this.getDefense() + "\nMagic: "
+                + this.getMagic()
+                + "\nSpeed: " + this.getSpeed();
     }
 }

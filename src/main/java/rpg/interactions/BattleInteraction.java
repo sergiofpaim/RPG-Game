@@ -14,10 +14,14 @@ import rpg.things.player.Player;
 import rpg.types.Command;
 
 public class BattleInteraction extends Interaction {
+    private static final int DEFENSE_INCREMENT = 3;
+
     private NPC npc;
 
     private boolean firstTurn = true;
     private boolean initiative = true;
+    private boolean usedDefensePlayer = false;
+    private boolean usedDefenseNPC = false;
 
     public BattleInteraction(Player player, NPC npc) {
         super(player);
@@ -50,6 +54,8 @@ public class BattleInteraction extends Interaction {
             messages.addAll(player.getInventory().showInventory());
         }
 
+        // TODO: ShowStatus NPC e Player
+
         else
             controlBattle(command, messages, random);
 
@@ -79,32 +85,37 @@ public class BattleInteraction extends Interaction {
         }
     }
 
+    // TODO: Usar item em batalha sem apanhar
+    // TODO: Usar itens de dano apenas em batalha
+    // TODO: Big boss não aparecendo de vez em quando
+
     private List<String> playerTurn(Command command) {
-        Random random = new Random();
         List<String> messages = new ArrayList<>();
 
+        if (usedDefensePlayer) {
+            player.setDefense(player.getDefense() - DEFENSE_INCREMENT);
+            usedDefensePlayer = false;
+        }
+
         if (command == Command.ATTACK) {
-            if (random.nextInt(20) + player.getSpeed() > npc.getDefense()) {
-                npc.setCurrentHealthPoints(npc.getCurrentHealthPoints() - player.getAttack());
-                messages.add("\nYou attack the enemy, causing: " + player.getAttack() + " damage");
-            } else {
+            if (rollD20(player.getSpeed(), npc.getDefense()))
+                messages.add(npc.takeDamage(player.getAttack()));
+            else
                 messages.add("\nYou miss the attack, causing: 0 damage");
-            }
 
         } else if (command == Command.DEFEND) {
-            player.setDefense(player.getDefense() + 3);
-            messages.add("\nYou defend and increase your defense by 3");
-
+            player.setDefense(player.getDefense() + DEFENSE_INCREMENT);
+            messages.add("\nYou defend and increase your defense by " + DEFENSE_INCREMENT);
+            usedDefensePlayer = true;
         } else if (command == Command.MAGIC) {
-            if (random.nextInt(20) + player.getSpeed() > npc.getDefense()) {
+            if (rollD20(player.getSpeed(), npc.getDefense())) {
                 npc.setCurrentHealthPoints(npc.getCurrentHealthPoints() - player.getMagic());
                 messages.add("\nYou use magic on the enemy, causing: " + player.getMagic() + " damage");
             } else {
                 messages.add("\nYou miss the magic, causing: 0 damage");
             }
-
         } else if (command == Command.RUN) {
-            if (random.nextInt(20) + player.getSpeed() > random.nextInt(20) + npc.getSpeed()) {
+            if (rollD20(player.getSpeed()) > rollD20(npc.getSpeed())) {
                 messages.add("\nYou run away from the fight");
                 Interface.remove(this);
                 return messages;
@@ -116,6 +127,7 @@ public class BattleInteraction extends Interaction {
         if (npc.getCurrentHealthPoints() <= 0) {
             messages.add("You defeated: " + npc.getName());
             npc.destroy();
+
             Interface.remove(this);
         }
 
@@ -123,21 +135,26 @@ public class BattleInteraction extends Interaction {
     }
 
     private List<String> npcAttack() {
-        Random random = new Random();
         int npcDecision = npc.decideAction();
         List<String> messages = new ArrayList<>();
 
+        if (usedDefenseNPC) {
+            player.setDefense(player.getDefense() - DEFENSE_INCREMENT);
+            usedDefenseNPC = false;
+        }
+
         if (npcDecision == 1) {
-            if (random.nextInt(20) + npc.getSpeed() > player.getDefense()) {
+            if (rollD20(npc.getSpeed(), player.getDefense())) {
                 player.setCurrentHealthPoints(player.getCurrentHealthPoints() - npc.getAttack());
                 messages.add("\nThe enemy attacks you, causing: " + npc.getAttack() + " damage");
             } else
                 messages.add("\nThe enemy misses the attack, causing: 0 damage");
         } else if (npcDecision == 2) {
-            player.setDefense(player.getDefense() + 3);
-            messages.add("\nThe enemy defended and increased his defense by 3");
+            npc.setDefense(npc.getDefense() + DEFENSE_INCREMENT);
+            messages.add("\nThe enemy defended and increased his defense by " + DEFENSE_INCREMENT);
+            usedDefenseNPC = true;
         } else if (npcDecision == 3) {
-            if (random.nextInt(20) + npc.getSpeed() > player.getDefense()) {
+            if (rollD20(npc.getSpeed(), player.getDefense())) {
                 player.setCurrentHealthPoints(player.getCurrentHealthPoints() - npc.getMagic());
                 messages.add("\nThe enemy used magic on you, causing: " + npc.getMagic() + " damage");
             } else
@@ -153,6 +170,14 @@ public class BattleInteraction extends Interaction {
         }
 
         return messages;
+    }
+
+    private static boolean rollD20(int modifier, int saving) {
+        return new Random().nextInt(20) + modifier > saving;
+    }
+
+    private static int rollD20(int modifier) {
+        return new Random().nextInt(20) + modifier;
     }
 
     @Override

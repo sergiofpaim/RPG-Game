@@ -6,5 +6,6 @@ public enum ItemType {
     SHIELD,
     USABLE,
     ACCESSORY,
-    DOOR
+    DOOR,
+    BAG
 }

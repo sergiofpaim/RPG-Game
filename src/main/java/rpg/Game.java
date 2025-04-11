@@ -86,7 +86,7 @@ public class Game extends Thing {
     private List<IThing> generatePassage() {
         List<IThing> things = new ArrayList<IThing>();
         Item door = new Item("Door", "The passage to a new adventure!", ItemType.DOOR, this);
-        NPC boss = new NPC(this, door.getPosition(), player);
+        NPC boss = new NPC(this, player, door.getPosition());
 
         things.add(boss);
         things.add(door);

@@ -1,11 +1,11 @@
 {
-  "id" : "868",
-  "mapWidth" : 15,
-  "mapHeight" : 17,
+  "id" : "364",
+  "mapWidth" : 14,
+  "mapHeight" : 16,
   "things" : [ {
     "thing" : "player",
-    "id" : "316",
-    "name" : "Luke",
+    "id" : "450",
+    "name" : "asfdjk",
     "healthPoints" : 7,
     "currentHealthPoints" : 7,
     "attack" : 3,
@@ -17,9 +17,9 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "742",
+          "id" : "60",
           "name" : "Sword",
-          "description" : "A sharp sword,",
+          "description" : "A sharp sword",
           "attack" : 2,
           "cure" : 0,
           "defense" : 0,
@@ -34,7 +34,7 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "518",
+          "id" : "981",
           "name" : "Boots",
           "description" : "A pair of sturdy boots",
           "attack" : 0,
@@ -51,7 +51,7 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "464",
+          "id" : "730",
           "name" : "Clothes",
           "description" : "A set of comfortable clothes",
           "attack" : 0,
@@ -68,7 +68,7 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "770",
+          "id" : "543",
           "name" : "Health Potion",
           "description" : "A potion that restores health",
           "attack" : 0,
@@ -84,15 +84,16 @@
       } ]
     },
     "position" : {
-      "x" : 3,
-      "y" : 4
+      "x" : 0,
+      "y" : 0
     },
     "description" : null,
     "experience" : 0,
-    "level" : 1
+    "level" : 1,
+    "onMapLimits" : false
   }, {
     "thing" : "item",
-    "id" : "773",
+    "id" : "328",
     "name" : "Amulet",
     "description" : "Increases health",
     "attack" : 0,
@@ -100,10 +101,65 @@
     "defense" : 0,
     "type" : "ACCESSORY",
     "position" : {
-      "x" : 7,
-      "y" : 4
+      "x" : 15,
+      "y" : 7
     },
     "isCarried" : false
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Mira",
+    "healthPoints" : 6,
+    "currentHealthPoints" : 6,
+    "attack" : 2,
+    "defense" : 8,
+    "magic" : 1,
+    "speed" : 3,
+    "inventory" : {
+      "loads" : [ {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "79",
+          "name" : "Bag",
+          "description" : "a simple leather bag",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "BAG",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : false
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "456",
+          "name" : "Armor",
+          "description" : "Protects your body",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 5,
+          "type" : "ARMOR",
+          "position" : {
+            "x" : 15,
+            "y" : 5
+          },
+          "isCarried" : false
+        }
+      } ]
+    },
+    "position" : {
+      "x" : 9,
+      "y" : 1
+    },
+    "description" : "a brave knight",
+    "type" : "NPC",
+    "dialog" : "Duty binds me, but my soul is free.",
+    "onMapLimits" : false
   }, {
     "thing" : "npc",
     "id" : null,
@@ -119,7 +175,7 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "352",
+          "id" : "133",
           "name" : "Bag",
           "description" : "a simple leather bag",
           "attack" : 0,
@@ -136,32 +192,33 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "969",
-          "name" : "Amulet",
-          "description" : "Increases health",
+          "id" : "834",
+          "name" : "Armor",
+          "description" : "Protects your body",
           "attack" : 0,
           "cure" : 0,
-          "defense" : 0,
-          "type" : "ACCESSORY",
+          "defense" : 5,
+          "type" : "ARMOR",
           "position" : {
-            "x" : 14,
-            "y" : 13
+            "x" : 3,
+            "y" : 9
           },
           "isCarried" : false
         }
       } ]
     },
     "position" : {
-      "x" : 7,
-      "y" : 12
+      "x" : 4,
+      "y" : 2
     },
-    "description" : "a charismatic bard",
+    "description" : "a stealthy assassin",
     "type" : "NPC",
-    "dialog" : "The bravest acts often go unnoticed."
+    "dialog" : "Every potion tells a story, and I am its author.",
+    "onMapLimits" : false
   }, {
     "thing" : "npc",
     "id" : null,
-    "name" : "Alden",
+    "name" : "Marek",
     "healthPoints" : 6,
     "currentHealthPoints" : 6,
     "attack" : 1,
@@ -173,7 +230,7 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "670",
+          "id" : "530",
           "name" : "Bag",
           "description" : "a simple leather bag",
           "attack" : 0,
@@ -190,7 +247,7 @@
         "equipped" : false,
         "item" : {
           "thing" : "item",
-          "id" : "818",
+          "id" : "870",
           "name" : "Sword",
           "description" : "A sharp blade",
           "attack" : 2,
@@ -198,77 +255,24 @@
           "defense" : 0,
           "type" : "WEAPON",
           "position" : {
-            "x" : 10,
-            "y" : 1
+            "x" : 8,
+            "y" : 6
           },
           "isCarried" : false
         }
       } ]
     },
     "position" : {
-      "x" : 3,
-      "y" : 7
-    },
-    "description" : "a loyal companion",
-    "type" : "NPC",
-    "dialog" : "The soul’s strength is measured in its capacity for compassion."
-  }, {
-    "thing" : "npc",
-    "id" : null,
-    "name" : "Mira",
-    "healthPoints" : 6,
-    "currentHealthPoints" : 6,
-    "attack" : 1,
-    "defense" : 8,
-    "magic" : 1,
-    "speed" : 3,
-    "inventory" : {
-      "loads" : [ {
-        "equipped" : false,
-        "item" : {
-          "thing" : "item",
-          "id" : "194",
-          "name" : "Bag",
-          "description" : "a simple leather bag",
-          "attack" : 0,
-          "cure" : 0,
-          "defense" : 0,
-          "type" : "BAG",
-          "position" : {
-            "x" : 0,
-            "y" : 0
-          },
-          "isCarried" : false
-        }
-      }, {
-        "equipped" : false,
-        "item" : {
-          "thing" : "item",
-          "id" : "780",
-          "name" : "Amulet",
-          "description" : "Increases health",
-          "attack" : 0,
-          "cure" : 0,
-          "defense" : 0,
-          "type" : "ACCESSORY",
-          "position" : {
-            "x" : 9,
-            "y" : 1
-          },
-          "isCarried" : false
-        }
-      } ]
-    },
-    "position" : {
-      "x" : 3,
-      "y" : 6
+      "x" : 0,
+      "y" : 11
     },
     "description" : "THE BIG BOSS!",
     "type" : "ENEMY",
-    "dialog" : "KILL ME IF YOU WANT TO ACCESS THE DOOR! HAHAHAHA!"
+    "dialog" : "KILL ME IF YOU WANT TO ACCESS THE DOOR! HAHAHAHA!",
+    "onMapLimits" : false
   }, {
     "thing" : "item",
-    "id" : "970",
+    "id" : "630",
     "name" : "Door",
     "description" : "The passage to a new adventure!",
     "attack" : 0,
@@ -276,8 +280,8 @@
     "defense" : 0,
     "type" : "DOOR",
     "position" : {
-      "x" : 3,
-      "y" : 6
+      "x" : 0,
+      "y" : 11
     },
     "isCarried" : false
   } ]

@@ -1,11 +1,12 @@
 package rpg.things;
 
-import java.util.List;
 import java.util.Random;
 
 import rpg.Game;
 import rpg.templateData.NPCData;
+import rpg.things.player.Load;
 import rpg.things.player.Player;
+import rpg.types.ItemType;
 import rpg.types.NPCType;
 
 public class NPC extends Character {
@@ -16,32 +17,11 @@ public class NPC extends Character {
     public NPC() {
     }
 
-    public NPC(String name, int health, int currentHealth, int attack, int defense, int magic, int speed,
-            List<Item> inventory, Position position, NPCType type, String description, String dialog) {
-        super(name, health, currentHealth, attack, defense, magic, speed, inventory, position);
-        this.type = type;
-        this.description = description;
-        this.dialog = dialog;
-    }
-
     public NPC(Game game, Player player) {
-        Random random = new Random();
-
-        name = NPCData.NAMES[random.nextInt(NPCData.NAMES.length)];
-        healthPoints = (random.nextInt(player.getLevel()) + 2) * 3;
-        currentHealthPoints = healthPoints;
-        attack = random.nextInt(player.getAttack()) + 1;
-        defense = (random.nextInt(player.getLevel()) / 2) + 8;
-        magic = random.nextInt(player.getLevel()) + 1;
-        speed = random.nextInt(player.getSpeed()) + 2;
-        position = new Position(random.nextInt(game.getMapHeight()), random.nextInt(game.getMapWidth()));
-        type = NPCType.NPC;
-        description = NPCData.DESCRIPTIONS[random.nextInt(NPCData.DESCRIPTIONS.length)];
-        dialog = NPCData.DIALOGS[random.nextInt(NPCData.DIALOGS.length)];
-        this.game = game;
+        this(game, player, null);
     }
 
-    public NPC(Game game, Position position, Player player) {
+    public NPC(Game game, Player player, Position position) {
         Random random = new Random();
 
         name = NPCData.NAMES[random.nextInt(NPCData.NAMES.length)];
@@ -51,11 +31,24 @@ public class NPC extends Character {
         defense = (random.nextInt(player.getLevel()) / 2) + 8;
         magic = random.nextInt(player.getLevel()) + 1;
         speed = random.nextInt(player.getSpeed()) + 2;
-        this.position = position;
-        type = NPCType.ENEMY;
-        description = "THE BIG BOSS!";
-        dialog = "KILL ME IF YOU WANT TO ACCESS THE DOOR! HAHAHAHA!";
-        this.game = game;
+
+        if (position == null) {
+            this.position = new Position(
+                    random.nextInt(game.getMapHeight()),
+                    random.nextInt(game.getMapWidth()));
+            type = NPCType.NPC;
+            description = NPCData.DESCRIPTIONS[random.nextInt(NPCData.DESCRIPTIONS.length)];
+            dialog = NPCData.DIALOGS[random.nextInt(NPCData.DIALOGS.length)];
+        } else {
+            this.position = position;
+            type = NPCType.ENEMY;
+            description = "THE BIG BOSS!";
+            dialog = "KILL ME IF YOU WANT TO ACCESS THE DOOR! HAHAHAHA!";
+        }
+
+        inventory.addItem(new Item("Bag", "a simple leather bag", 0, 0, 0, ItemType.BAG, false));
+        inventory.addItem(new Item(game));
+        setGame(game);
     }
 
     public NPCType getType() {
@@ -84,6 +77,7 @@ public class NPC extends Character {
 
     public void setGame(Game game) {
         this.game = game;
+        inventory.setGame(game);
     }
 
     @Override
@@ -95,18 +89,12 @@ public class NPC extends Character {
         }
     }
 
-    @Override
-    public String showStats() {
-        return "Total Health: " +
-                getHealthPoints() + " - Current Health: "
-                + getCurrentHealthPoints() + " - Attack: "
-                + getAttack()
-                + " - Defense: " + getDefense() + " - Magic: "
-                + getMagic()
-                + " - Speed: " + getSpeed() + "\n";
-    }
-
     public void destroy() {
+        for (Load load : getInventory().getLoads()) {
+            // TODO: Generalizar inventory para Character
+            // load.getItem().setPosition(position);
+            load.getItem().drop();
+        }
         game.remove(this);
     }
 
@@ -115,5 +103,10 @@ public class NPC extends Character {
         int decision = random.nextInt(3) + 1;
 
         return decision;
+    }
+
+    public String takeDamage(int attack) {
+        currentHealthPoints -= attack;
+        return "\nYou attack the enemy, causing: " + attack + " damage";
     }
 }

@@ -117,24 +117,13 @@ public class Player extends Character implements IInteractive {
 
             messages.addAll(contact.showSurroundings());
         } else if (command == Command.SHOW_STATS) {
-            messages.add("\n--- Player Stats ---\n");
+            messages.add("\n──── Player Stats ────");
             messages.add(this.showStats());
-            messages.add("---------------------\n");
         } else {
             move(command);
         }
 
         return messages;
-    }
-
-    public String showStats() {
-        return "Total Health: " +
-                this.getHealthPoints() + " - Current Health: "
-                + this.getCurrentHealthPoints() + " - Attack: "
-                + this.getAttack()
-                + " - Defense: " + this.getDefense() + " - Magic: "
-                + this.getMagic()
-                + " - Speed: " + this.getSpeed() + "\n";
     }
 
     public void destroy() {

@@ -166,10 +166,12 @@ public class Item implements IThing {
         } else if (this.type == ItemType.USABLE) {
             return "\uD83D\uDD2E";
         } else if (this.type == ItemType.ACCESSORY) {
-            return " \u25CF";
+            return "\uD83D\uDC8E";
         } else if (this.type == ItemType.DOOR) {
             return "\uD83D\uDEAA";
-        } else {
+        } else if (this.type == ItemType.BAG)
+            return "\uD83D\uDC5C";
+        else {
             return " \u2753";
         }
     }
@@ -177,10 +179,9 @@ public class Item implements IThing {
     @Override
     public String showStats() {
         return "Attack: "
-                + this.attack + " - Defense: "
+                + this.attack + "\nDefense: "
                 + this.defense
-                + " - Cure: " + this.cure
-                + "\n";
+                + "\nCure: " + this.cure;
     }
 
     @Override

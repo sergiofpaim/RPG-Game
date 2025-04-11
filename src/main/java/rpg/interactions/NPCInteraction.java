@@ -43,8 +43,8 @@ public class NPCInteraction extends Interaction {
             Interface.remove(this);
         } else if (command == Command.BATTLE) {
             messages.add("\nYou started a battle with " + npc.getName() + "!\n" +
-                    "\nYour status are: " + player.showStats() +
-                    "\nAnd the enemy's status are: " + npc.showStats());
+                    "\nYour status are:\n" + player.showStats() + "\n" +
+                    "\nAnd the enemy's status are:\n" + npc.showStats() + "\n");
             Interface.add(new BattleInteraction(player, npc));
             Interface.remove(this);
         }
