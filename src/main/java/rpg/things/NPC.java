@@ -1,5 +1,6 @@
 package rpg.things;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import rpg.Game;
@@ -78,6 +79,7 @@ public class NPC extends Character {
     public void setGame(Game game) {
         this.game = game;
         inventory.setGame(game);
+        inventory.setCharacter(this);
     }
 
     @Override
@@ -90,11 +92,9 @@ public class NPC extends Character {
     }
 
     public void destroy() {
-        for (Load load : getInventory().getLoads()) {
-            // TODO: Generalizar inventory para Character
-            // load.getItem().setPosition(position);
-            load.getItem().drop();
-        }
+        for (Load load : new ArrayList<>(getInventory().getLoads()))
+            inventory.dropLoad(load);
+
         game.remove(this);
     }
 

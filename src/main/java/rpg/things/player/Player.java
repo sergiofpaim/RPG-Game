@@ -54,7 +54,7 @@ public class Player extends Character implements IInteractive {
         this.game = game;
 
         inventory.setGame(game);
-        inventory.setPlayer(this);
+        inventory.setCharacter(this);
     }
 
     public void addToInventory(Item item) {

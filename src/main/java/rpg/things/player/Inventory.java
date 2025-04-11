@@ -15,7 +15,7 @@ import rpg.types.Command;
 
 public class Inventory implements IInteractive {
 
-    private Player player;
+    private rpg.things.Character character;
     private List<Load> loads = new ArrayList<Load>();
 
     public Inventory() {
@@ -23,8 +23,7 @@ public class Inventory implements IInteractive {
     }
 
     public Inventory(rpg.things.Character character) {
-        if (character instanceof Player)
-            this.player = (Player) character;
+        this.character = character;
     }
 
     @Override
@@ -49,9 +48,11 @@ public class Inventory implements IInteractive {
             int index = Character.getNumericValue(command.getKey()) - 1;
 
             if (index >= 0 && index < loads.size()) {
-                InventoryInteraction interaction = new InventoryInteraction(player, loads.get(index));
-                Interface.remove(this);
-                Interface.add(interaction);
+                if (character instanceof Player) {
+                    InventoryInteraction interaction = new InventoryInteraction((Player) character, loads.get(index));
+                    Interface.remove(this);
+                    Interface.add(interaction);
+                }
             }
         } else
             messages.addAll(showInventory());
@@ -84,10 +85,12 @@ public class Inventory implements IInteractive {
 
     public void dropLoad(Load load) {
         loads.remove(load);
-        if (player.isOnMapLimits())
-            load.getItem().setPosition(new Position(player.getPosition().getX(), player.getPosition().getY() - 1));
+        if (character.isOnMapLimits())
+            load.getItem()
+                    .setPosition(new Position(character.getPosition().getX(), character.getPosition().getY() - 1));
         else
-            load.getItem().setPosition(new Position(player.getPosition().getX(), player.getPosition().getY() + 1));
+            load.getItem()
+                    .setPosition(new Position(character.getPosition().getX(), character.getPosition().getY() + 1));
 
         load.getItem().drop();
     }
@@ -113,8 +116,8 @@ public class Inventory implements IInteractive {
         }
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setCharacter(rpg.things.Character character) {
+        this.character = character;
     }
 
     public void useLoad(Load load) {

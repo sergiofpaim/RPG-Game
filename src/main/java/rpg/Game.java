@@ -171,7 +171,6 @@ public class Game extends Thing {
 
     private List<IThing> retrieveNearThings(int x, int y) {
         List<IThing> interactiveThings = new ArrayList<>();
-        List<Position> addedPositions = new ArrayList<Position>();
 
         int[][] offsets = {
                 { -1, -1 },
@@ -187,16 +186,11 @@ public class Game extends Thing {
         for (int[] offset : offsets) {
             int targetY = y + offset[0];
             int targetX = x + offset[1];
-            Position position = new Position(targetX, targetY);
 
-            if (!addedPositions.contains(position)) {
-                for (IThing thing : this.getThings()) {
-                    if (thing.getPosition().getY() == targetY && thing.getPosition().getX() == targetX) {
+            for (IThing thing : this.getThings()) {
+                if (thing.getPosition().getY() == targetY && thing.getPosition().getX() == targetX)
+                    if (!(thing instanceof Item && ((Item) thing).getType() == ItemType.DOOR))
                         interactiveThings.add(thing);
-                        addedPositions.add(position);
-                        break;
-                    }
-                }
             }
         }
 

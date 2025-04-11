@@ -1,0 +1,358 @@
+{
+  "id" : "224",
+  "mapWidth" : 17,
+  "mapHeight" : 16,
+  "things" : [ {
+    "thing" : "player",
+    "id" : "59",
+    "name" : "Luke",
+    "healthPoints" : 7,
+    "currentHealthPoints" : 7,
+    "attack" : 5,
+    "defense" : 12,
+    "magic" : 1,
+    "speed" : 4,
+    "inventory" : {
+      "loads" : [ {
+        "equipped" : true,
+        "item" : {
+          "thing" : "item",
+          "id" : "934",
+          "name" : "Shield",
+          "description" : "A sturdy shield",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 2,
+          "type" : "SHIELD",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "290",
+          "name" : "Boots",
+          "description" : "A pair of sturdy boots",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "ACCESSORY",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "266",
+          "name" : "Clothes",
+          "description" : "A set of comfortable clothes",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "ACCESSORY",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "27",
+          "name" : "Health Potion",
+          "description" : "A potion that restores health",
+          "attack" : 0,
+          "cure" : 10,
+          "defense" : 0,
+          "type" : "USABLE",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : true
+        }
+      }, {
+        "equipped" : true,
+        "item" : {
+          "thing" : "item",
+          "id" : "381",
+          "name" : "Bow",
+          "description" : "A long-range weapon",
+          "attack" : 2,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "WEAPON",
+          "position" : {
+            "x" : 5,
+            "y" : 1
+          },
+          "isCarried" : true
+        }
+      }, {
+        "equipped" : true,
+        "item" : {
+          "thing" : "item",
+          "id" : "977",
+          "name" : "Amulet",
+          "description" : "Increases health",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "ACCESSORY",
+          "position" : {
+            "x" : 9,
+            "y" : 11
+          },
+          "isCarried" : true
+        }
+      } ]
+    },
+    "position" : {
+      "x" : 7,
+      "y" : 8
+    },
+    "description" : null,
+    "experience" : 0,
+    "level" : 1
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Zara",
+    "healthPoints" : 6,
+    "currentHealthPoints" : 6,
+    "attack" : 2,
+    "defense" : 8,
+    "magic" : 1,
+    "speed" : 4,
+    "inventory" : {
+      "loads" : [ {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "105",
+          "name" : "Bag",
+          "description" : "a simple leather bag",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "BAG",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : false
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "41",
+          "name" : "Shield",
+          "description" : "A sturdy shield",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 2,
+          "type" : "SHIELD",
+          "position" : {
+            "x" : 4,
+            "y" : 0
+          },
+          "isCarried" : false
+        }
+      } ]
+    },
+    "position" : {
+      "x" : 4,
+      "y" : 0
+    },
+    "description" : "an enigmatic wanderer",
+    "type" : "NPC",
+    "dialog" : "Trust is the most fragile and precious of bonds."
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Vera",
+    "healthPoints" : 6,
+    "currentHealthPoints" : 6,
+    "attack" : 1,
+    "defense" : 8,
+    "magic" : 1,
+    "speed" : 2,
+    "inventory" : {
+      "loads" : [ {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "907",
+          "name" : "Bag",
+          "description" : "a simple leather bag",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "BAG",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : false
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "341",
+          "name" : "Bow",
+          "description" : "A long-range weapon",
+          "attack" : 2,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "WEAPON",
+          "position" : {
+            "x" : 2,
+            "y" : 16
+          },
+          "isCarried" : false
+        }
+      } ]
+    },
+    "position" : {
+      "x" : 10,
+      "y" : 13
+    },
+    "description" : "a loyal companion",
+    "type" : "NPC",
+    "dialog" : "Shadows are my allies; let me guide you through."
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Hector",
+    "healthPoints" : 6,
+    "currentHealthPoints" : 6,
+    "attack" : 1,
+    "defense" : 8,
+    "magic" : 1,
+    "speed" : 4,
+    "inventory" : {
+      "loads" : [ {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "706",
+          "name" : "Bag",
+          "description" : "a simple leather bag",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "BAG",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : false
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "310",
+          "name" : "Shield",
+          "description" : "A sturdy shield",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 2,
+          "type" : "SHIELD",
+          "position" : {
+            "x" : 12,
+            "y" : 15
+          },
+          "isCarried" : false
+        }
+      } ]
+    },
+    "position" : {
+      "x" : 12,
+      "y" : 1
+    },
+    "description" : "a vibrant storyteller",
+    "type" : "NPC",
+    "dialog" : "Every failure is a step closer to success."
+  }, {
+    "thing" : "npc",
+    "id" : null,
+    "name" : "Isla",
+    "healthPoints" : 6,
+    "currentHealthPoints" : 6,
+    "attack" : 3,
+    "defense" : 8,
+    "magic" : 1,
+    "speed" : 2,
+    "inventory" : {
+      "loads" : [ {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "986",
+          "name" : "Bag",
+          "description" : "a simple leather bag",
+          "attack" : 0,
+          "cure" : 0,
+          "defense" : 0,
+          "type" : "BAG",
+          "position" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "isCarried" : false
+        }
+      }, {
+        "equipped" : false,
+        "item" : {
+          "thing" : "item",
+          "id" : "880",
+          "name" : "Staff",
+          "description" : "A magical staff",
+          "attack" : 3,
+          "cure" : 0,
+          "defense" : 1,
+          "type" : "WEAPON",
+          "position" : {
+            "x" : 12,
+            "y" : 4
+          },
+          "isCarried" : false
+        }
+      } ]
+    },
+    "position" : {
+      "x" : 6,
+      "y" : 8
+    },
+    "description" : "THE BIG BOSS!",
+    "type" : "ENEMY",
+    "dialog" : "KILL ME IF YOU WANT TO ACCESS THE DOOR! HAHAHAHA!"
+  }, {
+    "thing" : "item",
+    "id" : "799",
+    "name" : "Door",
+    "description" : "The passage to a new adventure!",
+    "attack" : 0,
+    "cure" : 0,
+    "defense" : 0,
+    "type" : "DOOR",
+    "position" : {
+      "x" : 6,
+      "y" : 8
+    },
+    "isCarried" : false
+  } ]
+}
