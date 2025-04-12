@@ -53,8 +53,7 @@ public class InventoryInteraction extends Interaction {
         }
 
         else if (command == Command.EQUIP_ITEM) {
-            messages.add("\nYou equipped: " + load.getItem().getName() + ".");
-            equipItem(load);
+            messages.addAll(equipItem(load));
             Interface.remove(this);
         }
 
@@ -70,8 +69,7 @@ public class InventoryInteraction extends Interaction {
         }
 
         else if (command == Command.UNEQUIP_ITEM) {
-            messages.add("\nYou unequipped: " + load.getItem().getName() + ".");
-            unequipItem(load);
+            messages.addAll(unequipItem(load));
             Interface.remove(this);
         }
 
@@ -88,19 +86,42 @@ public class InventoryInteraction extends Interaction {
         return messages;
     }
 
-    public void equipItem(Load load) {
+    public List<String> equipItem(Load load) {
+        List<String> messages = new ArrayList<>();
+        boolean equalType = false;
+
         if (!load.getEquipped()) {
-            load.setEquipped(true);
-            player.setAttack(player.getAttack() + load.getItem().getAttack());
-            player.setDefense(player.getDefense() + load.getItem().getDefense());
+            for (Load inventoryLoad : player.getInventory().getLoads())
+                if (inventoryLoad.getEquipped() && inventoryLoad.getItem().getType() == load.getItem().getType())
+                    equalType = true;
+
+            if (!equalType) {
+                load.setEquipped(true);
+                player.setAttack(player.getAttack() + load.getItem().getAttack());
+                player.setDefense(player.getDefense() + load.getItem().getDefense());
+
+                messages.add("\nYou equipped: " + load.getItem().getName() + ".");
+            } else
+                messages.add("\nYou cannot equip two items of the same type");
         }
+
+        else
+            messages.add("\nYou cannot unequip an item that is already equipped");
+
+        return messages;
     }
 
-    public void unequipItem(Load load) {
+    public List<String> unequipItem(Load load) {
+        List<String> messages = new ArrayList<>();
         if (load.getEquipped()) {
             load.setEquipped(false);
             player.setAttack(player.getAttack() - load.getItem().getAttack());
             player.setDefense(player.getDefense() - load.getItem().getDefense());
-        }
+
+            messages.add("\nYou can't unequipe something that isn't equipped;");
+        } else
+            messages.add("\nYou unequipped: " + load.getItem().getName() + ".");
+
+        return messages;
     }
 }

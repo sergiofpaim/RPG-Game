@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import rpg.interfaces.IInteractive;
 import rpg.interfaces.IThing;
+import rpg.things.Position;
 import rpg.things.player.Player;
 import rpg.types.Command;
 import rpg.utils.StringHelper;
@@ -99,6 +100,7 @@ public class Runner implements IInteractive {
     }
 
     public static void newWorld() {
+        player.setPosition(new Position(0, 0));
         game.redefineMap(player);
 
         for (IThing thing : game.getThings())

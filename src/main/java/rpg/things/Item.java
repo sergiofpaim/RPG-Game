@@ -63,7 +63,7 @@ public class Item implements IThing {
         this.cure = 0;
         this.defense = 0;
         this.type = type;
-        this.setPosition(new Position(random.nextInt(game.getMapHeight()) - 1, random.nextInt(game.getMapWidth()) - 1));
+        this.setPosition(new Position(random.nextInt(game.getMapHeight() - 1), random.nextInt(game.getMapWidth() - 1)));
         this.setId(String.valueOf(new Random().nextInt(1000) + 1));
         this.setIsCarried(false);
         this.setGame(game);
