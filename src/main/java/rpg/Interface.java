@@ -31,6 +31,7 @@ public class Interface {
             labels.add(new AbstractMap.SimpleEntry<>(
                     last.retrieveLabel(),
                     last.retrieveMenu()));
+
             System.out.println("\n────── Commands ──────");
             if (showDetails) {
                 List<Entry<Command, String>> options = labels.stream()

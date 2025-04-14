@@ -83,14 +83,10 @@ public class Inventory implements IInteractive {
         loads.add(new Load(item));
     }
 
-    public void dropLoad(Load load) {
+    public void dropLoad(Load load, Position newPosition) {
         loads.remove(load);
-        if (character.isOnMapLimits())
-            load.getItem()
-                    .setPosition(new Position(character.getPosition().getX(), character.getPosition().getY() - 1));
-        else
-            load.getItem()
-                    .setPosition(new Position(character.getPosition().getX(), character.getPosition().getY() + 1));
+        load.getItem()
+                .setPosition(newPosition);
 
         load.getItem().drop();
     }

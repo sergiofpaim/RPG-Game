@@ -220,6 +220,18 @@ public class Game extends Thing {
         changed = true;
     }
 
+    public boolean checkPositionAvailable(rpg.things.Position newPosition) {
+        for (IThing thing : this.getThings())
+            if (thing.getPosition().equals(newPosition) ||
+                    thing.getPosition().getX() == mapWidth + 1 ||
+                    thing.getPosition().getY() == mapHeight + 1 ||
+                    newPosition.getX() < 0 ||
+                    newPosition.getY() < 0)
+                return false;
+
+        return true;
+    }
+
     public void redefineMap(Player player) {
         this.mapWidth = new Random().nextInt(10) + 10;
         this.mapHeight = new Random().nextInt(10) + 10;
@@ -232,13 +244,5 @@ public class Game extends Thing {
 
         player.setGame(this);
         changed = true;
-    }
-
-    public boolean checkPositionAvailable(rpg.things.Position newPosition) {
-        for (IThing thing : this.getThings())
-            if (thing.getPosition() == newPosition)
-                return false;
-
-        return true;
     }
 }

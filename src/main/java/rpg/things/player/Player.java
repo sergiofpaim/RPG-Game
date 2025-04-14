@@ -63,7 +63,30 @@ public class Player extends Character implements IInteractive {
     }
 
     public void dropFromInventory(Load load) {
-        inventory.dropLoad(load);
+        int[][] offsets = {
+                { 0, -1 },
+                { 0, 1 },
+                { -1, 0 },
+                { 1, 0 },
+                { -1, -1 },
+                { 1, 1 }
+        };
+
+        Position newPosition = null;
+
+        for (int[] offset : offsets) {
+            newPosition = new Position(
+                    getPosition().getX() + offset[0],
+                    getPosition().getY() + offset[1]);
+
+            if (game.checkPositionAvailable(newPosition)) {
+                break;
+            }
+        }
+
+        if (newPosition != null) {
+            inventory.dropLoad(load, newPosition);
+        }
     }
 
     private void move(Command movement) {

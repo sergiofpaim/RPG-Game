@@ -96,10 +96,37 @@ public class NPC extends Character {
     }
 
     public void destroy() {
-        for (Load load : new ArrayList<>(getInventory().getLoads()))
-            inventory.dropLoad(load);
-
+        dropFromInventory();
         game.remove(this);
+    }
+
+    private void dropFromInventory() {
+        int[][] offsets = {
+                { 0, -1 },
+                { 0, 1 },
+                { -1, 0 },
+                { 1, 0 },
+                { -1, -1 },
+                { 1, 1 }
+        };
+
+        Position newPosition = null;
+
+        for (int[] offset : offsets) {
+            newPosition = new Position(
+                    getPosition().getX() + offset[0],
+                    getPosition().getY() + offset[1]);
+
+            if (game.checkPositionAvailable(newPosition)) {
+                break;
+            }
+        }
+
+        if (newPosition != null) {
+            for (Load load : new ArrayList<>(getInventory().getLoads())) {
+                inventory.dropLoad(load, newPosition);
+            }
+        }
     }
 
     public int decideAction() {

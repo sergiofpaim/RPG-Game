@@ -36,6 +36,7 @@ public class BattleInteraction extends Interaction {
                 new AbstractMap.SimpleEntry<>(Command.DEFEND, "Defend"),
                 new AbstractMap.SimpleEntry<>(Command.MAGIC, "Magic"),
                 new AbstractMap.SimpleEntry<>(Command.INVENTORY, "Open Inventory"),
+                new AbstractMap.SimpleEntry<>(Command.SHOW_STATS, "Show fighters status"),
                 new AbstractMap.SimpleEntry<>(Command.RUN, "Run")));
         return menu;
     }
@@ -54,7 +55,9 @@ public class BattleInteraction extends Interaction {
             messages.addAll(player.getInventory().showInventory());
         }
 
-        // TODO: ShowStatus NPC e Player
+        else if (command == Command.SHOW_STATS) {
+            messages.add("\nThe enemy's stats are:\n" + npc.showStats());
+        }
 
         else
             controlBattle(command, messages, random);
@@ -87,7 +90,6 @@ public class BattleInteraction extends Interaction {
 
     // TODO: Usar item em batalha sem apanhar
     // TODO: Usar itens de dano apenas em batalha
-    // TODO: Big boss não aparecendo de vez em quando
 
     private List<String> playerTurn(Command command) {
         List<String> messages = new ArrayList<>();

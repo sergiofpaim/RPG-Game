@@ -118,7 +118,7 @@ public class InventoryInteraction extends Interaction {
             player.setAttack(player.getAttack() - load.getItem().getAttack());
             player.setDefense(player.getDefense() - load.getItem().getDefense());
 
-            messages.add("\nYou can't unequipe something that isn't equipped;");
+            messages.add("\nYou can't unequip something that isn't equipped;");
         } else
             messages.add("\nYou unequipped: " + load.getItem().getName() + ".");
 
