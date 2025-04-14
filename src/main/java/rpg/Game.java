@@ -77,21 +77,10 @@ public class Game extends Thing {
         this.player = player;
         this.things.addAll(generateItems());
         this.things.addAll(generateNPCs());
-        this.things.addAll(generatePassage());
+        this.things.addAll(generateBoss());
         this.things.add(0, player);
 
         player.setGame(this);
-    }
-
-    private List<IThing> generatePassage() {
-        List<IThing> things = new ArrayList<IThing>();
-        Item door = new Item("Door", "The passage to a new adventure!", ItemType.DOOR, this);
-        NPC boss = new NPC(this, player, door.getPosition());
-
-        things.add(boss);
-        things.add(door);
-
-        return things;
     }
 
     private List<Item> generateItems() {
@@ -114,6 +103,17 @@ public class Game extends Thing {
         }
 
         return npcs;
+    }
+
+    private List<IThing> generateBoss() {
+        List<IThing> things = new ArrayList<IThing>();
+        Item door = new Item("Door", "The passage to a new adventure!", ItemType.DOOR, this);
+        NPC boss = new NPC(this, player, door.getPosition());
+
+        things.add(boss);
+        things.add(door);
+
+        return things;
     }
 
     public void startDrawing() {
@@ -227,10 +227,18 @@ public class Game extends Thing {
         this.things.clear();
         this.things.addAll(generateItems());
         this.things.addAll(generateNPCs());
-        this.things.addAll(generatePassage());
+        this.things.addAll(generateBoss());
         this.things.add(0, player);
 
         player.setGame(this);
         changed = true;
+    }
+
+    public boolean checkPositionAvailable(rpg.things.Position newPosition) {
+        for (IThing thing : this.getThings())
+            if (thing.getPosition() == newPosition)
+                return false;
+
+        return true;
     }
 }

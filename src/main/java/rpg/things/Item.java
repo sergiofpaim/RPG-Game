@@ -35,6 +35,12 @@ public class Item implements IThing {
 
     public Item(Game game) {
         Random random = new Random();
+        Position newPosition;
+
+        do {
+            newPosition = new Position(random.nextInt(game.getMapWidth()),
+                    random.nextInt(game.getMapHeight()));
+        } while (!game.checkPositionAvailable(newPosition));
 
         Item randomItem = ItemData.defaultItems[random.nextInt(ItemData.defaultItems.length)];
 
@@ -45,7 +51,7 @@ public class Item implements IThing {
         this.cure = randomItem.getCure();
         this.defense = randomItem.getDefense();
         this.type = randomItem.getType();
-        this.setPosition(new Position(random.nextInt(game.getMapHeight()), random.nextInt(game.getMapWidth())));
+        this.setPosition(newPosition);
         this.setId(String.valueOf(new Random().nextInt(1000) + 1));
         this.setIsCarried(false);
         this.setGame(game);
@@ -53,6 +59,12 @@ public class Item implements IThing {
 
     public Item(String name, String description, ItemType type, Game game) {
         Random random = new Random();
+        Position newPosition;
+
+        do {
+            newPosition = new Position(random.nextInt(game.getMapWidth()),
+                    random.nextInt(game.getMapHeight()));
+        } while (!game.checkPositionAvailable(newPosition));
 
         Item randomItem = ItemData.defaultItems[random.nextInt(ItemData.defaultItems.length)];
 
@@ -63,7 +75,7 @@ public class Item implements IThing {
         this.cure = 0;
         this.defense = 0;
         this.type = type;
-        this.setPosition(new Position(random.nextInt(game.getMapHeight() - 1), random.nextInt(game.getMapWidth() - 1)));
+        this.setPosition(newPosition);
         this.setId(String.valueOf(new Random().nextInt(1000) + 1));
         this.setIsCarried(false);
         this.setGame(game);

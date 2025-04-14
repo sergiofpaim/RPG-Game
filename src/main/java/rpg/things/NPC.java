@@ -24,6 +24,7 @@ public class NPC extends Character {
 
     public NPC(Game game, Player player, Position position) {
         Random random = new Random();
+        Position newPosition;
 
         name = NPCData.NAMES[random.nextInt(NPCData.NAMES.length)];
         healthPoints = (random.nextInt(player.getLevel()) + 2) * 3;
@@ -34,9 +35,12 @@ public class NPC extends Character {
         speed = random.nextInt(player.getSpeed()) + 2;
 
         if (position == null) {
-            this.position = new Position(
-                    random.nextInt(game.getMapHeight()),
-                    random.nextInt(game.getMapWidth()));
+            do {
+                newPosition = new Position(random.nextInt(game.getMapWidth()),
+                        random.nextInt(game.getMapHeight()));
+            } while (!game.checkPositionAvailable(newPosition));
+
+            this.position = newPosition;
             type = NPCType.NPC;
             description = NPCData.DESCRIPTIONS[random.nextInt(NPCData.DESCRIPTIONS.length)];
             dialog = NPCData.DIALOGS[random.nextInt(NPCData.DIALOGS.length)];
