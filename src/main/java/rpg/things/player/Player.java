@@ -16,7 +16,6 @@ import rpg.types.Command;
 
 public class Player extends Character implements IInteractive {
     protected Contact contact = new Contact(this);
-    private int experience;
     private int level;
 
     public Player() {
@@ -24,13 +23,8 @@ public class Player extends Character implements IInteractive {
 
     public Player(String name, int health, int currentHealth, int attack, int defense, int magic, int speed,
             List<Item> inventory, Position position, int experience, int level) {
-        super(name, health, currentHealth, attack, defense, magic, speed, inventory, position);
-        this.experience = experience;
+        super(name, health, currentHealth, attack, defense, magic, speed, inventory, position, experience);
         this.level = level;
-    }
-
-    public int getExperience() {
-        return experience;
     }
 
     public int getLevel() {
@@ -42,10 +36,6 @@ public class Player extends Character implements IInteractive {
         return null;
     }
 
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
-
     public void setLevel(int level) {
         this.level = level;
     }
@@ -55,6 +45,21 @@ public class Player extends Character implements IInteractive {
 
         inventory.setGame(game);
         inventory.setCharacter(this);
+    }
+
+    public List<String> rewardExperience(int experience) {
+        List<String> messages = new ArrayList<>();
+
+        messages.add("You got " + experience + " points of experience");
+        setExperience(experience);
+
+        if (this.getExperience() >= 10) {
+            setLevel(getLevel() + (getExperience() / 10));
+            setExperience(getExperience() % 10);
+            messages.add("And leveled up to level " + getLevel());
+        }
+
+        return messages;
     }
 
     public void addToInventory(Item item) {

@@ -53,6 +53,7 @@ public class NPC extends Character {
 
         inventory.addItem(new Item("Bag", "a simple leather bag", 0, 0, 0, ItemType.BAG, false));
         inventory.addItem(new Item(game));
+        this.setExperience((random.nextInt(player.getLevel()) + 1) * 10);
         setGame(game);
     }
 

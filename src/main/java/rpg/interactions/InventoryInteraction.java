@@ -106,7 +106,7 @@ public class InventoryInteraction extends Interaction {
         }
 
         else
-            messages.add("\nYou cannot unequip an item that is already equipped");
+            messages.add("\nYou cannot equip an item that is already equipped");
 
         return messages;
     }

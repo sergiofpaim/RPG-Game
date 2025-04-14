@@ -128,6 +128,7 @@ public class BattleInteraction extends Interaction {
 
         if (npc.getCurrentHealthPoints() <= 0) {
             messages.add("You defeated: " + npc.getName());
+            messages.addAll(player.rewardExperience(npc.getExperience()));
             npc.destroy();
 
             Interface.remove(this);

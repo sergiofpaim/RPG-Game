@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import rpg.Game;
 import rpg.interfaces.IThing;
 import rpg.things.player.Inventory;
+import rpg.things.player.Player;
 
 public abstract class Character extends Thing implements IThing {
     protected String name;
@@ -21,12 +22,13 @@ public abstract class Character extends Thing implements IThing {
     protected Position position;
     protected String description;
     protected Game game;
+    private int experience;
 
     public Character() {
     }
 
     public Character(String name, int health, int currentHealth, int attack, int defense, int magic, int speed,
-            List<Item> inventory, Position position) {
+            List<Item> inventory, Position position, int experience) {
         this.setId(String.valueOf(new Random().nextInt(1000) + 1));
         this.name = name;
         this.healthPoints = health;
@@ -37,6 +39,7 @@ public abstract class Character extends Thing implements IThing {
         this.speed = speed;
         this.inventory.setItems(inventory);
         this.position = position;
+        this.experience = experience;
     }
 
     public String getName() {
@@ -75,6 +78,10 @@ public abstract class Character extends Thing implements IThing {
         return position;
     }
 
+    public int getExperience() {
+        return experience;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -111,6 +118,10 @@ public abstract class Character extends Thing implements IThing {
         this.position = position;
     }
 
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
     @JsonIgnore
     public boolean isOnMapLimits() {
         if (position.getY() == game.getMapHeight() - 1)
@@ -120,12 +131,19 @@ public abstract class Character extends Thing implements IThing {
     }
 
     public String showStats() {
-        return "Total Health: " +
+        String stats = "Total Health: " +
                 this.getHealthPoints() + "\nCurrent Health: "
                 + this.getCurrentHealthPoints() + "\nAttack: "
                 + this.getAttack()
                 + "\nDefense: " + this.getDefense() + "\nMagic: "
                 + this.getMagic()
-                + "\nSpeed: " + this.getSpeed();
+                + "\nSpeed: " + this.getSpeed()
+                + "\nExperience: " + this.getExperience();
+
+        if (this instanceof Player) {
+            stats += "\nLevel: " + ((Player) this).getLevel();
+        }
+
+        return stats;
     }
 }

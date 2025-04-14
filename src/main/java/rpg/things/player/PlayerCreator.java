@@ -68,12 +68,12 @@ public class PlayerCreator {
     private static int setAttributes(String statName, int availablePoints) {
         int value = -1;
         do {
-            System.out.print("Enter " + statName + " (1-3, remaining points: " + availablePoints + "): ");
+            System.out.print("Enter " + statName + " (0-3, remaining points: " + availablePoints + "): ");
 
             if (RPGGame.scan.hasNextInt()) {
                 value = RPGGame.scan.nextInt();
-                if (value < 1 || value > 3) {
-                    System.out.println("Invalid input! " + statName + " must be between 1 and 3.");
+                if (value < 0 || value > 3) {
+                    System.out.println("Invalid input! " + statName + " must be between 0 and 3.");
                 } else if (value > availablePoints) {
                     System.out.println("Not enough points! You only have " + availablePoints + " remaining.");
                 }
@@ -81,7 +81,7 @@ public class PlayerCreator {
                 System.out.println("Please enter a valid number.");
                 RPGGame.scan.next();
             }
-        } while (value < 1 || value > 3 || value > availablePoints);
+        } while (value < 0 || value > 3 || value > availablePoints);
 
         return value;
     }

@@ -226,7 +226,8 @@ public class Game extends Thing {
                     thing.getPosition().getX() == mapWidth + 1 ||
                     thing.getPosition().getY() == mapHeight + 1 ||
                     newPosition.getX() < 0 ||
-                    newPosition.getY() < 0)
+                    newPosition.getY() < 0 ||
+                    newPosition.getX() == 0 && newPosition.getY() == 0)
                 return false;
 
         return true;
