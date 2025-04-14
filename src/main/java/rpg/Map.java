@@ -4,6 +4,7 @@ import rpg.interfaces.IThing;
 import rpg.utils.StringHelper;
 
 import java.util.List;
+import java.util.Random;
 
 public class Map {
     private int width;
@@ -12,11 +13,9 @@ public class Map {
     private int currentCol = -1;
 
     public Map() {
-    }
-
-    public Map(int width, int height) {
-        this.width = width;
-        this.height = height;
+        Random random = new Random();
+        width = random.nextInt(10) + 10;
+        height = random.nextInt(10) + 10;
     }
 
     public int getWidth() {

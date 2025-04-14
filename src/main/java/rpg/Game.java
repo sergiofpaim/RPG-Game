@@ -53,7 +53,7 @@ public class Game extends Thing {
 
     public Game(Player player) {
         setId(String.valueOf(new Random().nextInt(1000) + 1));
-        this.map = new Map(new Random().nextInt(10) + 10, new Random().nextInt(10) + 10);
+        this.map = new Map();
         this.player = player;
         this.things.addAll(generateItems());
         this.things.addAll(generateNPCs());
@@ -177,7 +177,7 @@ public class Game extends Thing {
     }
 
     public void redefineMap(Player player) {
-        this.map = new Map(new Random().nextInt(10) + 10, new Random().nextInt(10) + 10);
+        this.map = new Map();
         this.player = player;
         this.things.clear();
         this.things.addAll(generateItems());
