@@ -56,7 +56,7 @@ public class BattleInteraction extends Interaction {
         }
 
         else if (command == Command.SHOW_STATS) {
-            messages.add("\nThe enemy's stats are:\n" + npc.showStats());
+            messages.add("\n──── Enemy Stats ────" + npc.showStats());
         }
 
         else
