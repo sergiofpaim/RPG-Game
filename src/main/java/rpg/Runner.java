@@ -11,7 +11,6 @@ import rpg.interfaces.IThing;
 import rpg.things.Position;
 import rpg.things.player.Player;
 import rpg.types.Command;
-import rpg.utils.StringHelper;
 
 public class Runner implements IInteractive {
     public static Boolean isRunning = true;
@@ -47,22 +46,7 @@ public class Runner implements IInteractive {
     }
 
     private static void displayMap() {
-        if (game.hasChanged()) {
-            int width = game.getMapWidth() * 2;
-
-            System.out.println("┌" + StringHelper.centerWithPad(" Game Map ", width, '─') + "┐");
-
-            game.startDrawing();
-            while (game.nextRow()) {
-                System.out.print("│");
-                while (game.nextCol()) {
-                    System.out.print(game.drawCell());
-                }
-                System.out.println("│");
-            }
-
-            System.out.println("└" + StringHelper.repeatChar('─', width) + "┘");
-        }
+        game.getMap().displayMap(game);
     }
 
     @Override

@@ -124,7 +124,7 @@ public abstract class Character extends Thing implements IThing {
 
     @JsonIgnore
     public boolean isOnMapLimits() {
-        if (position.getY() == game.getMapHeight() - 1)
+        if (position.getY() == game.getMap().getHeight() - 1)
             return true;
 
         return false;

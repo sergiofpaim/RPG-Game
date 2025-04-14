@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import com.mongodb.client.model.geojson.Position;
-
 import rpg.interfaces.IThing;
 import rpg.things.Character;
 import rpg.things.Item;
@@ -16,26 +14,17 @@ import rpg.things.player.Player;
 import rpg.types.ItemType;
 
 public class Game extends Thing {
-    private int mapWidth;
-    private int mapHeight;
     private boolean changed = true;
     private List<IThing> things = new ArrayList<IThing>();
     private Player player;
-
-    private int currentRow = -1;
-    private int currentCol = -1;
+    private Map map;
 
     // #region Serialization
     public Game() {
-
     }
 
-    public int getMapWidth() {
-        return mapWidth;
-    }
-
-    public int getMapHeight() {
-        return mapHeight;
+    public Map getMap() {
+        return map;
     }
 
     public List<IThing> getThings() {
@@ -56,14 +45,6 @@ public class Game extends Thing {
                 .collect(Collectors.toList());
     }
 
-    public void setMapWidth(int width) {
-        this.mapWidth = width;
-    }
-
-    public void setMapHeight(int height) {
-        this.mapHeight = height;
-    }
-
     public void setThings(List<IThing> things) {
         this.things = things;
     }
@@ -72,8 +53,7 @@ public class Game extends Thing {
 
     public Game(Player player) {
         setId(String.valueOf(new Random().nextInt(1000) + 1));
-        this.mapWidth = new Random().nextInt(10) + 10;
-        this.mapHeight = new Random().nextInt(10) + 10;
+        this.map = new Map(new Random().nextInt(10) + 10, new Random().nextInt(10) + 10);
         this.player = player;
         this.things.addAll(generateItems());
         this.things.addAll(generateNPCs());
@@ -116,44 +96,10 @@ public class Game extends Thing {
         return things;
     }
 
-    public void startDrawing() {
-        currentRow = -1;
-        currentCol = -1;
-    }
-
-    public boolean nextRow() {
-        if (currentRow < mapHeight - 1) {
-            currentRow++;
-            return true;
-        }
-        return false;
-    }
-
-    public boolean nextCol() {
-        if (currentCol < mapWidth - 1) {
-            currentCol++;
-            return true;
-        }
-
-        else {
-            currentCol = -1;
-            return false;
-        }
-    }
-
-    public String drawCell() {
-        for (IThing thing : things) {
-            if (thing.getPosition().getY() == currentRow && thing.getPosition().getX() == currentCol) {
-                return thing.draw();
-            }
-        }
-        return ". ";
-    }
-
     public Boolean checkMovement(int newX, int newY) {
         changed = true;
 
-        if (newX < 0 || newX >= mapWidth || newY < 0 || newY >= mapHeight)
+        if (!map.isWithinBounds(newX, newY))
             return false;
 
         for (IThing thing : things)
@@ -171,7 +117,7 @@ public class Game extends Thing {
 
     private List<IThing> retrieveNearThings(int x, int y) {
         List<IThing> interactiveThings = new ArrayList<>();
-        List<Position> addedPositions = new ArrayList<Position>();
+        List<rpg.things.Position> addedPositions = new ArrayList<rpg.things.Position>();
 
         int[][] offsets = {
                 { -1, -1 },
@@ -187,7 +133,7 @@ public class Game extends Thing {
         for (int[] offset : offsets) {
             int targetY = y + offset[0];
             int targetX = x + offset[1];
-            Position position = new Position(targetX, targetY);
+            rpg.things.Position position = new rpg.things.Position(targetX, targetY);
 
             for (IThing thing : this.getThings()) {
                 if (thing.getPosition().getY() == targetY && thing.getPosition().getX() == targetX)
@@ -223,10 +169,7 @@ public class Game extends Thing {
     public boolean checkPositionAvailable(rpg.things.Position newPosition) {
         for (IThing thing : this.getThings())
             if (thing.getPosition().equals(newPosition) ||
-                    thing.getPosition().getX() == mapWidth + 1 ||
-                    thing.getPosition().getY() == mapHeight + 1 ||
-                    newPosition.getX() < 0 ||
-                    newPosition.getY() < 0 ||
+                    !map.isWithinBounds(newPosition.getX(), newPosition.getY()) ||
                     newPosition.getX() == 0 && newPosition.getY() == 0)
                 return false;
 
@@ -234,8 +177,7 @@ public class Game extends Thing {
     }
 
     public void redefineMap(Player player) {
-        this.mapWidth = new Random().nextInt(10) + 10;
-        this.mapHeight = new Random().nextInt(10) + 10;
+        this.map = new Map(new Random().nextInt(10) + 10, new Random().nextInt(10) + 10);
         this.player = player;
         this.things.clear();
         this.things.addAll(generateItems());

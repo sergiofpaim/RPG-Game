@@ -38,8 +38,8 @@ public class Item implements IThing {
         Position newPosition;
 
         do {
-            newPosition = new Position(random.nextInt(game.getMapWidth()),
-                    random.nextInt(game.getMapHeight()));
+            newPosition = new Position(random.nextInt(game.getMap().getWidth()),
+                    random.nextInt(game.getMap().getHeight()));
         } while (!game.checkPositionAvailable(newPosition));
 
         Item randomItem = ItemData.defaultItems[random.nextInt(ItemData.defaultItems.length)];
@@ -62,8 +62,8 @@ public class Item implements IThing {
         Position newPosition;
 
         do {
-            newPosition = new Position(random.nextInt(game.getMapWidth()),
-                    random.nextInt(game.getMapHeight()));
+            newPosition = new Position(random.nextInt(game.getMap().getWidth()),
+                    random.nextInt(game.getMap().getHeight()));
         } while (!game.checkPositionAvailable(newPosition));
 
         Item randomItem = ItemData.defaultItems[random.nextInt(ItemData.defaultItems.length)];

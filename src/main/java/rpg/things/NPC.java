@@ -36,8 +36,8 @@ public class NPC extends Character {
 
         if (position == null) {
             do {
-                newPosition = new Position(random.nextInt(game.getMapWidth()),
-                        random.nextInt(game.getMapHeight()));
+                newPosition = new Position(random.nextInt(game.getMap().getWidth()),
+                        random.nextInt(game.getMap().getHeight()));
             } while (!game.checkPositionAvailable(newPosition));
 
             this.position = newPosition;
