@@ -11,6 +11,7 @@ import rpg.types.ItemType;
 import rpg.types.NPCType;
 
 public class NPC extends Character {
+    private static final int BASE_EXPERIENCE = 10;
     private NPCType type;
     private String description;
     private String dialog;
@@ -53,7 +54,7 @@ public class NPC extends Character {
 
         inventory.addItem(new Item("Bag", "a simple leather bag", 0, 0, 0, ItemType.BAG, false));
         inventory.addItem(new Item(game));
-        this.setExperience((random.nextInt(player.getLevel()) + 1) * 10);
+        this.setExperience((random.nextInt(player.getLevel() + 1)) * BASE_EXPERIENCE);
         setGame(game);
     }
 
@@ -102,21 +103,12 @@ public class NPC extends Character {
     }
 
     private void dropFromInventory() {
-        int[][] offsets = {
-                { 0, -1 },
-                { 0, 1 },
-                { -1, 0 },
-                { 1, 0 },
-                { -1, -1 },
-                { 1, 1 }
-        };
-
         Position newPosition = null;
 
-        for (int[] offset : offsets) {
+        for (int[] offset : rpg.Map.offsets) {
             newPosition = new Position(
-                    getPosition().getX() + offset[0],
-                    getPosition().getY() + offset[1]);
+                    getPosition().getCol() + offset[0],
+                    getPosition().getRow() + offset[1]);
 
             if (game.checkPositionAvailable(newPosition)) {
                 break;

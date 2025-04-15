@@ -15,10 +15,12 @@ import rpg.things.Position;
 import rpg.types.Command;
 
 public class Player extends Character implements IInteractive {
+    private static final int HEALTH_UPGRADE = 5;
+    private static final int EXPERIENCE_UPGRADE = 10;
     protected Contact contact = new Contact(this);
     private int level;
 
-    private int totalPoints = 0;
+    private int upgradePoints = 0;
 
     public Player() {
     }
@@ -38,8 +40,8 @@ public class Player extends Character implements IInteractive {
         return null;
     }
 
-    public int getTotalPoints() {
-        return totalPoints;
+    public int getUpgradePoints() {
+        return upgradePoints;
     }
 
     public void setLevel(int level) {
@@ -53,8 +55,8 @@ public class Player extends Character implements IInteractive {
         inventory.setCharacter(this);
     }
 
-    public void setTotalPoints(int totalPoints) {
-        this.totalPoints = totalPoints;
+    public void setUpgradePoints(int totalPoints) {
+        this.upgradePoints = totalPoints;
     }
 
     public List<String> rewardExperience(int experience) {
@@ -63,7 +65,7 @@ public class Player extends Character implements IInteractive {
         messages.add("\nYou got " + experience + " points of experience");
         setExperience(getExperience() + experience);
 
-        if (this.getExperience() >= getLevel() * 10)
+        if (this.getExperience() >= getLevel() * EXPERIENCE_UPGRADE)
             messages.addAll(levelUp());
 
         return messages;
@@ -74,16 +76,16 @@ public class Player extends Character implements IInteractive {
 
         int oldLevel = getLevel();
 
-        setLevel(getLevel() + (getExperience() / (getLevel() * 20)));
-        setExperience(getExperience() % getLevel() * 20);
+        setLevel(getLevel() + (getExperience() / (getLevel() * EXPERIENCE_UPGRADE)));
+        setExperience(getExperience() % getLevel() * EXPERIENCE_UPGRADE);
 
-        setHealthPoints(getHealthPoints() + 5);
-        setCurrentHealthPoints(getCurrentHealthPoints() + 5);
+        setHealthPoints(getHealthPoints() + HEALTH_UPGRADE);
+        setCurrentHealthPoints(getCurrentHealthPoints() + HEALTH_UPGRADE);
 
         messages.add("And leveled up to level " + getLevel());
         messages.add("Select an attribute to increase upgrade\n");
 
-        totalPoints = getLevel() - oldLevel;
+        upgradePoints = getLevel() - oldLevel;
 
         return messages;
     }
@@ -94,21 +96,12 @@ public class Player extends Character implements IInteractive {
     }
 
     public void dropFromInventory(Load load) {
-        int[][] offsets = {
-                { 0, -1 },
-                { 0, 1 },
-                { -1, 0 },
-                { 1, 0 },
-                { -1, -1 },
-                { 1, 1 }
-        };
-
         Position newPosition = null;
 
-        for (int[] offset : offsets) {
+        for (int[] offset : rpg.Map.offsets) {
             newPosition = new Position(
-                    getPosition().getX() + offset[0],
-                    getPosition().getY() + offset[1]);
+                    getPosition().getCol() + offset[0],
+                    getPosition().getRow() + offset[1]);
 
             if (game.checkPositionAvailable(newPosition)) {
                 break;
@@ -121,23 +114,24 @@ public class Player extends Character implements IInteractive {
     }
 
     private void move(Command movement) {
-        int currentX = this.position.getX();
-        int currentY = this.position.getY();
-        int newX = currentX;
-        int newY = currentY;
+        int currentCol = this.position.getCol();
+        int currentRow = this.position.getRow();
+
+        int newCol = currentCol;
+        int newRow = currentRow;
 
         if (movement == Command.UP)
-            newY = currentY - 1;
+            newRow = currentRow - 1;
         else if (movement == Command.DOWN)
-            newY = currentY + 1;
+            newRow = currentRow + 1;
         else if (movement == Command.LEFT)
-            newX = currentX - 1;
+            newCol = currentCol - 1;
         else if (movement == Command.RIGHT)
-            newX = currentX + 1;
+            newCol = currentCol + 1;
 
-        if (this.game.checkMovement(newX, newY)) {
-            this.position.setX(newX);
-            this.position.setY(newY);
+        if (this.game.checkMovement(newCol, newRow)) {
+            this.position.setCol(newCol);
+            this.position.setRow(newRow);
         }
     }
 
@@ -148,7 +142,7 @@ public class Player extends Character implements IInteractive {
 
     @Override
     public List<Entry<Command, String>> retrieveMenu() {
-        if (totalPoints > 0) {
+        if (upgradePoints > 0) {
             return Arrays.asList(
                     new AbstractMap.SimpleEntry<>(Command.UPGRADE_ATTACK, "Upgrade Attack"),
                     new AbstractMap.SimpleEntry<>(Command.UPGRADE_DEFENSE, "Upgrade Defense"),
@@ -173,7 +167,7 @@ public class Player extends Character implements IInteractive {
             Interface.add(inventory);
             messages.addAll(inventory.showInventory());
         } else if (command == Command.INTERACT) {
-            contact.setThings(game.checkSurroundings(this.position.getX(), this.position.getY()));
+            contact.setThings(game.checkSurroundings(this.position.getCol(), this.position.getRow()));
             Interface.add(contact);
             messages.addAll(contact.showSurroundings());
         } else if (command == Command.SHOW_STATS) {
@@ -181,7 +175,7 @@ public class Player extends Character implements IInteractive {
             messages.add(this.showStats());
         } else if (command.getCommand().startsWith("UPGRADE")) {
             messages.addAll(upgradeAttribute(command));
-            totalPoints--;
+            upgradePoints--;
         } else {
             move(command);
         }

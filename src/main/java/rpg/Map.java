@@ -1,21 +1,35 @@
 package rpg;
 
-import rpg.interfaces.IThing;
-import rpg.utils.StringHelper;
-
 import java.util.List;
 import java.util.Random;
+
+import rpg.interfaces.IThing;
+import rpg.utils.StringHelper;
 
 public class Map {
     private int width;
     private int height;
+    private boolean visibility[][];
     private int currentRow = -1;
     private int currentCol = -1;
+
+    public static final int[][] offsets = {
+            { -1, -1 },
+            { -1, 0 },
+            { -1, 1 },
+            { 0, -1 },
+            { 0, 1 },
+            { 1, -1 },
+            { 1, 0 },
+            { 1, 1 }
+    };
 
     public Map() {
         Random random = new Random();
         width = random.nextInt(10) + 10;
         height = random.nextInt(10) + 10;
+        visibility = new boolean[width][height];
+        navigateTo(0, 0);
     }
 
     public int getWidth() {
@@ -26,6 +40,10 @@ public class Map {
         return height;
     }
 
+    public boolean[][] getVisibility() {
+        return visibility;
+    }
+
     public void setWitdh(int width) {
         this.width = width;
     }
@@ -34,8 +52,12 @@ public class Map {
         this.height = height;
     }
 
-    public boolean isWithinBounds(int x, int y) {
-        return x >= 0 && x < width && y >= 0 && y < height;
+    public void setVisibility(boolean visibility[][]) {
+        this.visibility = visibility;
+    }
+
+    public boolean isWithinBounds(int col, int row) {
+        return col >= 0 && col < width && row >= 0 && row < height;
     }
 
     public void startDrawing() {
@@ -63,7 +85,7 @@ public class Map {
 
     public String drawCell(List<IThing> things) {
         for (IThing thing : things) {
-            if (thing.getPosition().getY() == currentRow && thing.getPosition().getX() == currentCol) {
+            if (thing.getPosition().getRow() == currentRow && thing.getPosition().getCol() == currentCol) {
                 return thing.draw();
             }
         }
@@ -80,12 +102,30 @@ public class Map {
             while (nextRow()) {
                 System.out.print("│");
                 while (nextCol()) {
-                    System.out.print(drawCell(game.getThings()));
+                    if (isVisibleCurrentPosition())
+                        System.out.print(drawCell(game.getThings()));
+                    else
+                        System.out.print("  ");
                 }
                 System.out.println("│");
             }
 
             System.out.println("└" + StringHelper.repeatChar('─', mapWidth) + "┘");
+        }
+    }
+
+    private boolean isVisibleCurrentPosition() {
+        return visibility[currentCol][currentRow];
+    }
+
+    public void navigateTo(int col, int row) {
+        visibility[col][row] = true;
+
+        for (int[] offset : offsets) {
+            int targetRow = row + offset[0];
+            int targetCol = col + offset[1];
+            if (targetRow >= 0 && targetRow < height && targetCol >= 0 && targetCol < width)
+                visibility[targetCol][targetRow] = true;
         }
     }
 }

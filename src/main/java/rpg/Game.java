@@ -96,47 +96,37 @@ public class Game extends Thing {
         return things;
     }
 
-    public Boolean checkMovement(int newX, int newY) {
+    public Boolean checkMovement(int newCol, int newRow) {
         changed = true;
 
-        if (!map.isWithinBounds(newX, newY))
+        if (!map.isWithinBounds(newCol, newRow))
             return false;
 
         for (IThing thing : things)
-            if (thing.getPosition().getX() == newX && thing.getPosition().getY() == newY)
+            if (thing.getPosition().getCol() == newCol && thing.getPosition().getRow() == newRow)
                 return false;
 
+        map.navigateTo(newCol, newRow);
         return true;
     }
 
-    public List<IThing> checkSurroundings(int x, int y) {
-        List<IThing> interactiveThings = retrieveNearThings(x, y);
+    public List<IThing> checkSurroundings(int col, int row) {
+        List<IThing> interactiveThings = retrieveNearThings(col, row);
 
         return interactiveThings;
     }
 
-    private List<IThing> retrieveNearThings(int x, int y) {
+    private List<IThing> retrieveNearThings(int col, int row) {
         List<IThing> interactiveThings = new ArrayList<>();
         List<rpg.things.Position> addedPositions = new ArrayList<rpg.things.Position>();
 
-        int[][] offsets = {
-                { -1, -1 },
-                { -1, 0 },
-                { -1, 1 },
-                { 0, -1 },
-                { 0, 1 },
-                { 1, -1 },
-                { 1, 0 },
-                { 1, 1 }
-        };
-
-        for (int[] offset : offsets) {
-            int targetY = y + offset[0];
-            int targetX = x + offset[1];
-            rpg.things.Position position = new rpg.things.Position(targetX, targetY);
+        for (int[] offset : Map.offsets) {
+            int targetRow = row + offset[0];
+            int targetCol = col + offset[1];
+            rpg.things.Position position = new rpg.things.Position(targetCol, targetRow);
 
             for (IThing thing : this.getThings()) {
-                if (thing.getPosition().getY() == targetY && thing.getPosition().getX() == targetX)
+                if (thing.getPosition().getRow() == targetRow && thing.getPosition().getCol() == targetCol)
                     if (!addedPositions.contains(position)
                             && !(thing instanceof Item && ((Item) thing).getType() == ItemType.BAG)) {
                         interactiveThings.add(thing);
@@ -168,9 +158,10 @@ public class Game extends Thing {
 
     public boolean checkPositionAvailable(rpg.things.Position newPosition) {
         for (IThing thing : this.getThings())
-            if ((thing.getPosition().getX() == newPosition.getX() && thing.getPosition().getY() == newPosition.getY())
-                    || !map.isWithinBounds(newPosition.getX(), newPosition.getY())
-                    || newPosition.getX() == 0 && newPosition.getY() == 0)
+            if ((thing.getPosition().getCol() == newPosition.getCol()
+                    && thing.getPosition().getRow() == newPosition.getRow())
+                    || !map.isWithinBounds(newPosition.getCol(), newPosition.getRow())
+                    || newPosition.getCol() == 0 && newPosition.getRow() == 0)
                 return false;
 
         return true;
