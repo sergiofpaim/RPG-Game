@@ -76,7 +76,9 @@ public class Player extends Character implements IInteractive {
 
         setLevel(getLevel() + (getExperience() / 10));
         setExperience(getExperience() % 10);
+
         setHealthPoints(getHealthPoints() + 5);
+        setCurrentHealthPoints(getCurrentHealthPoints() + 5);
 
         messages.add("And leveled up to level " + getLevel());
         messages.add("\nSelect an attribute to increase upgrade");
