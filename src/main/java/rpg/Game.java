@@ -168,9 +168,9 @@ public class Game extends Thing {
 
     public boolean checkPositionAvailable(rpg.things.Position newPosition) {
         for (IThing thing : this.getThings())
-            if (thing.getPosition().equals(newPosition) ||
-                    !map.isWithinBounds(newPosition.getX(), newPosition.getY()) ||
-                    newPosition.getX() == 0 && newPosition.getY() == 0)
+            if ((thing.getPosition().getX() == newPosition.getX() && thing.getPosition().getY() == newPosition.getY())
+                    || !map.isWithinBounds(newPosition.getX(), newPosition.getY())
+                    || newPosition.getX() == 0 && newPosition.getY() == 0)
                 return false;
 
         return true;

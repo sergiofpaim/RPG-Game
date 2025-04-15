@@ -64,7 +64,7 @@ public class Item implements IThing {
         do {
             newPosition = new Position(random.nextInt(game.getMap().getWidth()),
                     random.nextInt(game.getMap().getHeight()));
-        } while (!game.checkPositionAvailable(newPosition));
+        } while (!game.checkPositionAvailable(newPosition) && newPosition == new Position(0, 0));
 
         Item randomItem = ItemData.defaultItems[random.nextInt(ItemData.defaultItems.length)];
 
