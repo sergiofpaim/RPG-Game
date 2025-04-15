@@ -18,6 +18,8 @@ public class Player extends Character implements IInteractive {
     protected Contact contact = new Contact(this);
     private int level;
 
+    private int totalPoints = 0;
+
     public Player() {
     }
 
@@ -36,6 +38,10 @@ public class Player extends Character implements IInteractive {
         return null;
     }
 
+    public int getTotalPoints() {
+        return totalPoints;
+    }
+
     public void setLevel(int level) {
         this.level = level;
     }
@@ -47,17 +53,35 @@ public class Player extends Character implements IInteractive {
         inventory.setCharacter(this);
     }
 
+    public void setTotalPoints(int totalPoints) {
+        this.totalPoints = totalPoints;
+    }
+
     public List<String> rewardExperience(int experience) {
         List<String> messages = new ArrayList<>();
 
         messages.add("You got " + experience + " points of experience");
         setExperience(experience);
 
-        if (this.getExperience() >= 10) {
-            setLevel(getLevel() + (getExperience() / 10));
-            setExperience(getExperience() % 10);
-            messages.add("And leveled up to level " + getLevel());
-        }
+        if (this.getExperience() >= 10)
+            messages.addAll(levelUp());
+
+        return messages;
+    }
+
+    private List<String> levelUp() {
+        List<String> messages = new ArrayList<>();
+
+        int oldLevel = getLevel();
+
+        setLevel(getLevel() + (getExperience() / 10));
+        setExperience(getExperience() % 10);
+        setHealthPoints(getHealthPoints() + 5);
+
+        messages.add("And leveled up to level " + getLevel());
+        messages.add("\nSelect an attribute to increase upgrade");
+
+        totalPoints = getLevel() - oldLevel;
 
         return messages;
     }
@@ -122,6 +146,13 @@ public class Player extends Character implements IInteractive {
 
     @Override
     public List<Entry<Command, String>> retrieveMenu() {
+        if (totalPoints > 0) {
+            return Arrays.asList(
+                    new AbstractMap.SimpleEntry<>(Command.UPGRADE_ATTACK, "Upgrade Attack"),
+                    new AbstractMap.SimpleEntry<>(Command.UPGRADE_DEFENSE, "Upgrade Defense"),
+                    new AbstractMap.SimpleEntry<>(Command.UPGRADE_MAGIC, "Upgrade Magic"),
+                    new AbstractMap.SimpleEntry<>(Command.UPGRADE_SPEED, "Upgrade Speed"));
+        }
         return Arrays.asList(
                 new AbstractMap.SimpleEntry<>(Command.UP, "Move Up"),
                 new AbstractMap.SimpleEntry<>(Command.DOWN, "Move Down"),
@@ -142,13 +173,37 @@ public class Player extends Character implements IInteractive {
         } else if (command == Command.INTERACT) {
             contact.setThings(game.checkSurroundings(this.position.getX(), this.position.getY()));
             Interface.add(contact);
-
             messages.addAll(contact.showSurroundings());
         } else if (command == Command.SHOW_STATS) {
             messages.add("\n──── Player Stats ────");
             messages.add(this.showStats());
+        } else if (command.getCommand().startsWith("UPGRADE")) {
+            messages.addAll(upgradeAttribute(command));
+            totalPoints--;
         } else {
             move(command);
+        }
+
+        return messages;
+    }
+
+    private List<String> upgradeAttribute(Command command) {
+        List<String> messages = new ArrayList<>();
+        if (command == Command.UPGRADE_ATTACK) {
+            setAttack(getAttack() + 1);
+            messages.add("You upgraded attack by 1 point");
+        }
+        if (command == Command.UPGRADE_DEFENSE) {
+            setDefense(getDefense() + 1);
+            messages.add("You upgraded defense by 1 point");
+        }
+        if (command == Command.UPGRADE_MAGIC) {
+            setMagic(getMagic() + 1);
+            messages.add("You upgraded magic by 1 point");
+        }
+        if (command == Command.UPGRADE_SPEED) {
+            setSpeed(getSpeed() + 1);
+            messages.add("You upgraded speed by 1 point");
         }
 
         return messages;

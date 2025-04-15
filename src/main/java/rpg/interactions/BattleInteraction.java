@@ -21,7 +21,7 @@ public class BattleInteraction extends Interaction {
     private boolean firstTurn = true;
     private boolean initiative = true;
     private boolean usedDefensePlayer = false;
-    private boolean usedDefenseNPC = false;
+    private boolean usedNPCDefense = false;
 
     public BattleInteraction(Player player, NPC npc) {
         super(player);
@@ -35,7 +35,7 @@ public class BattleInteraction extends Interaction {
                 new AbstractMap.SimpleEntry<>(Command.ATTACK, "Attack"),
                 new AbstractMap.SimpleEntry<>(Command.DEFEND, "Defend"),
                 new AbstractMap.SimpleEntry<>(Command.MAGIC, "Magic"),
-                new AbstractMap.SimpleEntry<>(Command.INVENTORY, "Open Inventory"),
+                // new AbstractMap.SimpleEntry<>(Command.INVENTORY, "Open Inventory"),
                 new AbstractMap.SimpleEntry<>(Command.SHOW_STATS, "Show fighters status"),
                 new AbstractMap.SimpleEntry<>(Command.RUN, "Run")));
         return menu;
@@ -50,10 +50,10 @@ public class BattleInteraction extends Interaction {
             return messages;
         }
 
-        else if (command == Command.INVENTORY) {
-            Interface.add(player.getInventory());
-            messages.addAll(player.getInventory().showInventory());
-        }
+        // else if (command == Command.INVENTORY) {
+        // Interface.add(player.getInventory());
+        // messages.addAll(player.getInventory().showInventory());
+        // }
 
         else if (command == Command.SHOW_STATS) {
             messages.add("\n──── Player Stats ────\n" + player.showStats());
@@ -142,9 +142,9 @@ public class BattleInteraction extends Interaction {
         int npcDecision = npc.decideAction();
         List<String> messages = new ArrayList<>();
 
-        if (usedDefenseNPC) {
-            player.setDefense(player.getDefense() - DEFENSE_INCREMENT);
-            usedDefenseNPC = false;
+        if (usedNPCDefense) {
+            npc.setDefense(npc.getDefense() - DEFENSE_INCREMENT);
+            usedNPCDefense = false;
         }
 
         if (npcDecision == 1) {
@@ -156,7 +156,7 @@ public class BattleInteraction extends Interaction {
         } else if (npcDecision == 2) {
             npc.setDefense(npc.getDefense() + DEFENSE_INCREMENT);
             messages.add("\nThe enemy defended and increased his defense by " + DEFENSE_INCREMENT);
-            usedDefenseNPC = true;
+            usedNPCDefense = true;
         } else if (npcDecision == 3) {
             if (rollD20(npc.getSpeed(), player.getDefense())) {
                 player.setCurrentHealthPoints(player.getCurrentHealthPoints() - npc.getMagic());

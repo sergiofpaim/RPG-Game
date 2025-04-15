@@ -53,6 +53,10 @@ public class Command {
     public static final Command SELECT_7 = new Command("SELECT_7", '7');
     public static final Command SELECT_8 = new Command("SELECT_8", '8');
     public static final Command SELECT_9 = new Command("SELECT_9", '9');
+    public static final Command UPGRADE_ATTACK = new Command("UPGRADE_ATTACK", 'A');
+    public static final Command UPGRADE_DEFENSE = new Command("UPGRADE_DEFENSE", 'D');
+    public static final Command UPGRADE_MAGIC = new Command("UPGRADE_MAGIC", 'M');
+    public static final Command UPGRADE_SPEED = new Command("UPGRADE_SPEED", 'S');
     public static final Command ENTER_DOOR = new Command("ENTER_DOOR", '0');
 
     public static List<Command> all() {
