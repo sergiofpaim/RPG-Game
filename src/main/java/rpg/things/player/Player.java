@@ -60,10 +60,10 @@ public class Player extends Character implements IInteractive {
     public List<String> rewardExperience(int experience) {
         List<String> messages = new ArrayList<>();
 
-        messages.add("You got " + experience + " points of experience");
-        setExperience(experience);
+        messages.add("\nYou got " + experience + " points of experience");
+        setExperience(getExperience() + experience);
 
-        if (this.getExperience() >= 10)
+        if (this.getExperience() >= getLevel() * 10)
             messages.addAll(levelUp());
 
         return messages;
@@ -74,14 +74,14 @@ public class Player extends Character implements IInteractive {
 
         int oldLevel = getLevel();
 
-        setLevel(getLevel() + (getExperience() / getLevel() * 10));
-        setExperience(getExperience() % getLevel() * 10);
+        setLevel(getLevel() + (getExperience() / (getLevel() * 20)));
+        setExperience(getExperience() % getLevel() * 20);
 
         setHealthPoints(getHealthPoints() + 5);
         setCurrentHealthPoints(getCurrentHealthPoints() + 5);
 
         messages.add("And leveled up to level " + getLevel());
-        messages.add("\nSelect an attribute to increase upgrade");
+        messages.add("Select an attribute to increase upgrade\n");
 
         totalPoints = getLevel() - oldLevel;
 
