@@ -74,8 +74,8 @@ public class Player extends Character implements IInteractive {
 
         int oldLevel = getLevel();
 
-        setLevel(getLevel() + (getExperience() / 10));
-        setExperience(getExperience() % 10);
+        setLevel(getLevel() + (getExperience() / getLevel() * 10));
+        setExperience(getExperience() % getLevel() * 10);
 
         setHealthPoints(getHealthPoints() + 5);
         setCurrentHealthPoints(getCurrentHealthPoints() + 5);
