@@ -8,16 +8,16 @@ import rpg.templateData.ItemData;
 import rpg.types.ItemType;
 
 public class Item implements IThing {
-    private String id;
-    private String name;
-    private String description;
-    private int attack;
-    private int cure;
-    private int defense;
-    private ItemType type;
-    private Position position = new Position();
-    private Game game;
-    private boolean isCarried;
+    protected String id;
+    protected String name;
+    protected String description;
+    protected int attack;
+    protected int cure;
+    protected int defense;
+    protected ItemType type;
+    protected Position position = new Position();
+    protected boolean isCarried;
+    protected Game game;
 
     public Item() {
     }

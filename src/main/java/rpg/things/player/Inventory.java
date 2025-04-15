@@ -19,7 +19,6 @@ public class Inventory implements IInteractive {
     private List<Load> loads = new ArrayList<Load>();
 
     public Inventory() {
-
     }
 
     public Inventory(rpg.things.Character character) {

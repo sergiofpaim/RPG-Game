@@ -20,7 +20,6 @@ public class Contact implements IInteractive {
     private List<IThing> things = new ArrayList<>();
 
     public Contact() {
-
     }
 
     public Contact(Player player) {

@@ -21,8 +21,8 @@ public abstract class Character extends Thing implements IThing {
     protected Inventory inventory = new Inventory(this);
     protected Position position;
     protected String description;
+    protected int experience;
     protected Game game;
-    private int experience;
 
     public Character() {
     }

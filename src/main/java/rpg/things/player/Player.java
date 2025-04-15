@@ -15,12 +15,13 @@ import rpg.things.Position;
 import rpg.types.Command;
 
 public class Player extends Character implements IInteractive {
-    private static final int HEALTH_UPGRADE = 5;
-    private static final int EXPERIENCE_UPGRADE = 10;
-    protected Contact contact = new Contact(this);
-    private int level;
+    protected static final int HEALTH_UPGRADE = 5;
+    protected static final int EXPERIENCE_UPGRADE = 10;
 
-    private int upgradePoints = 0;
+    protected Contact contact = new Contact(this);
+    protected int level;
+
+    protected int upgradePoints = 0;
 
     public Player() {
     }

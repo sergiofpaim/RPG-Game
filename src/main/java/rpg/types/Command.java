@@ -20,7 +20,6 @@ public class Command {
         return key;
     }
 
-    // Static predefined commands
     public static final Command UP = new Command("UP", 'W');
     public static final Command DOWN = new Command("DOWN", 'S');
     public static final Command LEFT = new Command("LEFT", 'A');
@@ -63,7 +62,8 @@ public class Command {
         return Arrays.asList(UP, DOWN, LEFT, RIGHT, INVENTORY, SHOW_STATS, INTERACT, STOP_INTERACTION, SAVE, HELP, EXIT,
                 BATTLE,
                 ATTACK, DEFEND, MAGIC, PICK_UP_ITEM, USE_ITEM, EQUIP_ITEM, UNEQUIP_ITEM, DROP_ITEM, TALK, LOOK, RUN,
-                SELECT_1, SELECT_2, SELECT_3, SELECT_4, SELECT_5, SELECT_6, SELECT_7, SELECT_8, SELECT_9, ENTER_DOOR);
+                SELECT_1, SELECT_2, SELECT_3, SELECT_4, SELECT_5, SELECT_6, SELECT_7, SELECT_8, SELECT_9,
+                UPGRADE_ATTACK, UPGRADE_DEFENSE, UPGRADE_MAGIC, UPGRADE_SPEED, ENTER_DOOR);
     }
 
     public Boolean isSelect() {

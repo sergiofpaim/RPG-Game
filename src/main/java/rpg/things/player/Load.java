@@ -7,7 +7,6 @@ public class Load {
     Item item;
 
     public Load() {
-
     }
 
     public Load(Item item) {
