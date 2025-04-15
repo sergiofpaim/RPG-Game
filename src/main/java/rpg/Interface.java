@@ -93,7 +93,12 @@ public class Interface {
     public static void interact() {
         Command command = getCommand();
 
-        for (IInteractive interactable : new ArrayList<>(interactables)) {
+        List<IInteractive> targets = new ArrayList<>();
+        targets.add(interactables.get(0));
+        if (interactables.size() > 1)
+            targets.add(interactables.get(interactables.size() - 1));
+
+        for (IInteractive interactable : targets) {
             List<String> messages = interactable.processCommand(command);
             for (String message : messages) {
                 System.out.println(message);
