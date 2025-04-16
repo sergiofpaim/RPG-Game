@@ -62,7 +62,6 @@ public class InventoryInteraction extends Interaction {
             if (load.getItem().getCure() > 0)
                 player.setCurrentHealthPoints(player.getCurrentHealthPoints() + load.getItem().getCure());
             else {
-                messages.add("\nYou used a" + load.getItem().getName());
             }
 
             // TODO: Usar itens de dano apenas em batalha
