@@ -61,8 +61,11 @@ public class InventoryInteraction extends Interaction {
             messages.add("\nYou used: " + load.getItem().getName() + ".");
             if (load.getItem().getCure() > 0)
                 player.setCurrentHealthPoints(player.getCurrentHealthPoints() + load.getItem().getCure());
-            else
-                messages.add("\nYou cannot use this item on yourself");
+            else {
+                messages.add("\nYou used a" + load.getItem().getName());
+            }
+
+            // TODO: Usar itens de dano apenas em batalha
 
             player.useFromInventory(load);
             Interface.remove(this);

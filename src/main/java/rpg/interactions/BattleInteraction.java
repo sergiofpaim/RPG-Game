@@ -89,9 +89,6 @@ public class BattleInteraction extends Interaction {
         }
     }
 
-    // TODO: Usar item em batalha sem apanhar
-    // TODO: Usar itens de dano apenas em batalha
-
     private List<String> playerTurn(Command command) {
         List<String> messages = new ArrayList<>();
 

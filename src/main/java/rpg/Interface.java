@@ -15,19 +15,19 @@ import rpg.utils.InputHelper;
 public class Interface {
     public static final Scanner scan = new Scanner(System.in);
 
-    private static List<IInteractive> interactables = new ArrayList<>();
+    private static List<IInteractive> interactive = new ArrayList<>();
     private static List<Entry<String, List<Entry<Command, String>>>> labels;
 
     public static void showCommands(boolean showDetails) {
         labels = new ArrayList<>();
 
-        IInteractive first = interactables.get(0);
+        IInteractive first = interactive.get(0);
         labels.add(new AbstractMap.SimpleEntry<>(
                 first.retrieveLabel(),
                 first.retrieveMenu()));
-        if (interactables.size() > 1) {
-            IInteractive last = interactables.get(interactables.size() - 1);
 
+        if (interactive.size() > 1) {
+            IInteractive last = interactive.get(interactive.size() - 1);
             labels.add(new AbstractMap.SimpleEntry<>(
                     last.retrieveLabel(),
                     last.retrieveMenu()));
@@ -94,9 +94,13 @@ public class Interface {
         Command command = getCommand();
 
         List<IInteractive> targets = new ArrayList<>();
-        targets.add(interactables.get(0));
-        if (interactables.size() > 1)
-            targets.add(interactables.get(interactables.size() - 1));
+
+        // Gets first item of the interactables list
+        targets.add(interactive.get(0));
+
+        // Gets last item of the interactables list
+        if (interactive.size() > 1)
+            targets.add(interactive.get(interactive.size() - 1));
 
         for (IInteractive interactable : targets) {
             List<String> messages = interactable.processCommand(command);
@@ -107,10 +111,10 @@ public class Interface {
     }
 
     public static void add(IInteractive interactable) {
-        interactables.add(interactable);
+        interactive.add(interactable);
     }
 
     public static void remove(IInteractive interactable) {
-        interactables.remove(interactable);
+        interactive.remove(interactable);
     }
 }
