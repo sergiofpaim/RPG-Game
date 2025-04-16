@@ -32,11 +32,11 @@ public class BattleInteraction extends Interaction {
     public List<Entry<Command, String>> retrieveMenu() {
         List<Entry<Command, String>> menu = new ArrayList<>(super.retrieveMenu());
         menu.addAll(Arrays.asList(
+                new AbstractMap.SimpleEntry<>(Command.SHOW_STATS, "Show fighters status"),
+                new AbstractMap.SimpleEntry<>(Command.INVENTORY, "Open Inventory"),
                 new AbstractMap.SimpleEntry<>(Command.ATTACK, "Attack"),
                 new AbstractMap.SimpleEntry<>(Command.DEFEND, "Defend"),
                 new AbstractMap.SimpleEntry<>(Command.MAGIC, "Magic"),
-                // new AbstractMap.SimpleEntry<>(Command.INVENTORY, "Open Inventory"),
-                new AbstractMap.SimpleEntry<>(Command.SHOW_STATS, "Show fighters status"),
                 new AbstractMap.SimpleEntry<>(Command.RUN, "Run")));
         return menu;
     }
@@ -50,10 +50,10 @@ public class BattleInteraction extends Interaction {
             return messages;
         }
 
-        // else if (command == Command.INVENTORY) {
-        // Interface.add(player.getInventory());
-        // messages.addAll(player.getInventory().showInventory());
-        // }
+        else if (command == Command.INVENTORY) {
+            Interface.add(player.getInventory());
+            messages.addAll(player.getInventory().showInventory());
+        }
 
         else if (command == Command.SHOW_STATS) {
             messages.add("\n──── Player Stats ────\n" + player.showStats());

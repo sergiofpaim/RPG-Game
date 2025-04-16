@@ -5,7 +5,7 @@ import rpg.types.ItemType;
 
 public class ItemData {
     public static final Item[] defaultItems = {
-            new Item("Potion", "Heals 50 HP", 0, 15, 0, ItemType.USABLE, false),
+            new Item("Health Potion", "Heals 15 HP", 0, 15, 0, ItemType.USABLE, false),
             new Item("Shield", "A sturdy shield", 0, 0, 2, ItemType.SHIELD, false),
             new Item("Armor", "Protects your body", 0, 0, 5, ItemType.ARMOR, false),
             new Item("Bomb", "Deals damage to all enemies", 4, 0, 0, ItemType.USABLE, false),
