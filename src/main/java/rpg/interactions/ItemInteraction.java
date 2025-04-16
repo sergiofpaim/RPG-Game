@@ -14,6 +14,7 @@ import rpg.types.Command;
 import rpg.types.ItemType;
 
 public class ItemInteraction extends Interaction {
+    private static final int INVENTORY_SIZE = 8;
     private Item item;
 
     public ItemInteraction(Player player, Item item) {
@@ -49,8 +50,12 @@ public class ItemInteraction extends Interaction {
         }
 
         else if (command == Command.PICK_UP_ITEM) {
-            messages.add("\nYou picked up " + item.getName() + ".");
-            player.addToInventory(item);
+            if (player.getInventory().getLoads().size() < INVENTORY_SIZE) {
+                messages.add("\nYou picked up " + item.getName() + ".");
+                player.addToInventory(item);
+            } else
+                messages.add("\nYour inventory is full, get rid of some items.");
+
             Interface.remove(this);
         }
 

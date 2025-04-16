@@ -3,6 +3,7 @@ package rpg.things;
 import java.util.Random;
 
 import rpg.Game;
+import rpg.Runner;
 import rpg.interfaces.IThing;
 import rpg.templateData.ItemData;
 import rpg.types.ItemType;
@@ -47,9 +48,9 @@ public class Item implements IThing {
         this.id = randomItem.getId();
         this.name = randomItem.getName();
         this.description = randomItem.getDescription();
-        this.attack = randomItem.getAttack();
-        this.cure = randomItem.getCure();
-        this.defense = randomItem.getDefense();
+        this.attack = randomItem.getAttack() + random.nextInt(Runner.player.getLevel());
+        this.cure = randomItem.getCure() + random.nextInt(Runner.player.getLevel());
+        this.defense = randomItem.getDefense() + random.nextInt(Runner.player.getLevel());
         this.type = randomItem.getType();
         this.setPosition(newPosition);
         this.setId(String.valueOf(new Random().nextInt(1000) + 1));
