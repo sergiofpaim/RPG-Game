@@ -128,9 +128,4 @@ public class NPC extends Character {
 
         return decision;
     }
-
-    public String takeDamage(int attack) {
-        currentHealthPoints -= attack;
-        return "\nYou attack the enemy, causing: " + attack + " damage";
-    }
 }

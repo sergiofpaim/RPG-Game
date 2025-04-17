@@ -155,4 +155,12 @@ public abstract class Character extends Thing implements IThing {
 
         return stats;
     }
+
+    public void receiveDamage(int damage) {
+        this.currentHealthPoints = Math.max(0, this.currentHealthPoints - damage);
+    }
+
+    public void healDamage(int heal) {
+        this.currentHealthPoints = Math.min(this.healthPoints, this.currentHealthPoints + heal);
+    }
 }

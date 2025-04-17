@@ -102,23 +102,28 @@ public class BattleInteraction extends Interaction {
         }
 
         if (command == Command.ATTACK) {
-            if (rollD20(player.getSpeed(), npc.getDefense()))
-                messages.add(npc.takeDamage(player.getAttack()));
-            else
+            if (rollD20(player.getSpeed(), npc.getDefense())) {
+                npc.receiveDamage(player.getAttack());
+                messages.add("\nYou attack the enemy, causing: " + player.getAttack() + " damage");
+            } else
                 messages.add("\nYou miss the attack, causing: 0 damage");
 
         } else if (command == Command.DEFEND) {
             player.setDefense(player.getDefense() + DEFENSE_INCREMENT);
             messages.add("\nYou defend and increase your defense by " + DEFENSE_INCREMENT);
             usedDefensePlayer = true;
-        } else if (command == Command.MAGIC) {
+        }
+
+        else if (command == Command.MAGIC) {
             if (rollD20(player.getSpeed(), npc.getDefense())) {
-                npc.setCurrentHealthPoints(npc.getCurrentHealthPoints() - player.getMagic());
+                npc.receiveDamage(player.getMagic());
                 messages.add("\nYou use magic on the enemy, causing: " + player.getMagic() + " damage");
             } else {
                 messages.add("\nYou miss the magic, causing: 0 damage");
             }
-        } else if (command == Command.RUN) {
+        }
+
+        else if (command == Command.RUN) {
             if (rollD20(player.getSpeed()) > rollD20(npc.getSpeed())) {
                 messages.add("\nYou run away from the fight");
                 finish();
@@ -156,21 +161,24 @@ public class BattleInteraction extends Interaction {
 
         if (npcDecision == 1) {
             if (rollD20(npc.getSpeed(), player.getDefense())) {
-                player.setCurrentHealthPoints(player.getCurrentHealthPoints() - npc.getAttack());
+                player.receiveDamage(npc.getAttack());
                 messages.add("\nThe enemy attacks you, causing: " + npc.getAttack() + " damage");
             } else
                 messages.add("\nThe enemy misses the attack, causing: 0 damage");
-        } else if (npcDecision == 2) {
+        }
+
+        else if (npcDecision == 2) {
             npc.setDefense(npc.getDefense() + DEFENSE_INCREMENT);
             messages.add("\nThe enemy defended and increased his defense by " + DEFENSE_INCREMENT);
             usedNPCDefense = true;
-        } else if (npcDecision == 3) {
+        }
+
+        else if (npcDecision == 3) {
             if (rollD20(npc.getSpeed(), player.getDefense())) {
-                player.setCurrentHealthPoints(player.getCurrentHealthPoints() - npc.getMagic());
+                player.receiveDamage(npc.getMagic());
                 messages.add("\nThe enemy used magic on you, causing: " + npc.getMagic() + " damage");
             } else
                 messages.add("\nThe enemy misses the magic, causing: 0 damage");
-        } else if (npcDecision == 4) {
         }
 
         if (player.getCurrentHealthPoints() <= 0) {

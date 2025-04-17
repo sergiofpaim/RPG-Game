@@ -67,16 +67,16 @@ public class InventoryInteraction extends Interaction {
             if (!player.getIsBattling()) {
                 if (load.getItem().getCure() > 0) {
                     messages.add("\nYou used: " + load.getItem().getName() + ".");
-                    player.setCurrentHealthPoints(player.getCurrentHealthPoints() + load.getItem().getCure());
+                    player.healDamage(load.getItem().getCure());
                     player.useFromInventory(load);
                 } else
                     messages.add("\nYou can't use this item on yourself.");
             } else {
                 messages.add("\nYou used: " + load.getItem().getName() + ".");
                 if (load.getItem().getCure() > 0)
-                    player.setCurrentHealthPoints(player.getCurrentHealthPoints() + load.getItem().getCure());
+                    player.healDamage(load.getItem().getCure());
                 else
-                    npc.setCurrentHealthPoints(npc.getCurrentHealthPoints() - load.getItem().getAttack());
+                    npc.receiveDamage(load.getItem().getAttack());
                 messages.add("\nYou caused: " + load.getItem().getAttack() + " damage to the enemy.");
 
                 player.useFromInventory(load);
