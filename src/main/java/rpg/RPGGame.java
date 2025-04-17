@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import rpg.things.player.Player;
-import rpg.things.player.PlayerCreator;
+import rpg.things.player.PlayerFactory;
 
 public class RPGGame {
 
@@ -32,7 +32,7 @@ public class RPGGame {
             String choice = scan.nextLine().trim().toLowerCase();
 
             if (choice.equals("y")) {
-                player = PlayerCreator.createPlayer();
+                player = PlayerFactory.create();
                 game = new Game(player);
             }
 

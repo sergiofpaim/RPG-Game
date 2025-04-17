@@ -16,6 +16,7 @@ import rpg.types.Command;
 public class Inventory implements IInteractive {
 
     private rpg.things.Character character;
+    private rpg.things.Character adversary;
     private List<Load> loads = new ArrayList<Load>();
 
     public Inventory() {
@@ -23,6 +24,10 @@ public class Inventory implements IInteractive {
 
     public Inventory(rpg.things.Character character) {
         this.character = character;
+    }
+
+    public void defineAdversary(rpg.things.Character adversary) {
+        this.adversary = adversary;
     }
 
     @Override
@@ -47,11 +52,10 @@ public class Inventory implements IInteractive {
             int index = Character.getNumericValue(command.getKey()) - 1;
 
             if (index >= 0 && index < loads.size()) {
-                if (character instanceof Player) {
-                    InventoryInteraction interaction = new InventoryInteraction((Player) character, loads.get(index));
-                    Interface.remove(this);
-                    Interface.add(interaction);
-                }
+                InventoryInteraction interaction = new InventoryInteraction((Player) character, loads.get(index),
+                        adversary);
+                Interface.remove(this);
+                Interface.add(interaction);
             }
         } else
             messages.addAll(showInventory());

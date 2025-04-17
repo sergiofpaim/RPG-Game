@@ -8,8 +8,8 @@ import rpg.things.Item;
 import rpg.things.Position;
 import rpg.types.ItemType;
 
-public class PlayerCreator {
-    public static Player createPlayer() {
+public class PlayerFactory {
+    public static Player create() {
         int points = 10;
 
         System.out.print("\nEnter your character's name: ");

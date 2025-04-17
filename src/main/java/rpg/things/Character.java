@@ -22,6 +22,7 @@ public abstract class Character extends Thing implements IThing {
     protected Position position;
     protected String description;
     protected int experience;
+    protected boolean isBattling = false;
     protected Game game;
 
     public Character() {
@@ -52,6 +53,10 @@ public abstract class Character extends Thing implements IThing {
 
     public int getCurrentHealthPoints() {
         return currentHealthPoints;
+    }
+
+    public boolean getIsBattling() {
+        return isBattling;
     }
 
     public int getAttack() {
@@ -120,6 +125,10 @@ public abstract class Character extends Thing implements IThing {
 
     public void setExperience(int experience) {
         this.experience = experience;
+    }
+
+    public void setIsBattling(boolean isBattling) {
+        this.isBattling = isBattling;
     }
 
     @JsonIgnore

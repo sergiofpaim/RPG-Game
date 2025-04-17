@@ -14,10 +14,16 @@ import rpg.types.ItemType;
 
 public class InventoryInteraction extends Interaction {
     private Load load;
+    private rpg.things.Character npc;
 
-    public InventoryInteraction(Player player, Load item) {
+    public InventoryInteraction(Player player, Load load) {
+        this(player, load, null);
+    }
+
+    public InventoryInteraction(Player player, Load load, rpg.things.Character npc) {
         super(player);
-        this.load = item;
+        this.load = load;
+        this.npc = npc;
     }
 
     @Override
@@ -58,15 +64,24 @@ public class InventoryInteraction extends Interaction {
         }
 
         else if (command == Command.USE_ITEM) {
-            messages.add("\nYou used: " + load.getItem().getName() + ".");
-            if (load.getItem().getCure() > 0)
-                player.setCurrentHealthPoints(player.getCurrentHealthPoints() + load.getItem().getCure());
-            else {
+            if (!player.getIsBattling()) {
+                if (load.getItem().getCure() > 0) {
+                    messages.add("\nYou used: " + load.getItem().getName() + ".");
+                    player.setCurrentHealthPoints(player.getCurrentHealthPoints() + load.getItem().getCure());
+                    player.useFromInventory(load);
+                } else
+                    messages.add("\nYou can't use this item on yourself.");
+            } else {
+                messages.add("\nYou used: " + load.getItem().getName() + ".");
+                if (load.getItem().getCure() > 0)
+                    player.setCurrentHealthPoints(player.getCurrentHealthPoints() + load.getItem().getCure());
+                else
+                    npc.setCurrentHealthPoints(npc.getCurrentHealthPoints() - load.getItem().getAttack());
+                messages.add("\nYou caused: " + load.getItem().getAttack() + " damage to the enemy.");
+
+                player.useFromInventory(load);
             }
 
-            // TODO: Usar itens de dano apenas em batalha
-
-            player.useFromInventory(load);
             Interface.remove(this);
         }
 

@@ -26,6 +26,8 @@ public class BattleInteraction extends Interaction {
     public BattleInteraction(Player player, NPC npc) {
         super(player);
         this.npc = npc;
+        player.setIsBattling(true);
+        npc.setIsBattling(true);
     }
 
     @Override
@@ -51,7 +53,9 @@ public class BattleInteraction extends Interaction {
         }
 
         else if (command == Command.INVENTORY) {
+            player.getInventory().defineAdversary(npc);
             Interface.add(player.getInventory());
+
             messages.addAll(player.getInventory().showInventory());
         }
 
@@ -117,7 +121,7 @@ public class BattleInteraction extends Interaction {
         } else if (command == Command.RUN) {
             if (rollD20(player.getSpeed()) > rollD20(npc.getSpeed())) {
                 messages.add("\nYou run away from the fight");
-                Interface.remove(this);
+                finish();
                 return messages;
             } else {
                 messages.add("\nYou try to escape the fight, but you can't");
@@ -129,10 +133,16 @@ public class BattleInteraction extends Interaction {
             messages.addAll(player.rewardExperience(npc.getExperience()));
             npc.destroy();
 
-            Interface.remove(this);
+            finish();
         }
 
         return messages;
+    }
+
+    private void finish() {
+        Interface.remove(this);
+        player.setIsBattling(false);
+        npc.setIsBattling(false);
     }
 
     private List<String> npcAttack() {
@@ -167,6 +177,7 @@ public class BattleInteraction extends Interaction {
             messages.add("You were defeated by:" + npc.getName());
             player.destroy();
 
+            finish();
             Runner.isRunning = false;
         }
 

@@ -179,4 +179,8 @@ public class Game extends Thing {
         player.setGame(this);
         changed = true;
     }
+
+    public Player retrievePlayer() {
+        return player;
+    }
 }
