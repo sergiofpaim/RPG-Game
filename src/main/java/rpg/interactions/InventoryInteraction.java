@@ -55,12 +55,12 @@ public class InventoryInteraction extends Interaction {
                             "\nDescription: " + load.getItem().getDescription() +
                             "\n" + load.getItem().showStats() + "\n");
 
-            Interface.remove(this);
+            finish();
         }
 
         else if (command == Command.EQUIP_ITEM) {
             messages.addAll(equipItem(load));
-            Interface.remove(this);
+            finish();
         }
 
         else if (command == Command.USE_ITEM) {
@@ -82,25 +82,30 @@ public class InventoryInteraction extends Interaction {
                 player.useFromInventory(load);
             }
 
-            Interface.remove(this);
+            finish();
         }
 
         else if (command == Command.UNEQUIP_ITEM) {
             messages.addAll(unequipItem(load));
-            Interface.remove(this);
+            finish();
         }
 
         else if (command == Command.DROP_ITEM) {
             messages.add("\nYou dropped " + load.getItem().getName() + ".");
             player.dropFromInventory(load);
-            Interface.remove(this);
+            finish();
         }
 
         else if (command == Command.STOP_INTERACTION) {
-            Interface.remove(this);
+            finish();
         }
 
         return messages;
+    }
+
+    private void finish() {
+        Interface.remove(this);
+        player.getInventory().defineAdversary(null);
     }
 
     public List<String> equipItem(Load load) {

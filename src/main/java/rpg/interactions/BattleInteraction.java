@@ -52,13 +52,6 @@ public class BattleInteraction extends Interaction {
             return messages;
         }
 
-        else if (command == Command.INVENTORY) {
-            player.getInventory().defineAdversary(npc);
-            Interface.add(player.getInventory());
-
-            messages.addAll(player.getInventory().showInventory());
-        }
-
         else if (command == Command.SHOW_STATS) {
             messages.add("\n──── Player Stats ────\n" + player.showStats());
             messages.add("\n──── Enemy Stats ────\n" + npc.showStats());
@@ -108,7 +101,16 @@ public class BattleInteraction extends Interaction {
             } else
                 messages.add("\nYou miss the attack, causing: 0 damage");
 
-        } else if (command == Command.DEFEND) {
+        }
+
+        else if (command == Command.INVENTORY) {
+            player.getInventory().defineAdversary(npc);
+            Interface.add(player.getInventory());
+
+            messages.addAll(player.getInventory().showInventory());
+        }
+
+        else if (command == Command.DEFEND) {
             player.setDefense(player.getDefense() + DEFENSE_INCREMENT);
             messages.add("\nYou defend and increase your defense by " + DEFENSE_INCREMENT);
             usedDefensePlayer = true;
