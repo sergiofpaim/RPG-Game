@@ -4,7 +4,7 @@
 
 ### **Business Domain**
 
-This project was born from the idea of creating an RPG game set in an open world, featuring inventory management, battles, NPCs, and a limitless number of procedurally generated, level-balanced maps and enemies.
+This project was born from the idea of creating an RPG game set in an open world, featuring inventory management, battles, NPCs, and a limitless number of procedurally generated, level-balanced maps and enemies, with a progress saving system. And also to practice Java and Object-Oriented Programming (OOP) principles.
 
 1. **Exploring the Environment**  
    Navigate a randomly generated map with items and NPCs whose attributes scale based on the player's level.
@@ -14,22 +14,22 @@ This project was born from the idea of creating an RPG game set in an open world
 2. **Interacting**  
    Players can interact with both NPCs (characters) and items in the environment.
 
-      <img src="resource/Interaction_Screen.png" alt="Interaction Screen" width="300"/>
+   <img src="resource/Interaction_Screen.png" alt="Interaction Screen" width="300"/>
 
 3. **Managing Items**  
-   Manage your inventory and interact with items during battles or exploration.
+   Manage your inventory and interact with items during battles or map exploration.
 
-   ![Items Screen](resource/Items_Screen.png)
+   <img src="resource/Items_Screen.png" alt="Items Screen." width="300"/>
 
 4. **Talking and Observing**  
    View an NPC’s attributes, read their descriptions, and receive randomly generated dialogues when interacting.
 
-   ![Talking Screen](resource/Talking_Screen.png)
+   <img src="resource/Talking_Screen.png" alt="Talking Screen." width="300"/>
 
 5. **Battling**  
    Challenge NPCs—including peaceful characters and monsters—and loot their items after victory.
 
-   ![Battle Screen](resource/Battle_Screen.png)
+   <img src="resource/Battle_Screen.png" alt="Battle Screen." width="300"/>
 
 ### **Technical Domain (Solution)**
 
@@ -48,7 +48,6 @@ This diagram illustrates the system's structure, showing class responsibilities 
 - Designing gameplay mechanics in code  
 - Applying object-oriented principles to real-world systems  
 - Structuring classes by responsibility  
-- Managing a Java-based CLI project with Maven  
 
 ---
 
