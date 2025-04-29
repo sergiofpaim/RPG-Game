@@ -70,11 +70,11 @@ cd RPG-Game
 code .
 ```
 
-1. Install **recommended extensions** when prompted:
+Install **recommended extensions** when prompted:
    - Java Extension Pack
    - Maven for Java
 
-2. Then run the following in the terminal:
+Then run the following in the terminal:
 
 ```bash
 mvn clean install
@@ -109,5 +109,3 @@ mvn exec:java
 
 - Java version used: **17.0.13**
 - Maven version used: **3.9.9**
-
----
