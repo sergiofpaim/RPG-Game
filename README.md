@@ -37,9 +37,17 @@ The game is developed as a **Command Line Interface (CLI)** to ensure an intuiti
 
 ### **Architecture Overview**
 
-![Architecture Diagram](resource/RPG_Game_Architecture_Diagram.png)
+The diagrams bellow illustrate the system's main structure in three levels:
 
-This diagram illustrates the system's structure, showing class responsibilities and how components interact to support the game’s mechanics.
+#### Runtime
+![Runtime](resource/Architecture_Runtime.png)
+
+#### Interfaces
+![Interfaces](resource/Architecture_Interfaces.png)
+
+
+#### Game Logic
+![Game Logic](resource/Architecture_Game.png)
 
 ---
 
