@@ -18,13 +18,13 @@ import rpg.things.player.Player;
 public interface IThing {
     public String draw();
 
-    public String showStats();
-
-    public Position getPosition();
-
     public String getName();
 
     public String getDescription();
+
+    public String showStats();
+
+    public Position getPosition();
 
     public void setGame(Game game);
 }

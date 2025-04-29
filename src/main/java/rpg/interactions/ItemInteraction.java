@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 
-import rpg.Interface;
+import rpg.CLI;
 import rpg.Runner;
 import rpg.things.Item;
 import rpg.things.player.Player;
@@ -46,7 +46,7 @@ public class ItemInteraction extends Interaction {
                             "\nDescription: " + item.getDescription()
                             + "\nStats: " + item.showStats());
 
-            Interface.remove(this);
+            CLI.remove(this);
         }
 
         else if (command == Command.PICK_UP_ITEM) {
@@ -56,18 +56,18 @@ public class ItemInteraction extends Interaction {
             } else
                 messages.add("\nYour inventory is full, get rid of some items.");
 
-            Interface.remove(this);
+            CLI.remove(this);
         }
 
         else if (command == Command.STOP_INTERACTION) {
             messages.add("\nYou stopped interacting with " + item.getName() + ".");
-            Interface.remove(this);
+            CLI.remove(this);
         }
 
         else if (command == Command.ENTER_DOOR) {
             messages.add("\nYou entered a new Dungeon!");
             Runner.newWorld();
-            Interface.remove(this);
+            CLI.remove(this);
         }
 
         return messages;

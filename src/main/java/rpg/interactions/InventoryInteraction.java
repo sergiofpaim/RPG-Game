@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 
-import rpg.Interface;
+import rpg.CLI;
 import rpg.things.player.Load;
 import rpg.things.player.Player;
 import rpg.types.Command;
@@ -104,7 +104,7 @@ public class InventoryInteraction extends Interaction {
     }
 
     private void finish() {
-        Interface.remove(this);
+        CLI.remove(this);
         player.getInventory().defineAdversary(null);
     }
 

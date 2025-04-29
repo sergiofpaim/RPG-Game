@@ -40,14 +40,14 @@ The game is developed as a **Command Line Interface (CLI)** to ensure an intuiti
 The diagrams bellow illustrate the system's main structure in three levels:
 
 #### Runtime
-![Runtime](resource/Architecture-Runtime.png)
+![Runtime](resource/Architecture_Runtime.png)
 
 #### Interfaces
-![Interfaces](resource/Architecture-Interfaces.png)
+![Interfaces](resource/Architecture_Interfaces.png)
 
 
 #### Game Logic
-![Game Logic](resource/Architecture-Game.png)
+![Game Logic](resource/Architecture_Game.png)
 
 ---
 

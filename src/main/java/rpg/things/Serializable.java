@@ -1,6 +1,6 @@
 package rpg.things;
 
-public abstract class Thing {
+public abstract class Serializable {
 
     private String id;
 

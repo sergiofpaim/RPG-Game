@@ -9,7 +9,7 @@ import rpg.interfaces.IInteractive;
 import rpg.things.player.Player;
 import rpg.types.Command;
 
-public class Interaction implements IInteractive {
+public abstract class Interaction implements IInteractive {
     protected Player player;
 
     public Interaction(Player player) {

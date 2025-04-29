@@ -26,13 +26,13 @@ public class Runner implements IInteractive {
         for (IThing thing : game.getThings())
             thing.setGame(game);
 
-        Interface.add(this);
-        Interface.add(player);
+        CLI.add(this);
+        CLI.add(player);
 
         render();
 
         while (true) {
-            Interface.interact();
+            CLI.interact();
             if (isRunning)
                 render();
             else
@@ -42,7 +42,7 @@ public class Runner implements IInteractive {
 
     private void render() {
         displayMap();
-        Interface.showCommands(shouldShowHelp());
+        CLI.showCommands(shouldShowHelp());
     }
 
     private static void displayMap() {

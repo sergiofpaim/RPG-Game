@@ -98,11 +98,11 @@ public class NPC extends Character {
     }
 
     public void destroy() {
-        dropFromInventory();
-        game.remove(this);
+        dropWholeInventory();
+        super.destroy();
     }
 
-    private void dropFromInventory() {
+    private void dropWholeInventory() {
         Position newPosition = null;
 
         for (int[] offset : rpg.Map.offsets) {

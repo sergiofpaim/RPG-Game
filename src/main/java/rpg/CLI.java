@@ -12,7 +12,7 @@ import rpg.interfaces.IInteractive;
 import rpg.types.Command;
 import rpg.utils.InputHelper;
 
-public class Interface {
+public class CLI {
     public static final Scanner scan = new Scanner(System.in);
 
     private static List<IInteractive> interactive = new ArrayList<>();

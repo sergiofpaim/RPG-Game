@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
 
-import rpg.Interface;
+import rpg.CLI;
 import rpg.Runner;
 import rpg.things.NPC;
 import rpg.things.player.Player;
@@ -105,7 +105,7 @@ public class BattleInteraction extends Interaction {
 
         else if (command == Command.INVENTORY) {
             player.getInventory().defineAdversary(npc);
-            Interface.add(player.getInventory());
+            CLI.add(player.getInventory());
 
             messages.addAll(player.getInventory().showInventory());
         }
@@ -147,7 +147,7 @@ public class BattleInteraction extends Interaction {
     }
 
     private void finish() {
-        Interface.remove(this);
+        CLI.remove(this);
         player.setIsBattling(false);
         npc.setIsBattling(false);
     }

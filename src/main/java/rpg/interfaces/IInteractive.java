@@ -7,9 +7,9 @@ import rpg.types.Command;
 
 public interface IInteractive {
 
+    public String retrieveLabel();
+
     public List<Map.Entry<Command, String>> retrieveMenu();
 
     public List<String> processCommand(Command command);
-
-    public String retrieveLabel();
 }

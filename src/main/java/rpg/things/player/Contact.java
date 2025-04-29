@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import rpg.Interface;
+import rpg.CLI;
 import rpg.interactions.ItemInteraction;
 import rpg.interactions.NPCInteraction;
 import rpg.interfaces.IInteractive;
@@ -43,12 +43,12 @@ public class Contact implements IInteractive {
         List<String> messages = new ArrayList<>();
 
         if (command == Command.STOP_INTERACTION) {
-            Interface.remove(this);
+            CLI.remove(this);
         }
 
         else if (command.getCommand().startsWith("SELECT_")) {
             processMapInteractionSelection(command);
-            Interface.remove(this);
+            CLI.remove(this);
         }
 
         return messages;
@@ -66,7 +66,7 @@ public class Contact implements IInteractive {
 
         } else {
             messages.add("\nThere is nothing here to interact with.");
-            Interface.remove(this);
+            CLI.remove(this);
         }
 
         return messages;
@@ -80,12 +80,12 @@ public class Contact implements IInteractive {
 
         if (selectedThing instanceof NPC) {
             NPCInteraction interaction = new NPCInteraction(player, (NPC) selectedThing);
-            Interface.add(interaction);
+            CLI.add(interaction);
         }
 
         else if (selectedThing instanceof Item) {
             ItemInteraction interaction = new ItemInteraction(player, (Item) selectedThing);
-            Interface.add(interaction);
+            CLI.add(interaction);
         }
     }
 

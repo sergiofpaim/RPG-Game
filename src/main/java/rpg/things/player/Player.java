@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import rpg.Game;
-import rpg.Interface;
+import rpg.CLI;
 import rpg.interfaces.IInteractive;
 import rpg.things.Character;
 import rpg.things.Item;
@@ -165,11 +165,11 @@ public class Player extends Character implements IInteractive {
         List<String> messages = new ArrayList<>();
 
         if (command == Command.INVENTORY) {
-            Interface.add(inventory);
+            CLI.add(inventory);
             messages.addAll(inventory.showInventory());
         } else if (command == Command.INTERACT) {
             contact.setThings(game.checkSurroundings(this.position.getCol(), this.position.getRow()));
-            Interface.add(contact);
+            CLI.add(contact);
             messages.addAll(contact.showSurroundings());
         } else if (command == Command.SHOW_STATS) {
             messages.add("\n──── Player Stats ────");
@@ -204,10 +204,6 @@ public class Player extends Character implements IInteractive {
         }
 
         return messages;
-    }
-
-    public void destroy() {
-        game.remove(this);
     }
 
     public void useFromInventory(Load load) {

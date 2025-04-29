@@ -9,11 +9,11 @@ import rpg.interfaces.IThing;
 import rpg.things.Character;
 import rpg.things.Item;
 import rpg.things.NPC;
-import rpg.things.Thing;
+import rpg.things.Serializable;
 import rpg.things.player.Player;
 import rpg.types.ItemType;
 
-public class Game extends Thing {
+public class Game extends Serializable {
     private boolean changed = true;
     private List<IThing> things = new ArrayList<IThing>();
     private Player player;

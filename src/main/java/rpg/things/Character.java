@@ -10,7 +10,7 @@ import rpg.interfaces.IThing;
 import rpg.things.player.Inventory;
 import rpg.things.player.Player;
 
-public abstract class Character extends Thing implements IThing {
+public abstract class Character extends Serializable implements IThing {
     protected String name;
     protected int healthPoints;
     protected int currentHealthPoints;
@@ -137,6 +137,10 @@ public abstract class Character extends Thing implements IThing {
 
     public void healDamage(int heal) {
         this.currentHealthPoints = Math.min(this.healthPoints, this.currentHealthPoints + heal);
+    }
+
+    public void destroy() {
+        game.remove(this);
     }
 
     @JsonIgnore

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import rpg.Game;
-import rpg.Interface;
+import rpg.CLI;
 import rpg.interactions.InventoryInteraction;
 import rpg.interfaces.IInteractive;
 import rpg.things.Item;
@@ -47,15 +47,15 @@ public class Inventory implements IInteractive {
         List<String> messages = new ArrayList<>();
 
         if (command == Command.STOP_INTERACTION) {
-            Interface.remove(this);
+            CLI.remove(this);
         } else if (command.isSelect()) {
             int index = Character.getNumericValue(command.getKey()) - 1;
 
             if (index >= 0 && index < loads.size()) {
                 InventoryInteraction interaction = new InventoryInteraction((Player) character, loads.get(index),
                         adversary);
-                Interface.remove(this);
-                Interface.add(interaction);
+                CLI.remove(this);
+                CLI.add(interaction);
             }
         } else
             messages.addAll(showInventory());

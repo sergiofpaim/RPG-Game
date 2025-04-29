@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 
-import rpg.Interface;
+import rpg.CLI;
 import rpg.things.NPC;
 import rpg.things.player.Player;
 import rpg.types.Command;
@@ -40,13 +40,13 @@ public class NPCInteraction extends Interaction {
             messages.add("\n" + npc.draw() + " " + npc.getName() + ": " + npc.getDialog());
         else if (command == Command.STOP_INTERACTION) {
             messages.add("\nYou stopped interacting with " + npc.getName() + ".");
-            Interface.remove(this);
+            CLI.remove(this);
         } else if (command == Command.BATTLE) {
             messages.add("\nYou started a battle with " + npc.getName() + "!\n" +
                     "\nYour status are:\n" + player.showStats() + "\n" +
                     "\nAnd the enemy's status are:\n" + npc.showStats() + "\n");
-            Interface.add(new BattleInteraction(player, npc));
-            Interface.remove(this);
+            CLI.add(new BattleInteraction(player, npc));
+            CLI.remove(this);
         }
 
         return messages;
